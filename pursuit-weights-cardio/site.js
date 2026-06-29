@@ -1,4 +1,4 @@
-/* ═══ Pursuit Weights & Cardio LP — shared site JS ═══ */
+/* ═══ Pursuit Weights & Cardio LP, shared site JS ═══ */
 
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    /* Simulated success — no payment is processed */
+    /* Simulated success, no payment is processed */
     var sel = checkoutForm.querySelector('input[name="rate"]:checked');
     var r = RATES[sel ? sel.value : 'weights-cardio'];
     var name = checkoutForm.querySelector('[name="firstName"]').value;
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var dateOut = dateVal ? new Date(dateVal + 'T00:00:00').toLocaleDateString('en-AU', { weekday: 'long', day: 'numeric', month: 'long' }) : 'your selected day';
 
     document.getElementById('confirmName').textContent = name;
-    document.getElementById('confirmRate').textContent = r.name + ' — ' + fmt(r.price) + '/week';
+    document.getElementById('confirmRate').textContent = r.name + ', ' + fmt(r.price) + '/week';
     document.getElementById('confirmCollect').textContent = dateOut;
 
     document.getElementById('checkoutBody').style.display = 'none';
