@@ -42,6 +42,12 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ── Reviews marquee: duplicate cards for a seamless loop ── */
+  document.querySelectorAll('.marquee-track').forEach(function (track) {
+    var cards = Array.prototype.slice.call(track.children);
+    cards.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
+  });
+
   /* ── UTM passthrough (landing CTA → checkout) ── */
   var params = new URLSearchParams(window.location.search);
   var utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'rate'];
@@ -64,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (!checkoutForm) return;
 
   var RATES = {
-    'weights-cardio': { name: 'Weights & Cardio', price: 11.95, tag: 'No lock-in · no minimum term' },
+    'weights-cardio': { name: 'Weights & Cardio', price: 11.95, tag: 'No lock-in contracts · 6 weeks free' },
     'full-muaythai':  { name: 'Muay Thai (all-access)', price: 40, tag: 'Adults & kids' },
     'full-bjj':       { name: 'Brazilian Jiu Jitsu', price: 40, tag: 'Adults & kids' },
     'full-hyrox':     { name: 'Hyrox & Mind Body', price: 35, tag: 'Strength + recovery' }

@@ -104,7 +104,7 @@ a { color: inherit; }
   justify-content: center;
   text-align: center;
   padding: 130px 24px 80px;
-  background: url('https://static.wixstatic.com/media/806b9e_4f43b9eff647468aa9348883dd459c8b~mv2.jpg/v1/fit/w_1920,h_1286,q_90/806b9e_4f43b9eff647468aa9348883dd459c8b~mv2.jpg') center center / cover no-repeat;
+  background: url('images/hero-cardio.jpg') center center / cover no-repeat;
 }
 .hero::before {
   content: '';
@@ -170,7 +170,7 @@ a { color: inherit; }
 .solution-bridge {
   position: relative;
   padding: 100px 0;
-  background: url('https://static.wixstatic.com/media/806b9e_a5e37dbe622f49ee8548e6195286bb22~mv2.jpg/v1/fit/w_1920,h_1278,q_90/806b9e_a5e37dbe622f49ee8548e6195286bb22~mv2.jpg') center center / cover no-repeat;
+  background: url('images/gym-barbell.jpg') center center / cover no-repeat;
 }
 .solution-bridge::before {
   content: '';
@@ -223,6 +223,67 @@ a { color: inherit; }
 .testimonial .attr strong { color: #fff; font-weight: 600; }
 .testimonial .attr .loc { color: #5da8d4; }
 
+/* ── Reviews marquee (scrolling banner) ── */
+.marquee { position: relative; overflow: hidden; padding: 4px 0; }
+.marquee::before, .marquee::after {
+  content: ''; position: absolute; top: 0; bottom: 0; width: 90px; z-index: 2; pointer-events: none;
+}
+.marquee::before { left: 0; background: linear-gradient(90deg, #141414, rgba(20,20,20,0)); }
+.marquee::after { right: 0; background: linear-gradient(270deg, #141414, rgba(20,20,20,0)); }
+.section-dark .marquee::before { background: linear-gradient(90deg, #0a0a0a, rgba(10,10,10,0)); }
+.section-dark .marquee::after { background: linear-gradient(270deg, #0a0a0a, rgba(10,10,10,0)); }
+.marquee-track { display: flex; gap: 18px; width: max-content; will-change: transform; }
+.marquee-row + .marquee-row { margin-top: 18px; }
+.marquee-row.r1 .marquee-track { animation: scroll-left 60s linear infinite; }
+.marquee-row.r2 .marquee-track { animation: scroll-right 70s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+@keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-row .marquee-track { animation: none; flex-wrap: nowrap; overflow-x: auto; }
+}
+.r-card {
+  flex: 0 0 340px;
+  width: 340px;
+  background: #1a1a1a;
+  border-top: 3px solid #4a90b8;
+  padding: 22px 22px;
+  display: flex;
+  flex-direction: column;
+}
+.r-card .stars { color: #f5b50a; letter-spacing: 2px; font-size: 0.9rem; margin-bottom: 10px; }
+.r-card p { font-size: 0.92rem; color: #d4d4d4; line-height: 1.6; flex: 1; }
+.r-card .attr { margin-top: 14px; font-size: 0.82rem; color: #a0a0a0; }
+.r-card .attr strong { color: #fff; font-weight: 600; }
+.r-card .attr .loc { color: #5da8d4; }
+
+/* ── Gym features (equipment) ── */
+.gym-band {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 0;
+  align-items: stretch;
+  background: #141414;
+  border: 1px solid #222;
+  overflow: hidden;
+}
+.gym-band-img { background-size: cover; background-position: center; min-height: 340px; }
+.gym-band-body { padding: 44px 40px; }
+.gym-band-body .section-label { margin-bottom: 8px; }
+.gym-band-body h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); text-transform: uppercase; margin-bottom: 12px; }
+.gym-band-body h2 span { color: #5da8d4; }
+.gym-band-body > p { color: #a0a0a0; margin-bottom: 20px; }
+.gym-feats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+.gym-feat { display: flex; gap: 12px; align-items: flex-start; }
+.gym-feat .gf-ico {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(74,144,184,0.15); border: 1px solid #4a90b8;
+  display: flex; align-items: center; justify-content: center;
+  color: #5da8d4; font-size: 0.95rem;
+}
+.gym-feat h4 { color: #fff; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 2px; }
+.gym-feat p { font-size: 0.85rem; color: #a0a0a0; line-height: 1.5; }
+
 /* ── Cross-sell Zones ── */
 .zones-intro { max-width: 720px; margin: 0 auto 40px; text-align: center; color: #a0a0a0; }
 .zones-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -256,7 +317,7 @@ a { color: inherit; }
 .offer-section {
   position: relative;
   padding: 100px 0;
-  background: url('https://static.wixstatic.com/media/806b9e_c5a46cbb48a34a2188dc6de207c1f9ef~mv2.jpg/v1/fit/w_1920,h_1278,q_90/806b9e_c5a46cbb48a34a2188dc6de207c1f9ef~mv2.jpg') center center / cover no-repeat;
+  background: url('images/hero-cardio.jpg') center center / cover no-repeat;
 }
 .offer-section::before { content: ''; position: absolute; inset: 0; background: rgba(10, 10, 10, 0.9); }
 .offer-section .container { position: relative; z-index: 1; }
@@ -459,6 +520,11 @@ select.form-input { appearance: none; cursor: pointer; background-image: linear-
   .offer-box { padding: 32px 22px; }
   .section { padding: 60px 0; }
   .field-grid, .field-grid.thirds, .collect-grid, .card-row { grid-template-columns: 1fr; }
+  .gym-band { grid-template-columns: 1fr; }
+  .gym-band-img { min-height: 220px; }
+  .gym-band-body { padding: 32px 24px; }
+  .gym-feats { grid-template-columns: 1fr; }
+  .r-card { flex-basis: 280px; width: 280px; }
 }
 @media (max-width: 480px) {
   .nav-logo { height: 28px; }
