@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Supa Phat — Strategic Session · 31 Jul 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000;--panel:#0d0d0f;--panel2:#141417;--line:#26262b;--line2:#33333a;
+  --txt:#f4f4f5;--mut:#9a9aa2;--dim:#6b6b73;
+  --orange:#EF820C;--orange2:#f4a764;
+  --green:#3fbf7f;--red:#e5484d;--blue:#5b7fc7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:Rubik,system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:var(--orange);text-decoration:none}
+a:hover{text-decoration:underline}
+h1,h2,h3,h4{line-height:1.15;letter-spacing:-.01em}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+
+/* GATE */
+#gate{position:fixed;inset:0;z-index:999;background:#000;display:flex;align-items:center;justify-content:center;padding:24px}
+#gate .box{max-width:360px;width:100%;text-align:center}
+#gate img{height:64px;margin-bottom:28px}
+#gate p{color:var(--dim);font-size:13px;margin-bottom:18px;letter-spacing:.04em;text-transform:uppercase;font-weight:600}
+#gate input{width:100%;background:var(--panel);border:1px solid var(--line2);border-radius:9px;padding:13px 15px;color:var(--txt);font-family:inherit;font-size:15px;text-align:center;letter-spacing:.05em}
+#gate input:focus{outline:none;border-color:var(--orange)}
+#gate button{width:100%;margin-top:11px;background:var(--orange);border:0;border-radius:9px;padding:13px;color:#000;font-family:inherit;font-weight:800;font-size:14px;letter-spacing:.09em;text-transform:uppercase;cursor:pointer}
+#gate .err{color:var(--red);font-size:12.5px;margin-top:12px;min-height:18px;text-transform:none;letter-spacing:0;font-weight:400}
+#doc{display:none}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;gap:24px;height:58px}
+nav img{height:26px}
+nav .links{display:flex;gap:19px;font-size:12.5px;flex-wrap:wrap}
+nav .links a{color:var(--mut);font-weight:500}
+nav .links a:hover{color:var(--txt);text-decoration:none}
+@media(max-width:840px){nav .links{display:none}}
+
+/* HERO */
+header.hero{padding:52px 0 38px;border-bottom:1px solid var(--line);background:radial-gradient(880px 320px at 80% -14%,rgba(239,130,12,.15),transparent)}
+header.hero img.mark{height:96px;margin-bottom:24px}
+.kicker{color:var(--orange);font-weight:800;letter-spacing:.18em;text-transform:uppercase;font-size:11.5px}
+header.hero h1{font-size:clamp(29px,5.4vw,52px);font-weight:900;text-transform:uppercase;margin:11px 0 14px}
+header.hero p.lede{color:var(--mut);max-width:660px;font-size:16.5px}
+.meta-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:22px;font-size:12.5px;color:var(--dim)}
+.meta-row b{color:var(--txt);font-weight:600}
+
+/* SECTIONS */
+section{padding:46px 0;border-bottom:1px solid var(--line)}
+section h2{font-size:23px;font-weight:900;text-transform:uppercase;display:flex;align-items:baseline;gap:12px}
+section h2 .n{color:var(--orange);font-size:13px;font-weight:800}
+.sub{color:var(--mut);margin:9px 0 24px;max-width:740px;font-size:14.5px}
+h3{font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.02em;margin:26px 0 11px}
+h3.first{margin-top:0}
+
+/* BOARD TILES */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(162px,1fr));gap:13px}
+.tile{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:17px}
+.tile .v{font-size:27px;font-weight:900;letter-spacing:-.02em;line-height:1.1}
+.tile .v.o{color:var(--orange)}
+.tile .v.g{color:var(--green)}
+.tile .v.sm{font-size:19px}
+.tile .l{color:var(--mut);font-size:12px;margin-top:4px;font-weight:500}
+.tile .s{color:var(--dim);font-size:11.5px;margin-top:5px}
+
+/* TABLES */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-top:6px}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th,.tbl td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tbl th{color:var(--dim);font-weight:700;text-transform:uppercase;font-size:10.5px;letter-spacing:.07em}
+.tbl tr:last-child td{border-bottom:0}
+.tbl td.num,.tbl th.num{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr:hover td{background:var(--panel2)}
+.tbl .tot td{border-top:2px solid var(--line2);font-weight:700;background:var(--panel2)}
+
+/* TAGS */
+.tag{display:inline-block;font-size:10px;font-weight:800;padding:3px 8px;border-radius:5px;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.tag.new{background:rgba(239,130,12,.18);color:var(--orange2)}
+.tag.done{background:rgba(63,191,127,.16);color:#6fe0a8}
+.tag.hold{background:rgba(229,72,77,.15);color:#f2969a}
+.tag.uk{background:rgba(91,127,199,.2);color:#9db4e0}
+.tag.au{background:rgba(63,191,127,.16);color:#6fe0a8}
+
+/* CHECKLIST */
+ul.chk{list-style:none}
+ul.chk li{display:flex;gap:12px;align-items:flex-start;padding:11px 0;border-bottom:1px solid var(--line);font-size:14.5px;color:var(--txt)}
+ul.chk li:last-child{border-bottom:0}
+ul.chk input{appearance:none;flex:none;width:19px;height:19px;margin-top:2px;border:1.5px solid var(--line2);border-radius:5px;cursor:pointer;position:relative;background:var(--panel)}
+ul.chk input:checked{background:var(--orange);border-color:var(--orange)}
+ul.chk input:checked:after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#000;font-size:13px;font-weight:900}
+ul.chk input:checked ~ span{color:var(--dim);text-decoration:line-through}
+ul.chk .note{display:block;color:var(--dim);font-size:12.5px;margin-top:2px;text-decoration:none!important}
+
+/* CLEAN LIST */
+ul.clean{list-style:none}
+ul.clean li{padding:9px 0 9px 21px;position:relative;color:var(--mut);font-size:14.5px;border-bottom:1px solid var(--line)}
+ul.clean li:last-child{border-bottom:0}
+ul.clean li:before{content:"▸";position:absolute;left:1px;color:var(--orange);font-weight:700}
+ul.clean li b,ul.clean li strong{color:var(--txt);font-weight:600}
+
+/* DETAILS */
+details{background:var(--panel);border:1px solid var(--line);border-radius:12px;margin-bottom:11px;overflow:hidden}
+details[open]{border-color:var(--line2)}
+summary{padding:15px 18px;cursor:pointer;font-weight:700;font-size:14.5px;display:flex;align-items:center;gap:11px;list-style:none;user-select:none}
+summary::-webkit-details-marker{display:none}
+summary:before{content:"+";color:var(--orange);font-weight:900;font-size:17px;flex:none;width:14px}
+details[open] summary:before{content:"–"}
+details[open] summary{border-bottom:1px solid var(--line);background:var(--panel2)}
+summary .cnt{margin-left:auto;color:var(--dim);font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.05em}
+.dbody{padding:18px}
+.dbody > *:first-child{margin-top:0}
+.dbody p{color:var(--mut);font-size:14.5px;margin-bottom:11px}
+.dbody p b,.dbody p strong{color:var(--txt);font-weight:600}
+.dbody p:last-child{margin-bottom:0}
+
+/* REC CARDS */
+.rec{background:var(--panel2);border-left:3px solid var(--orange);border-radius:9px;padding:14px 16px;margin:12px 0}
+.rec h4{font-size:14px;font-weight:800;text-transform:uppercase;margin-bottom:6px;letter-spacing:.02em}
+.rec p{color:var(--mut);font-size:13.5px}
+.rec.locked{border-left-color:var(--green)}
+.rec.warn{border-left-color:var(--red)}
+
+/* COLOUR CHIPS */
+.chips{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+.chip{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:13px 15px;min-width:150px}
+.chip .sw{width:100%;height:38px;border-radius:7px;margin-bottom:10px;border:1px solid rgba(255,255,255,.1)}
+.chip .nm{font-size:13px;font-weight:700}
+.chip .pn{font-size:11.5px;color:var(--dim);font-variant-numeric:tabular-nums;margin-top:1px}
+
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:780px){.cols{grid-template-columns:1fr}}
+.note{font-size:12.5px;color:var(--dim);margin-top:11px;font-style:italic}
+.pill{display:inline-block;background:var(--panel2);border:1px solid var(--line);border-radius:20px;padding:4px 13px;font-size:12px;color:var(--mut);margin:0 5px 6px 0}
+footer{padding:38px 0 60px;color:var(--dim);font-size:12.5px}
+.prog{height:5px;background:var(--panel2);border-radius:4px;overflow:hidden;margin-top:12px}
+.prog i{display:block;height:100%;background:var(--orange);border-radius:4px;transition:width .3s}
+</style>
+</head>
+<body>
+
+<div id="gate"><div class="box">
+  <img src="sp-wordmark-white.png" alt="Supa Phat">
+  <p>Internal — enter password</p>
+  <input type="password" id="pw" autocomplete="off" autofocus>
+  <button onclick="tryPw()">Unlock</button>
+  <div class="err" id="err"></div>
+</div></div>
+
+<div id="doc">
+
+<nav><div class="wrap">
+  <img src="sp-wordmark-white.png" alt="Supa Phat">
+  <div class="links">
+    <a href="#board">Board</a>
+    <a href="#next">Next Steps</a>
+    <a href="#decisions">Decisions</a>
+    <a href="#empire">Empire</a>
+    <a href="#detail">Workstreams</a>
+    <a href="#watch">Dependencies</a>
+  </div>
+</div></nav>
+
+<header class="hero"><div class="wrap">
+  <img class="mark" src="sp-wordmark-white.png" alt="Supa Phat">
+  <div class="kicker">Strategic Session · Sydney</div>
+  <h1>Strategy Session<br>31 July 2026</h1>
+  <p class="lede">Half-year workshop with Adam. Product pipeline, Empire #14, content engine, promoter partnerships, athletes and the road into Black Friday.</p>
+  <div class="meta-row">
+    <span>Present <b>Matt + Adam</b> (in person)</span>
+    <span>Also <b>Rochelle</b> · <b>Ash</b> (by phone)</span>
+    <span>Next milestone <b>Empire #14 — 5 Sep</b></span>
+    <span>Order deadline <b>31 Aug</b></span>
+  </div>
+</div></header>
+
+<!-- BOARD -->
+<section id="board"><div class="wrap">
+  <h2><span class="n">01</span> Status Board</h2>
+  <p class="sub">Where everything sits coming out of the session.</p>
+  <div class="tiles">
+    <div class="tile"><div class="v g">412</div><div class="l">Order 1 — sent</div><div class="s">Unisex · $7,622 landed · due 31 Aug</div></div>
+    <div class="tile"><div class="v o">200</div><div class="l">Order 2 — on hold</div><div class="s">Women's · gated on the fix</div></div>
+    <div class="tile"><div class="v">52</div><div class="l">Empire fight shorts</div><div class="s">Every fighter · signed off with Darius</div></div>
+    <div class="tile"><div class="v">28</div><div class="l">Flag-badge pairs</div><div class="s">14 UK · 14 AU · saleable on the night</div></div>
+    <div class="tile"><div class="v">12</div><div class="l">Empire gloves</div><div class="s">8oz + 10oz · date confirmed</div></div>
+    <div class="tile"><div class="v sm">5 Sep</div><div class="l">Empire #14, Perth</div><div class="s">Matt in Thu 3 → Sun 6</div></div>
+    <div class="tile"><div class="v sm">27 Nov</div><div class="l">Black Friday</div><div class="s">One deal only — not two</div></div>
+    <div class="tile"><div class="v sm">1,500</div><div class="l">3W units pending</div><div class="s">Unpriced — chasing Christina</div></div>
+  </div>
+
+  <h3>Supplier state of play</h3>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Supplier</th><th>Scope</th><th>Status</th><th>Next move</th></tr>
+    <tr><td><b>Kashaf</b> / Combo Sports</td><td>Shorts</td><td><span class="tag done">Order 1 sent</span></td><td>Hold him to 31 Aug · badge + Pantones already briefed</td></tr>
+    <tr><td><b>Kashaf</b> / Combo Sports</td><td>Women's shorts</td><td><span class="tag hold">Blocked</span></td><td>Fix the material bunching → new sample → Order 2</td></tr>
+    <tr><td><b>Ameer</b> / Excalibur</td><td>Gloves + shins</td><td><span class="tag new">Engaged</span></td><td>Glove sent for him to copy · next test round underway</td></tr>
+    <tr><td><b>Christina</b> / 3W</td><td>Apparel, 1,500u</td><td><span class="tag hold">Unpriced</span></td><td>Chase pricing · confirm CIF · customs agent</td></tr>
+    <tr><td>Bond / TKR</td><td>Gloves, underwear</td><td><span class="tag new">Underway</span></td><td>Confirm the underwear line</td></tr>
+  </table></div>
+</div></section>
+
+<!-- NEXT STEPS -->
+<section id="next"><div class="wrap">
+  <h2><span class="n">02</span> Next Steps</h2>
+  <p class="sub">Full list from the session — everything already actioned is ticked. Ticks save in this browser.</p>
+  <div class="prog"><i id="bar" style="width:0%"></i></div>
+  <p class="note" id="pct">—</p>
+
+  <h3>Matt <span class="tag done" id="mtag">—</span></h3>
+  <ul class="chk" id="cl">
+    <li><input type="checkbox" checked><span>Send the <b>shorts brief to Kashaf</b> — prioritise 400–500, confirm end-Aug, two colour flag badges<span class="note">Order 1 sent · deadline 31 Aug</span></span></li>
+    <li><input type="checkbox" checked><span><b>Lock + brief the flag badge design</b></span></li>
+    <li><input type="checkbox" checked><span>Specify the <b>Pantone references</b> in the brief — 2965C + 3435C</span></li>
+    <li><input type="checkbox" checked><span>Build the <b>shorts brief template</b></span></li>
+    <li><input type="checkbox" checked><span>Ask Combo Sports for a <b>single point of contact</b></span></li>
+    <li><input type="checkbox" checked><span>Pick the <b>sample colourways</b> with Ash<span class="note">Landed on 3: Deep Red 1815 PC · Alabama Burgundy 15.100.78.71 · Marshall Cream</span></span></li>
+    <li><input type="checkbox" checked><span><b>Engage Ameer</b> at Excalibur<span class="note">Glove sent for him to copy · next round of product tests underway</span></span></li>
+    <li><input type="checkbox"><span><b>Book lights</b> for the September Phat Chats shoot<span class="note">Came up three times in the session — this is the blocker on the whole September content run</span></span></li>
+    <li><input type="checkbox"><span>Confirm Empire flights <b>Thu 3 → Sun 6 Sep</b> + Applecross accommodation<span class="note">Meetings Fri 8:15–10:15am · filming with Robbie Thursday afternoon</span></span></li>
+    <li><input type="checkbox"><span>Order <b>sticker rolls, show bags, corner pad</b><span class="note">Stickers ran short last time · black product bags already in the drawer</span></span></li>
+    <li><input type="checkbox"><span>Decide the <b>QR / chair activation</b><span class="note">Chair flyers didn't work last time — lean on-screen instead</span></span></li>
+    <li><input type="checkbox"><span><b>Brief Fat Cam</b> — earlier and tighter<span class="note">Template exists · worked on the livestream + big screen</span></span></li>
+    <li><input type="checkbox"><span>Set up the <b>Michaela sponsorship</b><span class="note">Be upfront, set guardrails, explain how it works with Empire — she's never done this kind of deal</span></span></li>
+    <li><input type="checkbox"><span>Ask Michaela to <b>pinch-test a unisex pair</b><span class="note">Isolates whether the women's bunching is the material or the pattern</span></span></li>
+    <li><input type="checkbox"><span>Prep the <b>Pride / Carly agenda</b> + full ask list + 3-show terms<span class="note">Meeting next week — this is where "what does she bring" belongs</span></span></li>
+    <li><input type="checkbox"><span>Build <b>The Fat Hunt</b> landing page + film the explainer</span></li>
+    <li><input type="checkbox"><span>Set the <b>Black Friday offer</b>, then the staged calendar + reshoot list<span class="note">$50 shorts is the known winner · old creative shows "20% off site-wide"</span></span></li>
+    <li><input type="checkbox"><span>Chase <b>Christina</b> for 3W pricing · confirm CIF · sort the customs agent</span></li>
+    <li><input type="checkbox"><span>Pull Adam's <b>design deck</b> into the master deck<span class="note">~5MB, too big to send over chat</span></span></li>
+    <li><input type="checkbox"><span>Set up the <b>viral comp → Klaviyo</b><span class="note">Kickoff Labs vs a plugin · 10–11 spare Shadow pairs as the prize</span></span></li>
+    <li><input type="checkbox"><span>Call <b>Jaga</b> — care package, 16oz, ask for gym referrals</span></li>
+    <li><input type="checkbox"><span>Re-engage <b>Ambrose</b> once Bond lands</span></li>
+  </ul>
+
+  <h3>Adam <span class="tag done" id="atag">—</span></h3>
+  <ul class="chk" id="cl2">
+    <li><input type="checkbox" checked><span><b>Call Darius</b> — main card defined, 52-pair allocation signed off</span></li>
+    <li><input type="checkbox" checked><span>Confirm the <b>Empire glove delivery date</b> with the supplier<span class="note">12 pairs · 8oz + 10oz</span></span></li>
+    <li><input type="checkbox" checked><span>Decide on <b>16oz for D-class</b></span></li>
+    <li><input type="checkbox" checked><span>Give Matt the <b>t-shirt design direction</b><span class="note">Unblocked the 3W brief</span></span></li>
+    <li><input type="checkbox"><span><b>Field-test the V2 shin guards</b> — get them on fighters<span class="note">Real feedback → minor tweaks → order</span></span></li>
+  </ul>
+  <p class="note">Jaga and Ambrose moved from Adam to Matt.</p>
+
+  <h3>Meetings booked</h3>
+  <ul class="clean">
+    <li><b>Wednesday</b> — Phat Chats + videography</li>
+    <li><b>Next week</b> — Pride / Carly partnership</li>
+  </ul>
+</div></section>
+
+<!-- DECISIONS -->
+<section id="decisions"><div class="wrap">
+  <h2><span class="n">03</span> Decisions Locked</h2>
+  <p class="sub">Settled in the room. Treat as canon unless revisited.</p>
+  <div class="cols">
+    <div>
+      <ul class="clean">
+        <li>Empire shorts = <b>Royal Blue 2965C (UK)</b> + <b>Emerald Green 3435C (Australia)</b>, flag <b>badge</b> on the <b>right leg</b> — not a flag print</li>
+        <li>Order <b>split in two</b> — unisex 412 now, women's 200 later</li>
+        <li>Flagged pairs bumped <b>10 → 28</b> so there's saleable stock at the event</li>
+        <li>Women's shorts <b>out of Order 1</b> — won't order unfixed</li>
+        <li><b>"Pro" → "Main Card"</b> in all Empire language</li>
+        <li><b>Every Empire fighter gets a pair</b> (52) — signed off with Darius</li>
+        <li>SP is <b>sponsoring Michaela</b></li>
+      </ul>
+    </div>
+    <div>
+      <ul class="clean">
+        <li>Robbie starts the <b>Coaches Series</b> with Darren Reese + Daniel Dawson</li>
+        <li><b>Fly Robbie to Pride</b> rather than use a local videographer</li>
+        <li><b>Kit out coaches</b>; don't donate punching bags</li>
+        <li><b>One deal in November</b> — Black Friday only</li>
+        <li><b>Zebra + all-black approved</b>; palm-tree and chess prints rejected</li>
+        <li>Deep-red Pantone <b>parked</b> → sampling three candidates instead</li>
+        <li><b>Ameer engaged</b> at Excalibur — glove sent for him to copy</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- EMPIRE -->
+<section id="empire"><div class="wrap">
+  <h2><span class="n">04</span> Empire #14 <span style="font-size:13px;color:var(--dim);font-weight:400;text-transform:none">· Sat 5 Sep, Perth</span></h2>
+  <p class="sub">UK vs Australia. The shorts became a design project — here's where it landed and why.</p>
+
+  <div class="rec locked">
+    <h4>The decision <span class="tag done">Locked</span></h4>
+    <p>Two custom colourways carrying a <b>flag badge on the right leg</b> (SP logo lives on the left). Badges are already SP's brand language — the athlete backpack runs an English flag patch — and they're far safer to execute with Kashaf than a full custom print.</p>
+  </div>
+
+  <div class="chips">
+    <div class="chip"><div class="sw" style="background:#003087"></div><div class="nm">Royal Blue <span class="tag uk">UK</span></div><div class="pn">Pantone 2965C</div></div>
+    <div class="chip"><div class="sw" style="background:#00693C"></div><div class="nm">Emerald Green <span class="tag au">AUS</span></div><div class="pn">Pantone 3435C</div></div>
+  </div>
+  <p class="note">Swatches are screen approximations of the Pantone references, not print-accurate.</p>
+
+  <div class="rec">
+    <h4>Why not a flag print</h4>
+    <p>Rejected plain red/blue (won't resell), a full Union Jack print — "a Union Jack with a fat logo slapped on the side" — and flag-as-primary-print. The commercial driver: last event produced heavily-engaging fighter photos in shorts SP then couldn't sell. The Matty-in-leopard-print shot is now a converting ad. Custom event colours that double as sellable colourways solve that.</p>
+  </div>
+
+  <div class="rec">
+    <h4>How the badge was arrived at <span class="tag done">Briefed</span></h4>
+    <p>Square vs rounded vs circular, worked through in the room. Considered a Team GB / Team AUS emblem style (the understated circle read best — a design element, not a badge planted on), three lions, boxing kangaroo, coat of arms. Constraints applied: must be stitchable, must not disrespect the flag, must not clash with the short colour. "AU" vs "AUS" debated — AUD is currency, AUS is the sporting form. Now briefed through to Kashaf with the Pantone references.</p>
+  </div>
+
+  <h3>Shorts allocation</h3>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Tier</th><th class="num">Bouts</th><th class="num">Pairs</th><th>Treatment</th></tr>
+    <tr><td>Main card — UK v Australia</td><td class="num">5</td><td class="num">10</td><td>Flag badge <span class="tag uk">UK</span> <span class="tag au">AUS</span></td></tr>
+    <tr><td>C-class</td><td class="num">21</td><td class="num">42</td><td>Plain SP print</td></tr>
+    <tr><td>D-class</td><td class="num">—</td><td class="num">0</td><td>Never receive shorts</td></tr>
+    <tr class="tot"><td>Fighters kitted</td><td class="num">26</td><td class="num">52</td><td>+ 18 spare flagged pairs to sell</td></tr>
+  </table></div>
+  <p class="note">~32 fights on the card. Darius expected ~18 C-class bouts; ordered for 21 as buffer. C-class ≠ inexperienced — you can be experienced in C-class, or take your first fight there. No other sponsor kits out a whole card; Pride do, but at ~15 bouts.</p>
+
+  <h3>Event kit &amp; activations</h3>
+  <ul class="clean">
+    <li><b>Corner pad</b> — behind the heads, on the stool</li>
+    <li><b>Sticker rolls</b> — went down well, kids wanted them, ran short</li>
+    <li><b>Show bags</b> for product sales — black product bags already on hand</li>
+    <li><b>Fat Cam</b> — template exists, worked on livestream + big screen. Brief it earlier</li>
+    <li><b>QR activation</b> — feeds the viral comp. On-screen beats chair flyers</li>
+    <li><b>Gloves</b> — 12 pairs, 8oz (under 63.5kg) + 10oz (63.6kg+). Open: 16oz for D-class, off-the-shelf with branding scrubbed</li>
+  </ul>
+</div></section>
+
+<!-- WORKSTREAM DETAIL -->
+<section id="detail"><div class="wrap">
+  <h2><span class="n">05</span> Workstreams</h2>
+  <p class="sub">Tap to open. Full detail lives in the reference file.</p>
+
+  <details>
+    <summary>Kashaf / Combo Sports — the relationship is the bottleneck<span class="cnt">3 fixes</span></summary>
+    <div class="dbody">
+      <p><b>Single point of contact.</b> Ask Combo Sports to nominate one person. Current failure mode is multiple people and briefs getting lost — the Animal Series brief came back as his own interpretation.</p>
+      <p><b>Brief template.</b> Build a reusable shorts-design brief format so specs land first time. This is the recurring bottleneck on every new design and the highest-leverage unlock available.</p>
+      <p><b>Pantone book in hand.</b> Ash brought it over. Historically his colours come back off-spec. But his printed colours diverge from the book — 202C reads burgundy in the book, pinky-red in his prints. <b>Verify he prints true to Pantone before trusting a custom colour.</b></p>
+      <p><b>Sampling direction.</b> ~15 sample pairs across assorted Pantones to find 2–3 winners. Deep and luxury, not bright — "BMW leather stitching, Bugatti". Deep green, deep blue, deep red. Hermès orange floated. Also crop tops, beachy shorts, a washed-stone colour. Adam's off the pastels; Electric Blue's underperformance is his evidence SP isn't a bright brand.</p>
+      <p><b>Deep red unresolved.</b> 202C too pink · 1817 browns out · 200C too boxing-glove. Parked → three sample colourways ordered instead: Deep Red 1815 PC, Alabama Burgundy 15.100.78.71, Marshall Cream.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Women's range — one fix away<span class="cnt">Blocked</span></summary>
+    <div class="dbody">
+      <p><b>The problem.</b> Too much material at the join between the inner bike short and the outer pant. It pulls and bunches when kicking. Sample 3 fits perfectly and is better, but the pull remains.</p>
+      <p><b>Root cause unresolved</b> — material or pattern? Two diagnostics: ask Kashaf for samples in SP microfiber, and ask Michaela to pinch-test a standard unisex pair to isolate the variable.</p>
+      <p><b>Decision:</b> out of Order 1, 200 units in Order 2 once fixed. Ordering it unfixed is a risk Adam won't take. Content can still proceed on the current sample — treat it as a feature piece, don't shoot close on the problem area.</p>
+      <p><b>Moying pack</b> (Muay Ying — female fighter): gloves + shins + women's shorts + crop + tee ≈ $500. Works as both a viral comp prize and a sellable bundle.</p>
+      <p><b>Shoot direction:</b> empowering, boxing gym, dark and moody. Not the Pursuit look — the Pursuit logos on the bags are visible and a problem. Feature to demo: foam in the pocket, go for a run.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Excalibur — gloves need V2, shins nearly there<span class="cnt">Engaged</span></summary>
+    <div class="dbody">
+      <p><b>Shin guards — close.</b> Weight good, feel good. The extra safety stitching addressing foot-pad detachment is a genuine win — that's the number-one failure mode on any shin pad. Fix needed: wrinkles and creases through one section, suspected gluing/application method rather than the leather; it looks unattached in places.</p>
+      <p><b>Velcro question.</b> The plastic-backed velcro is unfamiliar. Is it better quality? Does it last longer? Explain <i>why</i> — if it's best-in-market, SP wants that in the marketing.</p>
+      <p><b>Gloves — need another revision.</b> Three issues: the wrist strap and support lack stability and collapse through that section (a premium glove shows no collapse down the barrel, and the collapse causes lateral movement); padding distribution is uneven, chunky toward the forearm and thin toward the blade, when blade padding matters equally for late defence; and the shape is too flat rather than rounded, so it doesn't encapsulate the top of the hand and you get internal lateral wrist flexion however tight it's strapped.</p>
+      <p><b>Hand wraps must not be the fix.</b> Gloves loosen over roughly six months, so they have to start tight.</p>
+      <p><b>Positives:</b> build quality good, stitching neat. Patch much smaller — different, not worse, possibly a machine constraint.</p>
+      <p><b>Commercials.</b> US$23–24 on the shin guard ≈ A$35. Bond was in the $40s on discounted bulk. Adam's framing: "I'd much rather spend $20k on shorts that gets us $100k" — Excalibur needs volume to justify itself.</p>
+      <p><b>Where it's at:</b> Ameer engaged. SP sending him a glove to copy, moving into the next round of product tests. Shins then go on fighters' legs for real feedback before ordering.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>3W China order — 1,500 units, blocked on design direction<span class="cnt">Unpriced</span></summary>
+    <div class="dbody">
+      <p><b>Scope.</b> 1,500 units across five lines: sports bras, t-shirts (the vast majority), jumpers/hoodies, zip jacket, crop tops. Jumpers plus jacket ≈ one third.</p>
+      <p><b>Christina is slow.</b> Unit pricing still outstanding.</p>
+      <p><b>FOB vs CIF resolved</b> — she'll quote CIF. SP preference is one invoice with the supplier paying freight, consistent with other suppliers. FOB = seller pays loading at origin, buyer pays the voyage. CIF = seller covers loading, sea freight and basic insurance to destination port.</p>
+      <p><b>Customs</b> handled by a clearance agent; the previous one was poor. Watch cheap-looking quotes that get tendered out with commissions clipped. On import licences, Adam's position is the group brings gym equipment in by the container and has never needed one.</p>
+      <p><b>T-shirt designs are the blocker.</b> Matt presented three weeks prior; Adam wants more direction on styles before Matt briefs 3W. Adam's want — "more stuff that actually says Muay Thai", badge-led, the way other brands do it. <b>"Phat Fight Club"</b> range idea. A Team Australia badge already exists. Favourites: the tiger, the beach shorts, a washed stone colour.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Phat Chats — Coaches Series<span class="cnt">New format</span></summary>
+    <div class="dbody">
+      <p><b>Why it works.</b> Of the four episodes so far, when the gym joins as a collaborator the views skyrocket. Coaches unlock gym networks — that's the mechanism worth building around.</p>
+      <p><b>Custom question set:</b> best knockout <i>you've seen</i> (not your own), wildest travel story, team stories, old-school flashbacks.</p>
+      <p><b>Robbie starts with Darren Reese + Daniel Dawson.</b> He drives out to the gym during the day. Daniel Dawson is the prize target — the only man to hold world titles in boxing, kickboxing, Muay Thai and K1, with a network to match.</p>
+      <p><b>Wider list:</b> Andrew Panham (PTJ — Jaga's coach), the Rebellion promoter in Victoria, 8 Limbs Bondi (no profile but high foot traffic), Sigma Alexandria, Andrew Banning in Sydney.</p>
+      <p><b>Interstate = Zoom versions</b> using Robbie's own podcast setup. Acknowledged as weaker — "won't look as good in a blurry thing."</p>
+      <p><b>September refilm, around the 5th.</b> The pros are housed together for six days pre-event, so send Robbie to the house. Lights are the blocker. Fight-week interview targets: the English team coming over, and Alex Kian (local, never interviewed).</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Pride / Carly — the partnership ask list<span class="cnt">Meeting next week</span></summary>
+    <div class="dbody">
+      <p>Show is approximately October. Reframe as a two-way partnership — <b>this is where "what does she bring to the table" belongs.</b></p>
+      <p><b>SP's ask list:</b> event tickets · a stand or table · photos and videos as standard, and how her videographer works · social promotion · sponsor call-outs · banners (check lead time) · pay-per-view and livestream exposure (PPV is the biggest bang) · post-fight interviews · Phat Chats filmed on site · a comp giving away a Pride experience · a 3-show minimum lock-in with written terms · the show roadmap, dates and fighters.</p>
+      <p>SP pays its own flights and accommodation — that's sponsor-standard. Shorts offer to be decided next week; baseline is main card, all of them if there's spare.</p>
+      <p><b>Videographer economics.</b> Flying Robbie from Perth costs roughly $600 more all-in than using Carly's local. <b>Verdict: pay for Robbie</b> — tried and tested, needs no directing, and delivers behind-the-scenes (airport content, "on our way to Pride, come see us at the show"). Framing: "we invest heavily in product — we need to start investing in the brand."</p>
+      <p><b>Promoter landscape.</b> Empire = WA, Pride = SA, <b>Queensland is the gap</b>. War on the Shore used to be big, now declining. Adam's economics read: the amateur side out-earns pro, and big pro shows lose money — ~$80k purses plus sanctioning against 350 tickets at $100. "More interested in looking good than being profitable." He's pushing Darius for a balance of shows and funding sponsors before committing to big ones.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Athletes + The Fat Hunt<span class="cnt">New campaign</span></summary>
+    <div class="dbody">
+      <p><b>Roster moves.</b> Michaela — sponsoring, decided. Ambrose — re-engage once Bond lands. Jaga Chan — contracted; call, send a care package plus 16oz for training, and ask for gym referrals. Prospects: James Honey (via Jaga's gym) and Jadeo (Married At First Sight profile play).</p>
+      <p><b>Punching bags rejected</b> as a gym play — bag branding doesn't drive purchase at ~$100 a bag. Better route: <b>kit out the coach</b>. "We want you on our podcast, here's all the gear" → he wears it, SP gets the episode.</p>
+      <p><b>The Fat Hunt.</b> "Supa Phat is on the lookout for its 2027 athlete." Entry is your best knockout or best fight footage — broadened deliberately so it isn't limited to KO artists or currently-active fighters. Prize: a 12-month SP sponsorship, all the latest gear, and access to in-product testing.</p>
+      <p><b>The real value is as an ad</b> — the whole industry sees that SP has products in testing. Needs a landing page; naming treatment TBC. Matt films a talk-to-camera explainer, entrants hold a selfie and say in 30 seconds who and where. If a high-profile fighter enters, SP can still sponsor them separately off the back of it.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary>Black Friday &amp; Q4 ramp<span class="cnt">27 Nov</span></summary>
+    <div class="dbody">
+      <p><b>Staged playbook: Ramp-up → Hype &amp; Tease → Launch.</b> Ramp-up gets every product live and advertises everything at full price. Hype and tease runs the viral comp and list generation, gives away top-tier product, and warms the range by email. Launch is a three-day countdown, then go.</p>
+      <p><b>The mechanic:</b> ads buy cheap leads up front, the viral comp captures contacts permanently, email does the heavy lifting at launch, and ads scale into it.</p>
+      <p><b>Known winner: $50 shorts.</b> 20% off site-wide does not work. Consequence — last year's creative shows the old offer and needs reshooting once the offer is set. The learning phase is about finding the offer.</p>
+      <p><b>Only one deal in November.</b> Loy Krathong also falls in November; don't stack them. Near-term, Queen's Birthday on 12 August is a sign-up-to-win moment, though the women's shorts aren't ready and they were the natural prize.</p>
+      <p><b>Viral comp stock:</b> the 10–11 spare Shadow Series pairs with the old leg badge. Launch September, run into Black Friday, with Empire QR codes feeding it. Tooling — Kickoff Labs considered, but preference is a plugin piping straight into Klaviyo. "Much easier to get email addresses at a show than sales."</p>
+      <p><b>Billboards</b> — Matt wants one for SP. Awareness channel, not performance. Good for launches and specific placements.</p>
+    </div>
+  </details>
+</div></section>
+
+<!-- WATCH -->
+<section id="watch"><div class="wrap">
+  <h2><span class="n">06</span> Gating Dependencies</h2>
+  <p class="sub">Three things other work is waiting on. Everything else from the session is closed out.</p>
+  <div class="scroll"><table class="tbl">
+    <tr><th>Dependency</th><th>What it gates</th></tr>
+    <tr><td>Kashaf delivering 412 pairs by <b>31 Aug</b></td><td>Empire on 5 Sep — no slack in the timeline</td></tr>
+    <tr><td>The <b>women's shorts fix</b> + new sample</td><td>Order 2 (200 units) can't be placed</td></tr>
+    <tr><td><b>Christina's 3W pricing</b></td><td>A 1,500-unit apparel order sits unpriced</td></tr>
+  </table></div>
+
+  <h3>Names to verify</h3>
+  <p style="color:var(--mut);font-size:14px">Transcribed from audio, not confirmed: <b>Darren Reese</b> spelling · <b>Andrew Panham/Parman</b> + PTJ gym · <b>Alex Kian</b> spelling · the English team's name (never established) · the Rebellion promoter in Victoria. <b>Ameer</b> (Excalibur) is confirmed correct.</p>
+
+  <p style="margin-top:20px">
+    <span class="pill">Order 1 · 412 sent</span><span class="pill">Order 2 · 200 held</span><span class="pill">Empire 5 Sep</span>
+    <span class="pill">BF 27 Nov</span><span class="pill">2965C · UK</span><span class="pill">3435C · AUS</span>
+    <span class="pill">Badge · right leg</span><span class="pill">Main Card, not Pro</span>
+  </p>
+</div></section>
+
+<footer><div class="wrap">
+  Supa Phat · Strategic Session 31 July 2026 · summary built 3 August 2026.<br>
+  Internal working document — not customer-facing. Full reference record at <code>supa-phat/memory/strategy-session-2026-07-31.md</code>.
+</div></footer>
+
+</div>
+
+<script>
+var H='f175cf80b394171dd6ceab2261a3e708710bbc910fd84b4a37b325700562a168';
+async function sha(s){
+  var b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('');
+}
+async function tryPw(){
+  var v=document.getElementById('pw').value;
+  if(await sha(v)===H){
+    sessionStorage.setItem('sp_ok','1');
+    unlock();
+  } else {
+    document.getElementById('err').textContent='Wrong password.';
+    document.getElementById('pw').value='';
+  }
+}
+function unlock(){
+  document.getElementById('gate').style.display='none';
+  document.getElementById('doc').style.display='block';
+  initChecks();
+}
+document.getElementById('pw').addEventListener('keydown',function(e){if(e.key==='Enter')tryPw()});
+if(sessionStorage.getItem('sp_ok')==='1')unlock();
+
+function initChecks(){
+  document.querySelectorAll('.chk input').forEach(function(b,i){
+    var k='sp_strat_0731_'+i;
+    var stored=localStorage.getItem(k);
+    if(stored!==null)b.checked=(stored==='1');   // stored state wins; otherwise keep the preset
+    b.addEventListener('change',function(){
+      localStorage.setItem(k,b.checked?'1':'0');
+      tally();
+    });
+  });
+  tally();
+}
+function count(sel){
+  var b=document.querySelectorAll(sel+' input'),d=0;
+  b.forEach(function(x){if(x.checked)d++});
+  return [d,b.length];
+}
+function tally(){
+  var a=count('.chk');
+  var pc=a[1]?Math.round(a[0]/a[1]*100):0;
+  document.getElementById('bar').style.width=pc+'%';
+  document.getElementById('pct').textContent=a[0]+' of '+a[1]+' done · '+(a[1]-a[0])+' still open';
+  var m=count('#cl'),ad=count('#cl2');
+  document.getElementById('mtag').textContent=m[0]+'/'+m[1];
+  document.getElementById('atag').textContent=ad[0]+'/'+ad[1];
+}
+</script>
+</body>
+</html>
