@@ -18,60 +18,54 @@
   --max:940px;
   --r-sm:8px; --r-lg:14px; --r-pill:999px;
   --sh:0 2px 10px rgba(36,33,30,.06);
-  --sh-md:0 14px 40px rgba(36,33,30,.10);
 }
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);
-  line-height:1.6;-webkit-font-smoothing:antialiased;font-size:16px}
+  line-height:1.55;-webkit-font-smoothing:antialiased;font-size:16px}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
 
-/* ---------- header ---------- */
-header{background:var(--white);border-bottom:1px solid var(--border);padding:26px 0 30px}
-.logo{display:block;height:30px;width:auto;margin-bottom:26px}
-h1{font-size:clamp(27px,4.4vw,40px);line-height:1.14;letter-spacing:-.025em;
+header{background:var(--white);border-bottom:1px solid var(--border);padding:26px 0 28px}
+.logo{display:block;height:30px;width:auto;margin-bottom:24px}
+h1{font-size:clamp(26px,4.2vw,38px);line-height:1.14;letter-spacing:-.025em;
   font-weight:700;margin:0 0 12px}
 h1 .lede{color:var(--orange-800);display:block;font-size:.52em;letter-spacing:.1em;
-  text-transform:uppercase;font-weight:700;margin-bottom:13px}
-.sub{color:var(--text-3);font-size:17px;margin:0 0 20px;max-width:66ch}
+  text-transform:uppercase;font-weight:700;margin-bottom:12px}
+.sub{color:var(--text-3);font-size:16.5px;margin:0 0 18px;max-width:62ch}
 .chips{display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0}
 .chips li{background:var(--n-100);border:1px solid var(--border);border-radius:var(--r-pill);
   padding:5px 13px;font-size:12.5px;color:var(--text-2);font-weight:600}
 
-/* ---------- notice ---------- */
 .notice{background:var(--cream);border:1px solid #f6d9b4;border-left:4px solid var(--brand);
-  border-radius:var(--r-sm);padding:15px 18px;margin:26px 0 0;font-size:14.5px;color:var(--text-2)}
+  border-radius:var(--r-sm);padding:14px 17px;margin:24px 0 0;font-size:14px;color:var(--text-2)}
 .notice strong{color:var(--n-900)}
 
-/* ---------- sections ---------- */
-main{padding:40px 0 20px}
-section{margin:0 0 44px}
-h2{font-size:22px;letter-spacing:-.018em;font-weight:700;margin:0 0 6px;
+main{padding:38px 0 18px}
+section{margin:0 0 40px}
+h2{font-size:21px;letter-spacing:-.018em;font-weight:700;margin:0 0 4px;
   padding-bottom:9px;border-bottom:2px solid var(--n-200)}
 h2 .num{color:var(--orange-500);margin-right:9px;font-variant-numeric:tabular-nums}
-h3{font-size:16px;font-weight:700;margin:26px 0 9px;letter-spacing:-.01em}
-p{margin:0 0 13px;color:var(--text-2)}
-.section-intro{margin-top:14px}
+h3{font-size:15.5px;font-weight:700;margin:24px 0 8px;letter-spacing:-.01em}
+p{margin:0 0 12px;color:var(--text-2)}
 strong{color:var(--n-900);font-weight:700}
 em{font-style:italic;color:var(--text-3)}
 
-/* ---------- outcome cards ---------- */
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:13px;margin:18px 0 6px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:13px;margin:18px 0 4px}
 .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:17px 18px;box-shadow:var(--sh)}
+  padding:16px 17px;box-shadow:var(--sh)}
 .card .k{font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;
   color:var(--text-3);font-weight:700;margin-bottom:7px}
-.card .v{font-size:29px;font-weight:700;letter-spacing:-.03em;line-height:1.05;
+.card .v{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.05;
   font-variant-numeric:tabular-nums;color:var(--n-900)}
 .card .v.accent{color:var(--orange-800)}
-.card .n{font-size:12.5px;color:var(--text-3);margin-top:6px;line-height:1.45}
+.card .n{font-size:12.5px;color:var(--text-3);margin-top:6px;line-height:1.4}
 
-/* ---------- tables ---------- */
-.t-scroll{overflow-x:auto;margin:16px 0 6px;border:1px solid var(--border);
+.t-scroll{overflow-x:auto;margin:16px 0 4px;border:1px solid var(--border);
   border-radius:var(--r-lg);background:var(--white);box-shadow:var(--sh)}
 table{width:100%;border-collapse:collapse;font-size:14.5px;min-width:440px}
+table.friction{min-width:660px;font-size:14px}
 caption{text-align:left;font-size:12px;letter-spacing:.09em;text-transform:uppercase;
   font-weight:700;color:var(--text-3);padding:14px 17px 0}
-th,td{text-align:left;padding:11px 17px;border-bottom:1px solid var(--n-200);vertical-align:top}
+th,td{text-align:left;padding:11px 16px;border-bottom:1px solid var(--n-200);vertical-align:top}
 thead th{font-size:11.5px;letter-spacing:.075em;text-transform:uppercase;
   color:var(--text-3);font-weight:700;background:var(--n-100);white-space:nowrap}
 tbody tr:last-child td{border-bottom:0}
@@ -79,57 +73,47 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:now
 tr.total{background:var(--cream)}
 tr.total td{font-weight:700;color:var(--n-900);border-top:2px solid #f6d9b4}
 td .sm{display:block;font-size:12.5px;color:var(--text-3);margin-top:3px;line-height:1.4}
+table.friction td.issue{font-weight:700;color:var(--n-900);min-width:170px}
+table.friction td.act{color:var(--text-3);font-size:13.5px;min-width:150px}
 
-/* ---------- flags ---------- */
 .flag{display:inline-block;background:#fff4f0;border:1px solid #f3c4b2;color:#9c3d15;
   border-radius:var(--r-pill);padding:2px 9px;font-size:11px;font-weight:700;
   letter-spacing:.04em;text-transform:uppercase;vertical-align:middle;white-space:nowrap}
-.callout{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--n-400);
-  border-radius:var(--r-sm);padding:15px 18px;margin:18px 0;font-size:15px}
-.callout.warn{border-left-color:#d8752f;background:#fffaf5}
-.callout .h{font-weight:700;color:var(--n-900);display:block;margin-bottom:5px;font-size:14px}
-.callout p:last-child{margin-bottom:0}
-
-/* ---------- quote ---------- */
-blockquote{margin:18px 0;padding:15px 20px;background:var(--white);
-  border:1px solid var(--border);border-left:4px solid var(--brand);
-  border-radius:var(--r-sm);font-size:15.5px;color:var(--text-2)}
-blockquote p{margin:0 0 7px}
-blockquote p:last-child{margin:0}
-blockquote cite{display:block;font-style:normal;font-size:12.5px;color:var(--text-3);
-  font-weight:700;letter-spacing:.03em;margin-top:8px}
-
-/* ---------- findings ---------- */
-.finding{background:var(--white);border:1px solid var(--border);border-radius:var(--r-lg);
-  padding:17px 19px;margin:13px 0;box-shadow:var(--sh)}
-.finding-top{display:flex;align-items:flex-start;gap:11px;flex-wrap:wrap;margin-bottom:8px}
-.sev{border-radius:var(--r-pill);padding:3px 11px;font-size:10.5px;font-weight:700;
-  letter-spacing:.09em;text-transform:uppercase;white-space:nowrap;flex:none;margin-top:2px}
+.sev{display:inline-block;border-radius:var(--r-pill);padding:3px 10px;font-size:10.5px;
+  font-weight:700;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .sev.blocker{background:#fdeceb;color:#a52014;border:1px solid #f3c0bb}
 .sev.high{background:#fff2e3;color:#a74100;border:1px solid #f7d3a8}
 .sev.med{background:#f5f5f4;color:var(--n-700);border:1px solid var(--n-300)}
-.finding h4{margin:0;font-size:16px;font-weight:700;letter-spacing:-.012em;flex:1 1 240px}
-.finding p{margin:0 0 9px;font-size:14.5px}
-.finding p:last-child{margin:0}
-.owner{font-size:12.5px;color:var(--text-3);border-top:1px dashed var(--n-300);
-  padding-top:9px;margin-top:11px}
-.owner b{color:var(--orange-800)}
 
-/* ---------- lists ---------- */
-ul.plain{margin:11px 0 13px;padding-left:20px}
-ul.plain li{margin-bottom:8px;color:var(--text-2)}
+.callout{background:var(--white);border:1px solid var(--border);border-left:4px solid var(--n-400);
+  border-radius:var(--r-sm);padding:14px 17px;margin:16px 0;font-size:14.5px}
+.callout.warn{border-left-color:#d8752f;background:#fffaf5}
+.callout .h{font-weight:700;color:var(--n-900);display:block;margin-bottom:4px;font-size:14px}
+.callout p{margin:0 0 8px}
+.callout p:last-child{margin-bottom:0}
 
-/* ---------- footer ---------- */
+blockquote{margin:16px 0;padding:14px 19px;background:var(--white);
+  border:1px solid var(--border);border-left:4px solid var(--brand);
+  border-radius:var(--r-sm);font-size:15.5px;color:var(--text-2)}
+blockquote p{margin:0 0 6px}
+blockquote p:last-child{margin:0}
+blockquote cite{display:block;font-style:normal;font-size:12.5px;color:var(--text-3);
+  font-weight:700;letter-spacing:.03em;margin-top:7px}
+
+ul.plain{margin:10px 0 12px;padding-left:20px}
+ul.plain li{margin-bottom:7px;color:var(--text-2)}
+
 footer{border-top:1px solid var(--border);background:var(--white);
-  padding:26px 0 34px;margin-top:20px;font-size:13px;color:var(--text-3)}
+  padding:24px 0 32px;margin-top:18px;font-size:13px;color:var(--text-3)}
 footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
 
 @media print{
-  body{background:#fff;font-size:11.5pt}
+  body{background:#fff;font-size:11pt}
   header,footer{background:#fff}
-  .t-scroll,.card,.finding{box-shadow:none;break-inside:avoid}
+  .t-scroll,.card{box-shadow:none;break-inside:avoid}
   section{break-inside:avoid-page}
   .notice{background:#fff}
+  table.friction,table{min-width:0}
 }
 @media (max-width:560px){
   th,td{padding:10px 13px}
@@ -155,121 +139,108 @@ footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
 
     <h1>
       <span class="lede">Switch — User Test Case Study</span>
-      Armin ran his own bills through Switch. He'd have signed up for the gift card alone.
+      Armin ran his own bills through Switch. The gift card, not the saving, made his decision.
     </h1>
-    <p class="sub">A 38-minute moderated walkthrough of <strong>homerun.app/switch</strong> with a real
-      NSW energy customer, using his own live Red Energy bills. He reached the end of the funnel and
-      was ready to switch — but hit one hard blocker and missed the gift card entirely on his first pass.</p>
+    <p class="sub">38-minute moderated walkthrough of <strong>homerun.app/switch</strong> with a real
+      NSW customer on his own live Red Energy bills. He found a genuine saving, reached the sign-up
+      form — then hit a hard blocker, and had missed the gift card entirely.</p>
 
     <ul class="chips">
       <li>10 August 2026</li>
-      <li>38 minutes, moderated</li>
+      <li>38 min, moderated</li>
       <li>1 participant — "Armin"</li>
       <li>NSW · Red Energy · elec + gas</li>
       <li>Live bills, unscripted</li>
     </ul>
 
     <div class="notice">
-      <strong>Internal document.</strong> Every dollar figure below is one participant's quoted
-      outcome from a single comparison run — not a substantiated saving and not a marketing claim.
-      The claims bank prohibits dollar-savings framing in customer-facing copy
-      (behavioural framing only, e.g. "see if you're overpaying"). Do not lift these numbers into ads,
-      the site, or decks without CIMET sign-off.
+      <strong>Internal only.</strong> Every figure here is one participant's quoted comparison
+      outcome — not a substantiated saving, not a marketing claim. The claims bank bans dollar-savings
+      framing in customer-facing copy (behavioural only, e.g. "see if you're overpaying"). Nothing
+      below goes into ads, site or decks without CIMET sign-off.
     </div>
   </div>
 </header>
 
 <main class="wrap">
 
-  <!-- 1 ---------------------------------------------------------------- -->
+  <!-- 01 -->
   <section>
     <h2><span class="num">01</span>Outcome</h2>
-    <p class="section-intro">Armin completed the comparison, found a genuine saving on both fuels,
-      reached the sign-up form and filled it in. He was blocked at the final field, recovered only
-      after being told to go back, and finished the session saying he'd switch.</p>
 
     <div class="cards">
       <div class="card">
         <div class="k">Year 1 saving quoted</div>
         <div class="v accent">$242</div>
-        <div class="n">Electricity + gas combined, vs his current Red Energy rates</div>
+        <div class="n">Elec + gas, vs current Red Energy rates</div>
       </div>
       <div class="card">
         <div class="k">Incentives on top</div>
         <div class="v accent">$350</div>
-        <div class="n">$150 Homerun gift card + $200 provider welcome credit</div>
+        <div class="n">$150 Homerun gift card + $200 provider credit</div>
       </div>
       <div class="card">
-        <div class="k">Ongoing saving, year 2+</div>
+        <div class="k">Year 2+ ongoing</div>
         <div class="v">$42<span style="font-size:.45em;font-weight:600;color:var(--text-3)"> /yr</span></div>
-        <div class="n">Contradicted elsewhere in the session — see §05</div>
+        <div class="n">Contradicted in-session — see §05</div>
       </div>
       <div class="card">
         <div class="k">Funnel completion</div>
         <div class="v">Blocked</div>
-        <div class="n">Required field with no valid answer for a non-member</div>
+        <div class="n">Required field with no valid non-member answer</div>
       </div>
     </div>
 
     <blockquote>
-      <p>"I really like how easy and simple the design is, like straightforward… the whole thing was
-        very easy to process."</p>
+      <p>"I really like how easy and simple the design is, like straightforward."</p>
       <p>"I get $150 as well. So yeah, it would be a no-brainer for me."</p>
       <cite>— Armin, unprompted</cite>
     </blockquote>
 
-    <p>The headline behavioural finding: <strong>the gift card, not the saving, carried the
-      decision.</strong> Asked whether he'd still switch at price parity, he said yes — "even if it
-      was the same price, I would save maybe $50, because I would get this gift card." That incentive
-      is currently the least visible element on the page.</p>
+    <p>Asked whether he'd switch at price parity, he said yes — "even if it was the same price, I
+      would save maybe $50, because I would get this gift card." <strong>That incentive is currently
+      the least visible thing on the page.</strong></p>
   </section>
 
-  <!-- 2 ---------------------------------------------------------------- -->
+  <!-- 02 -->
   <section>
     <h2><span class="num">02</span>Starting position</h2>
-    <p class="section-intro">Armin is with Red Energy on both fuels, recently moved house, and had a
-      current bill open on screen throughout.</p>
 
     <div class="t-scroll">
       <table>
-        <caption>Armin's existing plan — read live off his own bills</caption>
-        <thead>
-          <tr><th>Item</th><th class="num">Value</th><th>Note</th></tr>
-        </thead>
+        <caption>Existing plan — read live off his own bills</caption>
+        <thead><tr><th>Item</th><th class="num">Value</th><th>Note</th></tr></thead>
         <tbody>
-          <tr><td>Electricity usage rate</td><td class="num">29c/kWh</td><td>His peak rate</td></tr>
-          <tr><td>Electricity bill period</td><td class="num">86 days</td><td>6 May → 30 July 2026</td></tr>
-          <tr><td>Electricity bill total</td><td class="num">$261</td><td>≈ $92/month <span class="flag">unreconciled</span><span class="sm">Armin first recalled the bill as "$360 odd" over 90 days, and it was verbally described in-session as "about $120 a month". Neither reconciles with $261 over 86 days. Confirm the true base before reusing.</span></td></tr>
-          <tr><td>Gas usage</td><td class="num">~5,000</td><td>Unit not stated on the call</td></tr>
-          <tr><td>Gas bill</td><td class="num">~$100</td><td>One month. He rates his gas plan as already good.</td></tr>
+          <tr><td>Electricity usage rate</td><td class="num">29c/kWh</td><td>Peak</td></tr>
+          <tr><td>Bill period</td><td class="num">86 days</td><td>6 May → 30 July 2026</td></tr>
+          <tr><td>Electricity bill total</td><td class="num">$261</td><td>≈ $92/month <span class="flag">unreconciled</span><span class="sm">Also recalled as "$360 odd" over 90 days, and described in-session as "about $120 a month". Neither reconciles. Confirm the base before reusing.</span></td></tr>
+          <tr><td>Gas usage</td><td class="num">~5,000</td><td>Unit not stated</td></tr>
+          <tr><td>Gas bill</td><td class="num">~$100</td><td>One month. Rates his gas plan as already good.</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>Why he was on Red in the first place — points, not price</h3>
-    <p>Armin didn't choose Red on rates. He chose it for Qantas points: roughly 15,000–20,000 on
-      signup plus a second tranche at around six months. Both had already landed, which is precisely
-      why he was open to moving.</p>
-    <p>Checked live in-session, 15,000 Qantas points valued at roughly <strong>$180–$300</strong> on
-      flight redemption. He has real history of extracting that value — a Thailand ticket for $150
-      cash on points. So for this segment, points are a live competing currency to a gift card, not a
-      soft perk. Worth knowing what Switch is bidding against.</p>
+    <h3>He was on Red for points, not price</h3>
+    <p>15,000–20,000 Qantas points on signup plus a second tranche at ~6 months. Both had landed —
+      which is exactly why he was switchable. Checked live: 15,000 points ≈ <strong>$180–$300</strong>
+      on flight redemption, and he has form extracting it (Thailand ticket, $150 cash on points).</p>
+    <p>So the gift card is bidding against a loyalty currency users overvalue — and there's a timing
+      signal worth targeting.</p>
   </section>
 
-  <!-- 3 ---------------------------------------------------------------- -->
+  <!-- 03 -->
   <section>
     <h2><span class="num">03</span>What Switch quoted him</h2>
-    <p class="section-intro">Armin's own method, unprompted: save the comparison page to PDF, upload
-      his bill alongside it to an AI assistant, and let it do the arithmetic. He never itemised
-      anything by hand.</p>
+    <p>His method, unprompted: save the comparison page to PDF, upload it with his bill to an AI
+      assistant, let it do the arithmetic. Nothing itemised by hand.</p>
 
     <div class="t-scroll">
       <table>
-        <caption>Electricity only — modelled off the 86-day Red bill</caption>
+        <caption>Electricity only — modelled off the 86-day bill</caption>
         <thead><tr><th>Plan</th><th class="num">Year 1 saving</th><th>Note</th></tr></thead>
         <tbody>
-          <tr><td>Engie</td><td class="num">$134</td><td>Flagged as best short-term value; $200 welcome credit on first bill</td></tr>
-          <tr><td>First Energy</td><td class="num">$83</td><td>First-year figure <span class="flag">check</span><span class="sm">Described verbally in-session as an ongoing annual saving. The comparison output stated first-year for both plans. Treat as year 1.</span></td></tr>
+          <tr><td>Engie</td><td class="num">$134</td><td>Best short-term value; $200 welcome credit on first bill</td></tr>
+          <tr><td>First Energy</td><td class="num">$83</td><td>Year 1 <span class="flag">check</span><span class="sm">Described verbally as ongoing. The comparison output said first-year for both. Treat as year 1.</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -280,20 +251,15 @@ footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
         <thead><tr><th>Measure</th><th class="num">Amount</th></tr></thead>
         <tbody>
           <tr><td>Year 1 saving</td><td class="num">$242</td></tr>
-          <tr><td>Ongoing saving, per year</td><td class="num">$42</td></tr>
+          <tr><td>Ongoing, per year</td><td class="num">$42</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>The rates behind the saving</h3>
-    <p>This is the part worth understanding, because the saving is <em>not</em> coming from a cheaper
-      usage rate. Armin's first reaction on seeing the offered plan was that it looked
-      <strong>worse</strong> than what he already had — "this is more than what I pay."</p>
-
     <div class="t-scroll">
       <table>
         <caption>Engie Perks electricity — offered vs current</caption>
-        <thead><tr><th>Component</th><th class="num">Offered</th><th class="num">Armin's current</th></tr></thead>
+        <thead><tr><th>Component</th><th class="num">Offered</th><th class="num">Current</th></tr></thead>
         <tbody>
           <tr><td>Peak usage rate</td><td class="num">33c/kWh</td><td class="num">29c/kWh</td></tr>
           <tr><td>Daily supply charge</td><td class="num">166c/day</td><td class="num">not read out</td></tr>
@@ -301,59 +267,55 @@ footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
       </table>
     </div>
 
-    <p>The offered usage rate is <strong>4c/kWh higher</strong>. For the total to still come out ahead,
-      the saving has to be carried entirely by a <strong>lower daily supply charge</strong> — meaning
-      his Red daily charge must exceed $1.66/day. His actual figure was never read aloud, so that last
-      step is inferred from the direction of the maths, not quoted.</p>
-
     <div class="callout">
-      <span class="h">Product implication</span>
-      <p>A user comparing the single most visible number — the usage rate — will conclude the offer is
-        worse and bounce. The saving lives in the supply charge, which nobody reads. If the comparison
-        page can't lead with total annual cost instead of unit rates, Switch needs to pre-frame that
-        before handoff.</p>
+      <span class="h">The saving is in the supply charge, not the rate</span>
+      <p>The offered usage rate is <strong>4c/kWh higher</strong>. Armin's first reaction was that the
+        offer looked worse — "this is more than what I pay." The saving is carried entirely by a lower
+        daily supply charge, which nobody reads. (His Red daily charge must exceed $1.66/day; never
+        read aloud, so that step is inferred.)</p>
+      <p>A user comparing the most visible number concludes the offer is worse and bounces. Lead with
+        total annual cost, or pre-frame it before handoff.</p>
     </div>
   </section>
 
-  <!-- 4 ---------------------------------------------------------------- -->
+  <!-- 04 -->
   <section>
     <h2><span class="num">04</span>Incentives</h2>
 
     <div class="t-scroll">
       <table>
-        <caption>Stacked incentives available at time of test</caption>
+        <caption>Stacked incentives at time of test</caption>
         <thead><tr><th>Item</th><th class="num">Amount</th><th>Detail</th></tr></thead>
         <tbody>
-          <tr><td>Homerun switch gift card</td><td class="num">$150</td><td>Separate from the provider offer. Offer period ends <strong>30 September</strong>.</td></tr>
-          <tr><td>Provider welcome credit</td><td class="num">$200</td><td>Engie, applied to first electricity bill</td></tr>
-          <tr><td>Possible second credit</td><td class="num">?</td><td><span class="flag">unresolved</span><span class="sm">The page showed both "receive $200 welcome on first electricity bill" and a second "$200". Armin asked directly whether it was $200 per fuel and whether he should switch one at a time to collect twice. The question was never answered on the call — and it's the obvious question any user will ask.</span></td></tr>
+          <tr><td>Homerun switch gift card</td><td class="num">$150</td><td>Separate from provider offer. Offer ends <strong>30 September</strong>.</td></tr>
+          <tr><td>Provider welcome credit</td><td class="num">$200</td><td>Engie, first electricity bill</td></tr>
+          <tr><td>Possible second credit</td><td class="num">?</td><td><span class="flag">unresolved</span><span class="sm">Page showed "$200 welcome on first electricity bill" and a second "$200". Armin asked directly whether it's $200 per fuel and whether to switch one at a time to collect twice. Never answered — and every user will ask it.</span></td></tr>
         </tbody>
       </table>
     </div>
 
     <div class="callout warn">
       <span class="h">Gift card timing contradicts itself in our own terms</span>
-      <p>Reading the same linked fine print, two different answers surfaced in the same conversation:
-        <strong>30 days</strong>, and <strong>"sent within three to four months"</strong>. The trigger
-        chain is switch → connection → first bill posted. A user who's told 30 days and waits four
-        months is a support ticket and a trust problem. This needs one answer.</p>
+      <p>Same fine print, two answers in one conversation: <strong>30 days</strong>, and
+        <strong>"three to four months"</strong>. Trigger chain is switch → connection → first bill
+        posted. Told 30 days and waiting four months is a support ticket and a trust problem.</p>
     </div>
 
-    <p>Separately: the on-page offer previously showed a figure beginning with "three", changed for
-      compliance reasons before this session. The prior value isn't recorded in the transcript — worth
-      confirming internally so nobody reinstates a superseded number.</p>
+    <p>The on-page offer previously showed a figure starting with "three", changed for compliance
+      before this session. Prior value isn't in the transcript — confirm internally so nobody
+      reinstates a superseded number.</p>
   </section>
 
-  <!-- 5 ---------------------------------------------------------------- -->
+  <!-- 05 -->
   <section>
-    <h2><span class="num">05</span>Total position — and the open question</h2>
+    <h2><span class="num">05</span>Total position</h2>
 
     <div class="t-scroll">
       <table>
         <caption>Year 1, as the components were presented</caption>
         <thead><tr><th>Component</th><th class="num">Amount</th></tr></thead>
         <tbody>
-          <tr><td>Energy saving, electricity + gas</td><td class="num">$242</td></tr>
+          <tr><td>Energy saving, elec + gas</td><td class="num">$242</td></tr>
           <tr><td>Homerun gift card</td><td class="num">$150</td></tr>
           <tr><td>Provider welcome credit</td><td class="num">$200</td></tr>
           <tr class="total"><td>Sum of stated components</td><td class="num">$592</td></tr>
@@ -362,174 +324,121 @@ footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
     </div>
 
     <div class="callout warn">
-      <span class="h">These components may double-count. Resolve before anyone quotes a number.</span>
-      <p>The session's own verbal summary landed on "<strong>$450, $500</strong>" — below the $592 the
-        components add to. The likely reason: the $200 welcome credit may already be netted into the
-        $242 first-year saving, in which case the true year 1 benefit is nearer
-        <strong>$392</strong>.</p>
-      <p>The transcript doesn't establish which. That's a $200 spread on the single most quotable
-        figure in the product, so it's the first thing to nail down — ideally by re-running one
-        comparison and reading the methodology, not by re-deriving it from this session.</p>
+      <span class="h">These may double-count — resolve before anyone quotes a number</span>
+      <p>The session's own verbal summary landed on "<strong>$450, $500</strong>", below the $592 the
+        components add to. Likely cause: the $200 credit may already be netted into the $242, putting
+        true year 1 nearer <strong>$392</strong>.</p>
+      <p>The transcript doesn't settle it. That's a $200 spread on the most quotable figure in the
+        product. Fix by re-running one comparison and reading the methodology — not by re-deriving
+        from this session.</p>
     </div>
 
     <h3>The 12-month cliff</h3>
-    <p>The plan goes backwards after the first year. Stated in-session: the full second year would
-      cost roughly <strong>$64 more</strong> than staying put.</p>
-    <p>That directly contradicts the <strong>$42/year ongoing saving</strong> from the same comparison
-      output. <span class="flag">unreconciled</span> One of the two is wrong. Either way the
-      operational conclusion is identical, and it's the strategic point of the whole product:</p>
+    <p>Year two goes backwards: stated in-session, the full second year would cost roughly
+      <strong>$64 more</strong> than staying put. That contradicts the <strong>$42/year ongoing
+      saving</strong> from the same output. <span class="flag">unreconciled</span> One is wrong; the
+      operational conclusion is the same either way.</p>
 
     <blockquote>
-      <p>"Put a little to-do in your to-do list for in six months' time — switch again. Just rinse
-        and repeat."</p>
+      <p>"Put a little to-do in your list for in six months' time — switch again. Just rinse and
+        repeat."</p>
       <cite>— the behaviour Switch has to build, not a one-off transaction</cite>
     </blockquote>
 
-    <p>Armin took that on board immediately. This is the strongest argument in the session for
-      switch reminders as a core product loop rather than a nice-to-have: a single switch leaves the
-      user worse off in year two, so the retention mechanic <em>is</em> the value proposition.</p>
+    <p>A single switch leaves the user worse off in year two. So the reminder loop isn't a feature —
+      it <em>is</em> the value proposition.</p>
   </section>
 
-  <!-- 6 ---------------------------------------------------------------- -->
+  <!-- 06 -->
   <section>
     <h2><span class="num">06</span>Friction log</h2>
-    <p class="section-intro">Six issues, in order of how much they cost us. The first one ends the
-      session for an unmoderated user.</p>
 
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev blocker">Blocker</span>
-        <h4>NRMA membership is a required field with no non-member escape</h4>
-      </div>
-      <p>On the NRMA-branded Perks plan, the membership field is mandatory. Armin holds NRMA CTP car
-        insurance but no membership, and the form would not let him proceed or skip:
-        "So I don't have that. What do I do now? It doesn't let me do anything else."</p>
-      <p>Page copy elsewhere implied a membership would be created for him — directly contradicting
-        the required field. A separate non-member "Energy Perks" variant exists at
-        <strong>identical rates (166c/day, 33c/kWh)</strong>, but he only found it after being told to
-        go back and look. Unmoderated, this is where the session ends.</p>
-      <p>His own recommendation: signpost that a non-member path exists, at the point the membership
-        field appears.</p>
-      <div class="owner"><b>Action:</b> raise with the fulfilment partner — required-field logic and
-        the non-member alternative.</div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev blocker">Blocker</span>
-        <h4>The $150 gift card is invisible where the decision gets made</h4>
-      </div>
-      <p>The incentive that Armin said would carry his decision on its own sits in a small bar at the
-        top of the comparison page. He scrolled straight past it and didn't know it existed. When he
-        later saw it on the pre-switch page his reaction was immediate — "oh, I get $150 as well…
-        it would be a no-brainer."</p>
-      <p>It's also absent from the confirmation page, so a user who missed it never learns they're
-        owed one.</p>
-      <p>The comparison page is partner-hosted — we can track it but not change its HTML or CSS. So
-        the fix has to happen on our side of the handoff: carry the gift card prominently through
-        every Homerun-controlled surface before and after, and push the partner for placement.</p>
-      <div class="owner"><b>Action:</b> gift card treatment on all Homerun-owned pages incl.
-        confirmation; placement request to partner.</div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev high">High</span>
-        <h4>No confirmation email arrived during the session</h4>
-      </div>
-      <p>Armin submitted and waited: "Now I'm expecting to see an email coming to me… so I haven't
-        received it." His workaround was to screenshot the confirmation screen. Account numbers needed
-        for provider login are expected to come from the retailer after handoff, but nothing set that
-        expectation on screen.</p>
-      <p>At minimum the confirmation page should state what arrives, from whom, and when.</p>
-      <div class="owner"><b>Action:</b> verify the transactional email fires; set expectations on the
-        confirmation screen.</div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev high">High</span>
-        <h4>Onboarding has no "I already live here, just comparing" option</h4>
-      </div>
-      <p>Armin had recently moved and none of the presented situations matched him: "I don't belong to
-        any of this… I wouldn't check any of this." His conclusion is the dangerous part —
-        "this is probably not for me, it's designed for someone else."</p>
-      <p>That's a bounce risk on the highest-intent segment in the market: an existing customer
-        actively shopping their current plan.</p>
-      <div class="owner"><b>Action:</b> add a compare-my-current-plan path to onboarding.</div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev high">High</span>
-        <h4>Gift card timing is stated two different ways</h4>
-      </div>
-      <p>30 days in one reading of the terms, three to four months in another. Covered in §04 —
-        listed here because it's a live copy defect, not just an open question.</p>
-      <div class="owner"><b>Action:</b> confirm the real fulfilment window; correct the terms.</div>
-    </div>
-
-    <div class="finding">
-      <div class="finding-top">
-        <span class="sev med">Medium</span>
-        <h4>NRMA partnership benefit isn't explained where it's asked for</h4>
-      </div>
-      <p>Armin couldn't tell what the NRMA relationship gave him — he guessed roadside assistance. The
-        explanation exists further up the page (complimentary membership, travel and experience deals)
-        but not near the field that demands it. He read it as another points scheme.</p>
-      <div class="owner"><b>Action:</b> surface the benefit inline at the membership field.</div>
+    <div class="t-scroll">
+      <table class="friction">
+        <caption>Six issues, ranked by cost to us</caption>
+        <thead>
+          <tr><th>Severity</th><th>Issue</th><th>What happened</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="sev blocker">Blocker</span></td>
+            <td class="issue">NRMA membership required, no non-member escape</td>
+            <td>Mandatory field on the NRMA-branded plan. He holds NRMA CTP insurance, not membership — couldn't proceed or skip. "What do I do now? It doesn't let me do anything else." Page copy elsewhere implied one would be created for him. A non-member "Energy Perks" variant exists at <strong>identical rates</strong> but he only found it after being told to go back. Unmoderated, the session ends here.</td>
+            <td class="act">Fulfilment partner — required-field logic + signpost the non-member path at the field</td>
+          </tr>
+          <tr>
+            <td><span class="sev blocker">Blocker</span></td>
+            <td class="issue">$150 gift card invisible where the decision happens</td>
+            <td>Sits in a small bar at the top of the comparison page. He scrolled past and didn't know it existed. On seeing it later: "oh, I get $150 as well… no-brainer." Also absent from the confirmation page, so anyone who missed it never learns they're owed one. Comparison page is partner-hosted — trackable, not editable — so the fix sits on our side of the handoff.</td>
+            <td class="act">Gift card prominent on all Homerun-owned surfaces incl. confirmation; placement request to partner</td>
+          </tr>
+          <tr>
+            <td><span class="sev high">High</span></td>
+            <td class="issue">No confirmation email arrived</td>
+            <td>"I'm expecting to see an email coming to me… so I haven't received it." Workaround was screenshotting the confirmation screen. Account numbers for provider login are expected post-handoff, but nothing on screen said so.</td>
+            <td class="act">Verify the transactional email fires; state what arrives, from whom, when</td>
+          </tr>
+          <tr>
+            <td><span class="sev high">High</span></td>
+            <td class="issue">No "already live here, just comparing" option</td>
+            <td>Recently moved; none of the presented situations matched. "I don't belong to any of this… this is probably not for me, it's designed for someone else." Bounce risk on the highest-intent segment — an existing customer shopping their plan.</td>
+            <td class="act">Add a compare-my-current-plan path to onboarding</td>
+          </tr>
+          <tr>
+            <td><span class="sev high">High</span></td>
+            <td class="issue">Gift card timing stated two ways</td>
+            <td>30 days in one reading of the terms, three to four months in another. See §04 — listed here because it's a live copy defect, not just an open question.</td>
+            <td class="act">Confirm the real fulfilment window; correct the terms</td>
+          </tr>
+          <tr>
+            <td><span class="sev med">Medium</span></td>
+            <td class="issue">NRMA benefit unexplained at the field that demands it</td>
+            <td>He guessed roadside assistance. The explanation (complimentary membership, travel and experience deals) sits further up the page. He read it as another points scheme.</td>
+            <td class="act">Surface the benefit inline at the membership field</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
-  <!-- 7 ---------------------------------------------------------------- -->
+  <!-- 07 -->
   <section>
     <h2><span class="num">07</span>What worked</h2>
     <ul class="plain">
-      <li><strong>The form itself.</strong> "Very straightforward" — confirmed twice, unprompted.
-        No friction reported in the flow mechanics, only in one field's logic.</li>
+      <li><strong>The form.</strong> "Very straightforward" — confirmed twice, unprompted. Friction was in one field's logic, not the flow.</li>
       <li><strong>The design.</strong> "I really like how easy and simple the design is."</li>
-      <li><strong>Positioning landed with zero explanation.</strong> Mid-session, unprompted:
-        "I do understand Home Run is just a platform that connects you to the providers." No
-        confusion about what Switch is or who supplies the energy.</li>
-      <li><strong>The saving was real and he believed it.</strong> "Okay, I can save some money" —
-        followed immediately by going back to select a plan. The comparison did its job.</li>
-      <li><strong>Incentive stacking worked on him.</strong> Once the gift card was visible, price
-        stopped mattering. That's a lever, provided the card is actually visible.</li>
+      <li><strong>Positioning landed with zero explanation.</strong> Unprompted, mid-session: "I do understand Home Run is just a platform that connects you to the providers."</li>
+      <li><strong>He believed the saving.</strong> "Okay, I can save some money" — then went straight back to select a plan.</li>
+      <li><strong>Incentive stacking worked.</strong> Once the gift card was visible, price stopped mattering.</li>
     </ul>
   </section>
 
-  <!-- 8 ---------------------------------------------------------------- -->
+  <!-- 08 -->
   <section>
     <h2><span class="num">08</span>What this changes</h2>
 
     <h3>Fix before the next cohort of traffic</h3>
     <ul class="plain">
-      <li>NRMA required-field dead end, and the non-member path signposting.</li>
-      <li>Gift card visibility across every Homerun-controlled surface, including confirmation.</li>
-      <li>One consistent answer on gift card timing.</li>
-      <li>Resolve the $392-vs-$592 double-count before any figure is quoted internally or externally.</li>
+      <li>NRMA required-field dead end + non-member signposting.</li>
+      <li>Gift card visibility on every Homerun-controlled surface, confirmation included.</li>
+      <li>One answer on gift card timing.</li>
+      <li>Resolve $392 vs $592 before any figure gets quoted.</li>
     </ul>
 
     <h3>Design decisions this surfaces</h3>
     <ul class="plain">
-      <li><strong>Lead with total annual cost, not unit rates.</strong> Armin's instinct was to compare
-        the usage rate and conclude the offer was worse. The saving hides in the supply charge.</li>
-      <li><strong>Switch reminders are the product, not a feature.</strong> A one-off switch leaves the
-        user behind in year two. The repeat loop is where the value actually is.</li>
-      <li><strong>Two completely different user methods need supporting.</strong> Armin exported the
-        page to PDF and had an AI do the whole comparison. A separate older participant interviewed
-        previously itemised everything into a spreadsheet by hand. Same job, opposite tooling.</li>
-      <li><strong>Points are the incumbent competitor.</strong> Armin stayed with Red for Qantas points
-        and only became switchable once both tranches had landed. A gift card is competing against a
-        loyalty currency users overvalue — and there's a timing signal in there worth targeting.</li>
+      <li><strong>Lead with total annual cost, not unit rates.</strong> The saving hides in the supply charge.</li>
+      <li><strong>Switch reminders are the product.</strong> One switch leaves the user behind in year two.</li>
+      <li><strong>Two user methods to support.</strong> Armin let an AI do the whole comparison. A previous older participant itemised it into a spreadsheet by hand. Same job, opposite tooling.</li>
+      <li><strong>Points are the incumbent competitor</strong>, and the moment both bonus tranches land is the switchable window.</li>
     </ul>
 
     <div class="callout">
       <span class="h">One correction for the record</span>
-      <p>The owned survey stat was quoted in this session as <strong>67%</strong>. The claims bank
-        figure is <strong>69%</strong> of Australian sharehouses not having compared their energy plan
-        in 12 months, cited to the 2026 survey of 3,672 Australian sharehousers. 69% is the
-        substantiated number and the only one approved for use.</p>
+      <p>The owned survey stat was quoted in-session as <strong>67%</strong>. The claims bank figure is
+        <strong>69%</strong> of Australian sharehouses not having compared their energy plan in 12
+        months, cited to the 2026 survey of 3,672 Australian sharehousers. 69% is the substantiated
+        number and the only one approved for use.</p>
     </div>
   </section>
 
@@ -539,7 +448,7 @@ footer p{margin:0 0 6px;font-size:13px;color:var(--text-3)}
   <div class="wrap">
     <p><strong>Homerun Switch — user test case study.</strong> Session recorded 10 August 2026.
       Participant referred to as "Armin" throughout.</p>
-    <p>Internal circulation only. Figures are a single participant's quoted comparison outcome, not
+    <p>Internal circulation only. Figures are one participant's quoted comparison outcome, not
       substantiated savings claims. All customer-facing energy copy requires CIMET sign-off.</p>
   </div>
 </footer>
