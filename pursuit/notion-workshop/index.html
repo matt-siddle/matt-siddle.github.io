@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pursuit × Notion Workshop</title>
+<link rel="icon" href="assets/logo-p-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000000;
+  --ink:#FAF9F9;
+  --cyan:#1CC8F6;
+  --blue:#3A52F6;
+  --g1:#1A1A1A;
+  --g2:#2E2E2E;
+  --g3:#4A4A4A;
+  --muted:rgba(250,249,249,.62);
+  --faint:rgba(250,249,249,.14);
+  --display:'Anton','Impact','Arial Narrow Bold',sans-serif;
+  --body:'Barlow Condensed','Arial Narrow','Roboto Condensed',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--black);color:var(--ink);font-family:var(--body);font-size:28px;line-height:1.35;-webkit-font-smoothing:antialiased;overflow:hidden}
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+
+/* ---------- stage ---------- */
+.stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center center}
+.slide{position:absolute;inset:0;padding:120px 140px 130px;opacity:0;visibility:hidden;transition:opacity .35s ease;display:flex;flex-direction:column;background:var(--black)}
+.slide.active{opacity:1;visibility:visible}
+.slide>*{position:relative;z-index:2}
+.bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.85) contrast(1.15) brightness(.5)}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.72) 55%,rgba(0,0,0,.92) 100%)}
+.bg.soft img{filter:grayscale(.9) contrast(1.1) brightness(.28)}
+
+/* chrome */
+.mark{position:absolute;left:70px;bottom:52px;width:52px;height:52px;z-index:5}
+.num{position:absolute;right:76px;bottom:56px;font:600 22px/1 var(--body);letter-spacing:.12em;color:var(--muted);z-index:5}
+.rail{position:absolute;left:0;bottom:0;height:6px;background:var(--cyan);width:0;z-index:6;transition:width .35s ease}
+.wordmark{width:420px}
+
+/* type */
+.kicker{font:700 24px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:28px}
+h1,h2{font-family:var(--display);font-weight:400;font-style:italic;text-transform:uppercase;letter-spacing:.005em;line-height:.95}
+h1{font-size:150px}
+h2{font-size:92px;margin-bottom:44px}
+h3{font:700 30px/1.1 var(--body);text-transform:uppercase;letter-spacing:.08em}
+.lead{font-size:40px;color:var(--muted);max-width:1300px}
+.foot{margin-top:auto;padding-top:36px;border-top:2px solid var(--faint);font-size:32px;color:var(--muted)}
+.foot b{color:var(--ink);font-weight:600}
+.cy{color:var(--cyan)}
+.small{font-size:24px;color:var(--muted)}
+p+p{margin-top:14px}
+ul{list-style:none}
+li{position:relative;padding-left:34px;margin-bottom:12px}
+li::before{content:"";position:absolute;left:0;top:.55em;width:16px;height:4px;background:var(--cyan)}
+
+/* layouts */
+.cols{display:grid;gap:40px;align-items:start}
+.c2{grid-template-columns:1fr 1fr}
+.c3{grid-template-columns:repeat(3,1fr)}
+.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--g1);border:1px solid var(--faint);padding:40px 44px;min-height:100%}
+.card .big{font-family:var(--display);font-style:italic;font-size:120px;line-height:.9;color:var(--cyan);margin-bottom:14px}
+.card h3{margin-bottom:14px}
+.card p{font-size:28px;color:var(--muted)}
+.idx{font:700 22px/1 var(--body);letter-spacing:.2em;color:var(--cyan);margin-bottom:18px}
+.tag{display:inline-block;font:700 20px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:10px 14px;background:var(--cyan);color:var(--black)}
+.tag.ghost{background:transparent;border:2px solid var(--cyan);color:var(--cyan)}
+.tag.dim{background:var(--g2);color:var(--ink)}
+.quote{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:64px;line-height:1.02;border-left:10px solid var(--cyan);padding-left:40px;max-width:1500px}
+.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:auto;border-top:2px solid var(--faint)}
+.agenda div{padding:34px 0 0;border-right:1px solid var(--faint);padding-right:40px}
+.agenda div+div{padding-left:40px}
+.agenda div:last-child{border-right:0}
+.agenda .idx{margin-bottom:10px}
+.agenda strong{display:block;font-size:34px;font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+.agenda span{color:var(--muted);font-size:26px}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:30px}
+th{font:700 22px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);text-align:left;padding:0 24px 16px;border-bottom:2px solid var(--faint)}
+td{padding:15px 24px;border-bottom:1px solid var(--faint);vertical-align:top}
+td:nth-child(3){width:340px}
+td:first-child{color:var(--muted)}
+td.arrow{width:80px;color:var(--cyan);font-weight:700;text-align:center}
+td b{font-weight:600}
+
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:18px 16px;align-content:flex-start}
+.chip{font:400 26px/1 var(--body);padding:16px 20px;background:var(--g1);border:1px solid var(--faint);color:var(--muted)}
+.chip.rot1{transform:rotate(-2deg)}.chip.rot2{transform:rotate(1.5deg)}.chip.rot3{transform:rotate(-1deg)}
+.chip.call{border-color:var(--blue);color:var(--ink)}
+
+/* mock notion ui */
+.n{background:var(--ink);color:#111;font-family:var(--body);border-radius:6px;overflow:hidden}
+.n .bar{display:flex;gap:8px;padding:12px 16px;border-bottom:1px solid #ddd;font-size:20px;color:#666;align-items:center}
+.n .bar i{width:12px;height:12px;border-radius:50%;background:#ccc;display:inline-block}
+.n .cardhead{padding:28px 32px 0}
+.n .title{font-size:40px;font-weight:700;line-height:1.1;color:#111}
+.n .props{display:grid;grid-template-columns:200px 1fr;gap:10px 20px;padding:24px 32px;font-size:24px}
+.n .props .k{color:#777}
+.n .props .v{font-weight:600}
+.n .pill{display:inline-block;padding:4px 12px;border-radius:4px;font-size:22px;font-weight:700;background:#e8e8e8}
+.n .pill.cy{background:var(--cyan);color:#000}
+.n .pill.bl{background:#dfe4ff;color:#1e2a8a}
+.n .pill.gy{background:#eee;color:#444}
+.n .pill.yl{background:#ffe9a8;color:#5a4300}
+.n .pill.gr{background:#d4f5dc;color:#0b5a2a}
+.n .pill.rd{background:#ffd9d9;color:#7a1010}
+.n .desc{padding:0 32px 30px;font-size:24px;line-height:1.4;color:#222;border-top:1px solid #eee;margin-top:4px}
+.n .desc p{padding-top:20px}
+.n .desc a{color:#1e2a8a;text-decoration:underline}
+.n.bad{opacity:.75}
+.n.bad .title{color:#555}
+#s17 h2{margin-bottom:24px}
+#s17 .n .title{font-size:32px}
+#s17 .n .cardhead{padding-top:20px}
+#s17 .n .props{padding:14px 32px;gap:6px 20px;font-size:22px}
+#s17 .n .desc{padding-bottom:18px;font-size:22px}
+#s17 .n .desc p{padding-top:12px}
+#s17 .n.bad .cardhead{padding-bottom:12px!important}
+#s17 .foot{padding-top:24px;font-size:28px}
+.ann{position:absolute;font:700 20px/1.1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--cyan);max-width:300px}
+.ann::before{content:attr(data-n);display:inline-block;width:34px;height:34px;border-radius:50%;background:var(--cyan);color:#000;text-align:center;line-height:34px;margin-right:12px;font-size:20px}
+.ann small{display:block;color:var(--muted);text-transform:none;letter-spacing:0;font-weight:400;font-size:22px;margin-top:6px;margin-left:46px}
+
+/* board mock */
+.board{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.col{background:var(--g1);border:1px solid var(--faint);padding:16px;min-height:220px}
+.col h4{font:700 20px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;justify-content:space-between}
+.col h4 span{color:var(--cyan)}
+.tk{background:var(--g2);padding:12px 14px;margin-bottom:10px;font-size:22px;line-height:1.2}
+.tk em{display:block;font-style:normal;font-size:18px;color:var(--muted);margin-top:6px}
+
+/* views strip */
+.views{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.view{background:var(--g1);border:1px solid var(--faint);padding:26px;height:520px;display:flex;flex-direction:column}
+.view h3{color:var(--cyan);margin-bottom:8px}
+.view .cap{font-size:24px;color:var(--muted);margin-bottom:22px}
+.mini{flex:1;background:var(--ink);border-radius:4px;padding:14px;position:relative;overflow:hidden}
+.mini .row{height:26px;border-bottom:1px solid #ddd;display:flex;gap:8px;align-items:center;padding:0 4px}
+.mini .row b{height:10px;background:#bbb;border-radius:2px;display:block}
+.mini .row .c{height:14px;width:60px;border-radius:3px;background:var(--cyan)}
+.mini .kan{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:100%}
+.mini .kan div{background:#e9e9e9;border-radius:4px;padding:6px}
+.mini .kan span{display:block;height:34px;background:#fff;border:1px solid #d5d5d5;border-radius:3px;margin-bottom:6px;border-left:4px solid var(--cyan)}
+.mini .tl{position:relative;height:100%}
+.mini .tl b{position:absolute;height:22px;border-radius:3px;background:var(--blue)}
+.mini .tl b.c{background:var(--cyan)}
+.mini .tl b.g{background:#bbb}
+.mini .cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;height:100%}
+.mini .cal span{background:#f1f1f1;border-radius:2px;position:relative}
+.mini .cal span.d::after{content:"";position:absolute;left:4px;right:4px;bottom:6px;height:6px;background:var(--cyan);border-radius:2px}
+.mini .cal span.b::after{content:"";position:absolute;left:4px;right:4px;bottom:6px;height:6px;background:var(--blue);border-radius:2px}
+
+/* timeline / phases */
+.phases{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:30px}
+.phases::before{content:"";position:absolute;left:0;right:0;top:34px;height:4px;background:var(--faint)}
+.phases::after{content:"";position:absolute;left:0;width:62%;top:34px;height:4px;background:var(--cyan)}
+.ph{position:relative;padding:0 28px 0 0}
+.ph .dot{width:72px;height:72px;border-radius:50%;background:var(--black);border:4px solid var(--cyan);font:400 34px/64px var(--display);font-style:italic;text-align:center;color:var(--cyan);margin-bottom:26px;position:relative;z-index:1}
+.ph:nth-child(n+4) .dot{border-color:var(--g3);color:var(--muted)}
+.ph h3{margin-bottom:8px}
+.ph .when{font:700 20px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:18px}
+.ph ul li{font-size:25px;color:var(--muted);margin-bottom:8px}
+.ph ul li::before{width:10px;top:.6em}
+
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:22px;align-items:stretch}
+.step{background:var(--g1);border:1px solid var(--faint);padding:34px 30px;position:relative}
+.step .idx{margin-bottom:14px}
+.step h3{margin-bottom:12px;font-size:28px}
+.step p{font-size:24px;color:var(--muted)}
+.step::after{content:"→";position:absolute;right:-22px;top:40%;color:var(--cyan);font-size:34px;font-weight:700}
+.step:last-child::after{display:none}
+
+/* status pipeline */
+.pipe{display:flex;gap:22px;align-items:center;margin:20px 0 50px}
+.pipe .st{flex:1;padding:36px 30px;background:var(--g1);border:1px solid var(--faint);text-align:center}
+.pipe .st h3{font-size:34px}
+.pipe .st.on{background:var(--cyan);color:#000;border-color:var(--cyan)}
+.pipe .st.done{background:var(--blue);border-color:var(--blue)}
+.pipe .st.hold{border-color:#ffb547}
+.pipe .st small{display:block;font-size:22px;margin-top:8px;opacity:.75;text-transform:none;letter-spacing:0;font-weight:400}
+.pipe .ar{color:var(--cyan);font-size:40px;font-weight:700}
+
+/* tree */
+.tree{display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:40px;align-items:center}
+.node{background:var(--g1);border:1px solid var(--faint);padding:32px 36px}
+.node.root{border-color:var(--blue)}
+.node.mid{border-color:var(--cyan)}
+.node h3{margin-bottom:8px}
+.node p{color:var(--muted);font-size:26px}
+.leaves{display:grid;gap:18px}
+.leaf{background:var(--g1);border:1px solid var(--faint);padding:26px 32px;display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:center}
+.leaf h3{color:var(--cyan)}
+.leaf p{color:var(--muted);font-size:25px}
+
+/* rules list */
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:26px 60px}
+.rule{display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:start;padding:22px 0;border-bottom:1px solid var(--faint)}
+.rule .n6{font-family:var(--display);font-style:italic;font-size:80px;line-height:.85;color:var(--cyan)}
+.rule h3{font-size:32px;margin-bottom:6px}
+.rule p{color:var(--muted);font-size:26px}
+
+/* divider */
+.divider{justify-content:center}
+.divider .kicker{margin-bottom:34px}
+.divider h1{font-size:200px}
+.divider .lead{margin-top:34px}
+
+/* cover */
+.cover{justify-content:flex-end;padding-bottom:150px}
+.cover .wordmark{position:absolute;top:100px;left:140px}
+.cover h1{font-size:172px;max-width:1500px}
+.cover .lead{margin-top:38px;font-size:38px}
+.cover .hint{position:absolute;right:140px;bottom:150px;font:700 20px/1.6 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);text-align:right}
+.cover .hint b{color:var(--cyan)}
+
+/* notes drawer */
+.notes{display:none}
+#drawer{position:fixed;right:0;top:0;bottom:0;width:460px;background:#0d0d0d;border-left:1px solid var(--g2);padding:36px 34px;overflow:auto;transform:translateX(100%);transition:transform .25s ease;z-index:50;font-size:20px;line-height:1.45}
+#drawer.open{transform:none}
+#drawer h5{font:700 15px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+#drawer .t{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:30px;line-height:1;margin-bottom:22px}
+#drawer li{font-size:20px;color:var(--ink);margin-bottom:12px;padding-left:22px}
+#drawer li::before{width:10px;top:.6em}
+#drawer .next{margin-top:30px;padding-top:20px;border-top:1px solid var(--g2);color:var(--muted);font-size:17px}
+body.notes-open .stage{left:calc(50% - 230px)}
+
+/* help */
+#help{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:#0d0d0d;border:1px solid var(--g2);padding:36px 44px;z-index:60;font-size:20px;display:none;min-width:420px}
+#help.open{display:block}
+#help h5{font:700 15px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+#help table{font-size:20px}#help td{padding:8px 14px;border:0}
+#help kbd{font:700 17px/1 var(--body);background:var(--g2);padding:6px 10px;border-radius:4px;letter-spacing:.08em}
+
+/* overview */
+body.overview{overflow:auto}
+body.overview .stage{position:static;transform:none;width:auto;height:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding:24px}
+body.overview .slide{position:relative;zoom:.2;opacity:1;visibility:visible;cursor:pointer;outline:8px solid transparent}
+body.overview .slide.active{outline-color:var(--cyan)}
+body.overview .rail,body.overview #drawer{display:none}
+
+/* print */
+@media print{
+  @page{size:1920px 1080px;margin:0}
+  html,body{overflow:visible;background:#000}
+  .stage{position:static;transform:none;width:1920px;height:auto;display:block}
+  .slide{position:relative;opacity:1;visibility:visible;page-break-after:always;height:1080px;width:1920px}
+  .rail,#drawer,#help{display:none!important}
+}
+
+/* no-JS: stack everything, keep it readable */
+.nojs .stage{position:static;transform:none;width:1920px;height:auto;display:block}
+.nojs .slide{position:relative;opacity:1;visibility:visible;height:1080px;margin-bottom:24px}
+.nojs body{overflow:auto}
+</style>
+<noscript><style>
+html,body{overflow:auto!important}
+.stage{position:static!important;transform:none!important;width:1920px!important;height:auto!important;display:block!important}
+.slide{position:relative!important;opacity:1!important;visibility:visible!important;height:1080px!important;margin-bottom:24px!important}
+.rail{display:none}
+</style></noscript>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+<!-- 1 COVER -->
+<section class="slide cover active" id="s1">
+  <div class="bg"><img src="assets/bg-sign.webp" alt=""></div>
+  <img class="wordmark" src="assets/logo-pursuit-muay-thai.png" alt="Pursuit Muay Thai">
+  <div class="kicker">Notion workshop</div>
+  <h1>One place for how we run Pursuit</h1>
+  <p class="lead">Perth · Thursday 3 September 2026 · with Matt Siddle</p>
+  <div class="hint"><b>→</b> next slide<br><b>S</b> speaker notes<br><b>O</b> overview</div>
+  <aside class="notes">
+    <ul>
+      <li>Room check: everyone on the wifi, everyone has a Notion invite on their work email. Fix logins now, not at minute 45.</li>
+      <li>Frame the two hours: 40 minutes of me talking, then you are in the board doing it.</li>
+      <li>Set the tone from the brand guide: supportive, direct. Nobody here is behind. Adam and Brett have said they are the same as everyone else on this.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 2 WHY WE'RE HERE -->
+<section class="slide" id="s2">
+  <div class="kicker">Purpose</div>
+  <h2>Why we're here</h2>
+  <div class="cols c3">
+    <div class="card"><div class="idx">Outcome 01</div><h3>Know what Notion is and how it works</h3><p>Pages, boards, tasks, filters. What each one is for, in words you already use.</p></div>
+    <div class="card"><div class="idx">Outcome 02</div><h3>Find your way around it on your own</h3><p>Open the workspace, find your team's work, search for a document, without asking anyone.</p></div>
+    <div class="card"><div class="idx">Outcome 03</div><h3>Leave with your tasks on the board</h3><p>Your part of the New Club Opening template written to the standard, so the next opening runs off it.</p></div>
+  </div>
+  <div class="agenda">
+    <div><div class="idx">Part 1 · 40 min</div><strong>How it works</strong><span>This deck. What Notion is, how we'll use it, what a good task looks like.</span></div>
+    <div><div class="idx">Part 2 · 60 min</div><strong>Hands on</strong><span>Everyone in the New Club Opening board, writing and moving their own cards.</span></div>
+    <div><div class="idx">Wrap · 10 min</div><strong>What happens next week</strong><span>The first weekly sprint, who owns the board, and the two-week check-in.</span></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Three outcomes. Read them out. Outcome 3 is the one that matters: a populated board, not a tour.</li>
+      <li>Ask the room: who has used Notion before? Who has used Trello, Asana, Monday? Calibrates how fast to go.</li>
+      <li>Say it plainly: this only works if everyone uses it. When I rolled it out elsewhere, people ignored it at first. Half the battle is habit, the other half is accuracy. If the board is wrong, nobody goes there.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 3 WHERE WE'RE GOING -->
+<section class="slide" id="s3">
+  <div class="kicker">Where Pursuit is going</div>
+  <h2>What got us to 8<br>won't get us to 15</h2>
+  <div class="cols c4">
+    <div class="card"><div class="big">8</div><h3>Clubs today</h3><p>WA and VIC. Every one opened off a list that lived in someone's head.</p></div>
+    <div class="card"><div class="big">7</div><h3>Openings in the next 12 months</h3><p>More openings in one year than in the last several combined.</p></div>
+    <div class="card"><div class="big">2</div><h3>New states</h3><p>NSW and SA. Teams on the ground who have never opened a Pursuit club.</p></div>
+    <div class="card"><div class="big">4</div><h3>Venue formats</h3><p>Performance Centre, Dual Stream, Muay Thai Studio, BJJ Studio. Each opens differently.</p></div>
+  </div>
+  <div class="foot">Every opening runs off the same list of jobs. <b>Right now that list does not exist anywhere you can open.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Numbers from Adam, 21 Aug. Do not name the unannounced sites on screen. Talk to them verbally if the room already knows.</li>
+      <li>The point: seven openings with the current method means seven rounds of phone calls to Adam and Courtney. That does not scale and it burns the two people the business relies on most.</li>
+      <li>New states means new people who cannot walk down the hall and ask. The list has to live somewhere they can open it.</li>
+      <li>Four formats: the template has to flex. Single stream, dual stream, renovation. Same bones, different pruning.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 4 HOW IT RUNS TODAY -->
+<section class="slide" id="s4">
+  <div class="kicker">Today</div>
+  <h2>How an opening runs now</h2>
+  <div class="cols c2" style="gap:70px">
+    <div class="chips">
+      <span class="chip rot1">Club_Opening_Checklist_FINAL_v3.xlsx</span>
+      <span class="chip">Timetable template (somewhere in Teams)</span>
+      <span class="chip rot2">one of my many files on the computer</span>
+      <span class="chip call">Call Adam</span>
+      <span class="chip rot3">Wanneroo notes.docx</span>
+      <span class="chip call">Call Courtney</span>
+      <span class="chip">The old Belgravia sheet</span>
+      <span class="chip rot1">WhatsApp: "does anyone have the…"</span>
+      <span class="chip rot2">Builder quotes (email, March)</span>
+      <span class="chip">Opening party run sheet (Leslie's laptop)</span>
+      <span class="chip rot3">Recruitment ad (last year's, edited)</span>
+    </div>
+    <div>
+      <p class="quote" style="font-size:52px;margin-bottom:40px">"We all kind of know different parts of it."</p>
+      <ul style="font-size:32px">
+        <li>The knowledge is real. It is spread across people's heads.</li>
+        <li>Files sit in Teams, Word, laptops and inboxes. Finding one means asking.</li>
+        <li>Updates happen by phone call. Two people carry the whole list.</li>
+        <li>Nothing is deliberately dropped. Things fall through the gaps between people.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Not a criticism. This is how every business runs until it decides not to. Eight clubs opened this way.</li>
+      <li>Monday's call: Courtney asked "where does this sit?" about the timetable template. Adam: "I don't know." That is the problem in one exchange.</li>
+      <li>Ask the room: when you last needed something for an opening, how did you get it? Nearly every answer will be "I asked someone".</li>
+      <li>The cost is invisible: the phone call, the wait, the version that was out of date.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 5 WHY AN OPERATIONAL SYSTEM -->
+<section class="slide" id="s5">
+  <div class="kicker">Why an operational system</div>
+  <h2>Build once.<br>Use every time.</h2>
+  <div class="cols c3">
+    <div class="card"><div class="idx">01</div><h3>Nothing depends on one person</h3><p>The task lives in the system, with its detail and its links. Whoever holds it can change. The task stays.</p></div>
+    <div class="card"><div class="idx">02</div><h3>Anyone can pick it up</h3><p>A new starter reads the card and acts on it. No phone call, no "who do I ask".</p></div>
+    <div class="card"><div class="idx">03</div><h3>Every opening is faster than the last</h3><p>Each opening improves the template. The 15th club launches with the quality of the 1st in a fraction of the time.</p></div>
+  </div>
+  <div class="foot">The effort is front-loaded. <b>The payoff is permanent.</b> Adam's words on Monday: a lot of weight up front, then it gets easy once you start using it.</div>
+  <aside class="notes">
+    <ul>
+      <li>An operational system is the place where the work lives, instead of people's memories.</li>
+      <li>Card 1 is the one to land with Adam and Courtney. Today, if either of you is away, the opening slows down. That should never be true.</li>
+      <li>Card 2 is for the new-state hires. They will open the board before they meet most of you.</li>
+      <li>Card 3 is the compounding argument. Every "remove if slab already poured" note you add this afternoon saves someone a phone call in 2027.</li>
+      <li>Be direct about cost: this afternoon will feel slow. That is the price. It is paid once.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 6 DIVIDER -->
+<section class="slide divider" id="s6">
+  <div class="bg soft"><img src="assets/bg-floor.webp" alt=""></div>
+  <div class="kicker">Part 1 · Section A</div>
+  <h1>What is Notion</h1>
+  <p class="lead">Three building blocks. Nothing you have not used before in another shape.</p>
+  <aside class="notes"><ul><li>Switch gears. Ten minutes on what the tool is. Keep it concrete.</li></ul></aside>
+</section>
+
+<!-- 7 NOTION IN ONE LINE -->
+<section class="slide" id="s7">
+  <div class="kicker">What is Notion</div>
+  <p class="quote" style="margin-bottom:70px">A shared workspace where our pages, tasks and documents live in one place, and everyone sees the same thing.</p>
+  <div class="cols c3">
+    <div class="card"><div class="idx">Block 01</div><h3>Pages</h3><p>A document that lives online. Anyone with access opens the same, current version. No attachments, no v3_FINAL.</p></div>
+    <div class="card"><div class="idx">Block 02</div><h3>Databases</h3><p>A list of things: tasks, clubs, SOPs. Each item has properties like owner, team, phase, status.</p></div>
+    <div class="card"><div class="idx">Block 03</div><h3>Views and filters</h3><p>The same list, sliced. By person, by team, by phase. As a board, a table, a timeline or a calendar.</p></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Read the one-liner. Then: everything in Notion is one of these three things.</li>
+      <li>Page = document. Database = list. View = a way of looking at the list.</li>
+      <li>The key idea that trips people up: a task is a page. Open any card and it is a document you can write in, attach to, comment on.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 8 THINGS YOU ALREADY USE -->
+<section class="slide" id="s8">
+  <div class="kicker">Contextualise it</div>
+  <h2>Things you already use</h2>
+  <table>
+    <tr><th>Today</th><th></th><th>In Notion</th><th>What changes</th></tr>
+    <tr><td>A Word document</td><td class="arrow">→</td><td><b>A page</b></td><td>Everyone opens the same current version. No emailing copies.</td></tr>
+    <tr><td>An Excel or Google Sheet of tasks</td><td class="arrow">→</td><td><b>A database</b></td><td>Same rows and columns. Each row opens into its own page.</td></tr>
+    <tr><td>Sticky notes on a whiteboard</td><td class="arrow">→</td><td><b>A board view</b></td><td>Drag a card from To do to Done. It stays moved when you leave the room.</td></tr>
+    <tr><td>Files dumped in Teams</td><td class="arrow">→</td><td><b>The wiki</b></td><td>Organised, searchable, and every page links to the pages it relies on.</td></tr>
+    <tr><td>A phone call for an update</td><td class="arrow">→</td><td><b>A comment on the task</b></td><td>The update sits on the work it is about. Whoever needs it reads it.</td></tr>
+    <tr><td>"Does anyone have the timetable template?"</td><td class="arrow">→</td><td><b>Search</b></td><td>Type it. Open it. Nobody interrupted.</td></tr>
+  </table>
+  <div class="foot">Not a new skill. <b>The same things, in one place.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Go row by row, quickly. The audience is mixed. This is the slide that makes it click for the people who dislike software.</li>
+      <li>The whiteboard line matters for Brett and Brian: a board is a whiteboard that remembers.</li>
+      <li>Last row: this is the behaviour change. The answer to "have you got the link?" becomes "search Notion".</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 9 SAME LIST FOUR VIEWS -->
+<section class="slide" id="s9">
+  <div class="kicker">Views</div>
+  <h2>One list. Four ways to look at it.</h2>
+  <div class="views">
+    <div class="view"><h3>Table</h3><div class="cap">Every task, every property. Sort and filter like a sheet.</div>
+      <div class="mini">
+        <div class="row"><b style="width:40%"></b><span class="c"></span><b style="width:20%"></b></div>
+        <div class="row"><b style="width:55%"></b><span class="c" style="background:#bbb"></span><b style="width:15%"></b></div>
+        <div class="row"><b style="width:35%"></b><span class="c"></span><b style="width:25%"></b></div>
+        <div class="row"><b style="width:48%"></b><span class="c" style="background:#bbb"></span><b style="width:18%"></b></div>
+        <div class="row"><b style="width:42%"></b><span class="c"></span><b style="width:22%"></b></div>
+        <div class="row"><b style="width:58%"></b><span class="c" style="background:#bbb"></span><b style="width:14%"></b></div>
+        <div class="row"><b style="width:38%"></b><span class="c"></span><b style="width:20%"></b></div>
+      </div></div>
+    <div class="view"><h3>Board</h3><div class="cap">Cards in columns by status. Drag to move.</div>
+      <div class="mini"><div class="kan"><div><span></span><span></span><span></span><span></span></div><div><span></span><span></span></div><div><span></span><span></span><span></span></div></div></div></div>
+    <div class="view"><h3>Timeline</h3><div class="cap">Start and end dates on a Gantt. Sequence the trades.</div>
+      <div class="mini"><div class="tl">
+        <b class="g" style="left:4%;width:22%;top:8%"></b>
+        <b class="g" style="left:22%;width:14%;top:22%"></b>
+        <b style="left:32%;width:28%;top:36%"></b>
+        <b class="c" style="left:50%;width:20%;top:50%"></b>
+        <b style="left:58%;width:30%;top:64%"></b>
+        <b class="c" style="left:76%;width:20%;top:78%"></b>
+      </div></div></div>
+    <div class="view"><h3>Calendar</h3><div class="cap">The same dates on a month. What lands this week.</div>
+      <div class="mini"><div class="cal">
+        <span></span><span></span><span class="d"></span><span></span><span></span><span></span><span></span>
+        <span class="b"></span><span></span><span></span><span class="d"></span><span></span><span></span><span></span>
+        <span></span><span class="d"></span><span></span><span></span><span class="b"></span><span></span><span></span>
+        <span></span><span></span><span class="d"></span><span class="d"></span><span></span><span></span><span></span>
+        <span class="b"></span><span></span><span></span><span></span><span class="d"></span><span></span><span></span>
+      </div></div></div>
+  </div>
+  <div class="foot">Change the lens, <b>never re-type</b>. The board owner sequences trades on the timeline. Leslie sees the same tasks as a board.</div>
+  <aside class="notes">
+    <ul>
+      <li>One database under all four. Change a date on the timeline, the calendar and table update.</li>
+      <li>Adam wanted to Gantt the fit-out. That is the timeline view. Start and end dates are standard on every card. They get set at kickoff, not pre-baked in the template.</li>
+      <li>Duration stays on the card as a guide ("usually 4 days"). Real dates are set per club.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 10 WORKSPACE LAYOUT -->
+<section class="slide" id="s10">
+  <div class="kicker">Our workspace</div>
+  <h2>How it's laid out</h2>
+  <div class="tree">
+    <div class="node root"><div class="idx">Workspace</div><h3>Bailey Group HQ</h3><p>One workspace for all the brands. Shared calendar, meetings, docs.</p></div>
+    <div class="node mid"><div class="idx">Home</div><h3>Pursuit Home</h3><p>The front door for everything Pursuit. Start here.</p></div>
+    <div class="leaves">
+      <div class="leaf"><h3>Wiki</h3><p>How we do things. SOPs, templates, logins, the timetable template. Written once, linked everywhere.</p></div>
+      <div class="leaf"><h3>Boards</h3><p>Work in motion. One board per opening, plus the day-to-day boards each team runs.</p></div>
+      <div class="leaf"><h3>Templates</h3><p>The New Club Opening template. Duplicate it, never rebuild it.</p></div>
+    </div>
+  </div>
+  <div class="foot">Log in with your <b>work email</b>. Personal Gmail accounts can't see the workspace. If your invite hasn't landed, tell Matt now.</div>
+  <aside class="notes">
+    <ul>
+      <li>Live demo here: switch to Notion, click through HQ → Pursuit Home → the template. Thirty seconds.</li>
+      <li>Wiki vs Boards is the distinction to land. Wiki = reference (rarely changes). Boards = work (changes daily).</li>
+      <li>Login gotcha from the planning call: a personal-Gmail Notion account is a dead end. Work email only.</li>
+      <li>Open question for Adam: does Pursuit operations get its own teamspace, or sit alongside the other brands? Decide this week.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 11 DIVIDER -->
+<section class="slide divider" id="s11">
+  <div class="bg soft"><img src="assets/bg-cardio.webp" alt=""></div>
+  <div class="kicker">Part 1 · Section B</div>
+  <h1>How we'll use it</h1>
+  <p class="lead">One template. Every opening.</p>
+  <aside class="notes"><ul><li>From the tool to our use of it. This is the section Adam and Courtney shaped on Monday.</li></ul></aside>
+</section>
+
+<!-- 12 FIRST BUILD -->
+<section class="slide" id="s12">
+  <div class="kicker">First build</div>
+  <h2>The New Club Opening template</h2>
+  <div class="flow">
+    <div class="step"><div class="idx">Trigger</div><h3>Lease signed</h3><p>The moment a club is real, the board exists.</p></div>
+    <div class="step"><div class="idx">Step 1</div><h3>Duplicate</h3><p>Copy the template. Every task, owner and phase comes with it.</p></div>
+    <div class="step"><div class="idx">Step 2</div><h3>Rename</h3><p>"New Club Opening" becomes the club's name.</p></div>
+    <div class="step"><div class="idx">Step 3</div><h3>Kickoff</h3><p>Board owner prunes to the club type, confirms owners, dates phase 1.</p></div>
+    <div class="step"><div class="idx">Then</div><h3>Weekly sprint</h3><p>Run off the board until the doors open.</p></div>
+  </div>
+  <div class="cols c2" style="margin-top:50px;gap:60px">
+    <div>
+      <h3 class="cy" style="margin-bottom:16px">The board owner</h3>
+      <ul style="font-size:28px">
+        <li>One named person per opening. Owns the board, not every task on it.</li>
+        <li>Prunes at kickoff: single stream, dual stream or renovation. Property tasks out if the deal came ready-made.</li>
+        <li>Makes sure every card has an owner and a description before the first sprint.</li>
+        <li>Runs the weekly sprint.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="cy" style="margin-bottom:16px">What the template carries</h3>
+      <ul style="font-size:28px">
+        <li>The non-negotiables for every club, from lease conditions to opening party.</li>
+        <li>Optional tasks tagged, with the condition for removing them written on the card.</li>
+        <li>Links to the templates each task uses, inside the task.</li>
+        <li>Duration guides, not fixed dates. Dates are set per club at kickoff.</li>
+      </ul>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Trigger is lease signed. Adam's caveat: a site can be signed six months before digging starts. Fine. The board exists early and the first phase is quiet.</li>
+      <li>Pruning is the answer to "but every club is different". Same template, remove what does not apply. A ready-made deal skips the property tasks.</li>
+      <li>Board owner is the accountability point. Courtney for the first one. It could be someone else per state later.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 13 PHASES -->
+<section class="slide" id="s13">
+  <div class="kicker">Phases <span class="tag ghost" style="margin-left:22px;vertical-align:middle">Proposed · agree in the room</span></div>
+  <h2>The five phases of an opening</h2>
+  <div class="phases">
+    <div class="ph"><div class="dot">1</div><h3>Pre-handover</h3><div class="when">Lease signed → keys</div><ul><li>Lease conditions, council, permits</li><li>Builder brief, quotes, trades sequenced</li><li>Layout and first walkthrough</li></ul></div>
+    <div class="ph"><div class="dot">2</div><h3>Fit-out</h3><div class="when">Keys → build complete</div><ul><li>Demolition, waste, base build</li><li>Trades in order: plumbing, electrical, walls, paint</li><li>Recruitment triggered</li></ul></div>
+    <div class="ph"><div class="dot">3</div><h3>Pre-launch</h3><div class="when">8–12 weeks out → opening</div><ul><li>Timetable, staff training</li><li>Pre-marketing, socials, early-bird offer</li><li>Systems, memberships, signage</li></ul></div>
+    <div class="ph"><div class="dot">4</div><h3>Opening</h3><div class="when">Commencement day</div><ul><li>Doors open, first classes</li><li>Launch event</li><li>Trainer on the floor</li></ul></div>
+    <div class="ph"><div class="dot">5</div><h3>Post-opening</h3><div class="when">First 30 days</div><ul><li>Defect checks</li><li>Bedding in coaches and timetable</li><li>Review: what changes in the template</li></ul></div>
+  </div>
+  <div class="foot">Every card carries a phase. Filter to <b>Pre-launch</b> and you see everything that has to be done before the doors open.</div>
+  <aside class="notes">
+    <ul>
+      <li>These names are a proposal. Monday's call landed on handover and commencement as the two legal anchors (in the lease). Everything hangs off those.</li>
+      <li>Ask Adam and Courtney to confirm the five names in the room. Once agreed, they become the official words everyone uses.</li>
+      <li>Phase 1 is mostly Adam and Courtney. The team kickoff happens when the board hits Fit-out.</li>
+      <li>Leslie's social work has never had a slot in a previous opening timeline. Pre-launch is where it lives now.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 14 TEAM VS OWNER -->
+<section class="slide" id="s14">
+  <div class="kicker">Ownership</div>
+  <h2>Team and Owner. Every card has both.</h2>
+  <div class="cols c2" style="gap:60px">
+    <div class="card">
+      <div class="idx">Property · Team</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px"><span class="tag">Operations</span><span class="tag">Marketing</span><span class="tag">Sales</span><span class="tag">Coaching</span></div>
+      <h3>Which part of the business does the work</h3>
+      <p>Teams don't change between clubs. The template ships with every card already tagged.</p>
+    </div>
+    <div class="card">
+      <div class="idx">Property · Owner</div>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:26px"><span class="tag dim">Courtney</span><span class="tag dim">Leslie</span><span class="tag dim">Brett</span><span class="tag dim">Brian</span><span class="tag dim">New hire, NSW</span></div>
+      <h3>The one person who makes it happen</h3>
+      <p>People change. Someone leaves, someone joins, a different state has a different name in the box. The task doesn't care.</p>
+    </div>
+  </div>
+  <div class="foot">Type a name into search: <b>everything they are working on, across every club, on one screen.</b> That is how you check on progress without a phone call.</div>
+  <aside class="notes">
+    <ul>
+      <li>Team is structural, Owner is personal. Both are needed for the template to survive staff changes.</li>
+      <li>One owner per card. Never two. Shared ownership is nobody's ownership.</li>
+      <li>Demo the filter live: filter Owner = Leslie. Show in-progress, show blocked. Point out you could comment right there.</li>
+      <li>Adam's take from Monday: a good operational system means you don't need to ask questions to get updates. You can see it all.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 15 DIVIDER -->
+<section class="slide divider" id="s15">
+  <div class="bg soft"><img src="assets/bg-floor.webp" alt=""></div>
+  <div class="kicker">Part 1 · Section C</div>
+  <h1>A best-practice task</h1>
+  <p class="lead">The card is the whole system. Get the card right and everything else follows.</p>
+  <aside class="notes"><ul><li>This is the section they will use in Part 2. Slow down here.</li></ul></aside>
+</section>
+
+<!-- 16 ANATOMY -->
+<section class="slide" id="s16">
+  <div class="kicker">Anatomy of a good card</div>
+  <div class="cols" style="grid-template-columns:1100px 1fr;gap:80px;align-items:start;margin-top:10px">
+    <div class="n" style="position:relative">
+      <div class="bar"><i></i><i></i><i></i>&nbsp; Pursuit · New Club Opening › Marketing</div>
+      <div class="cardhead"><div class="title">Design 4 launch social tiles (1200×1200) for the opening</div></div>
+      <div class="props">
+        <div class="k">Team</div><div class="v"><span class="pill cy">Marketing</span></div>
+        <div class="k">Owner</div><div class="v">Leslie</div>
+        <div class="k">Phase</div><div class="v"><span class="pill bl">3 · Pre-launch</span></div>
+        <div class="k">Status</div><div class="v"><span class="pill yl">In progress</span></div>
+        <div class="k">Optional</div><div class="v"><span class="pill gy">No · every club</span></div>
+        <div class="k">Dates</div><div class="v">6 weeks out → 2 weeks out &nbsp;<span style="color:#777;font-weight:400">(guide: 5 days)</span></div>
+      </div>
+      <div class="desc">
+        <p><b>Done looks like:</b> four 1200×1200 tiles in the Pursuit brand kit, approved by the board owner, uploaded to the club's launch folder. Copy uses the early-bird offer for this club.</p>
+        <p><b>Use:</b> <a>Brand kit (Canva)</a> · <a>Launch tile template</a> · <a>Offer copy for this club</a></p>
+        <p><b>Watch out:</b> Studio logo for single-stream clubs, Performance Centre logo for full gyms. Never both on one tile.</p>
+      </div>
+    </div>
+    <div style="position:relative;height:760px">
+      <div class="ann" data-n="1" style="top:0">Title: verb + what done looks like<small>Not "social media posts". Say the thing that gets made.</small></div>
+      <div class="ann" data-n="2" style="top:150px">Team and Owner<small>Which part of the business, and the one person.</small></div>
+      <div class="ann" data-n="3" style="top:280px">Phase and Status<small>Where in the opening it sits, and where it's at now.</small></div>
+      <div class="ann" data-n="4" style="top:410px">Optional, with the condition<small>"Remove if the slab is already poured."</small></div>
+      <div class="ann" data-n="5" style="top:540px">Dates as a guide, set per club<small>Duration lives on the template. Real dates at kickoff.</small></div>
+      <div class="ann" data-n="6" style="top:670px">Description a new starter could act on<small>Done looks like. Links inside. The catch to avoid.</small></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Walk the six callouts top to bottom. This card is the standard for Part 2.</li>
+      <li>The description test: could someone who started last week do this without ringing anyone? If no, it is not finished.</li>
+      <li>Links live in the card. Monday's example: the timetable template. If the link is in the task, nobody ever asks where it is again.</li>
+      <li>Phase 2 is putting every template link in. Today is getting the words right.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 17 BAD VS GOOD -->
+<section class="slide" id="s17">
+  <div class="kicker">Before and after</div>
+  <h2>The same task, written twice</h2>
+  <div class="cols c2" style="gap:50px">
+    <div>
+      <div class="idx" style="color:var(--muted)">How it arrives</div>
+      <div class="n bad" style="margin-bottom:26px"><div class="cardhead" style="padding-bottom:22px"><div class="title">Social media posts</div></div><div class="props" style="padding-top:0"><div class="k">Owner</div><div class="v" style="color:#999">(blank)</div><div class="k">Description</div><div class="v" style="color:#999">(blank)</div></div></div>
+      <div class="n bad"><div class="cardhead" style="padding-bottom:22px"><div class="title">Staff training</div></div><div class="props" style="padding-top:0"><div class="k">Owner</div><div class="v" style="color:#999">Operations?</div><div class="k">Description</div><div class="v" style="color:#999">finalise schedule</div></div></div>
+    </div>
+    <div>
+      <div class="idx">To the standard</div>
+      <div class="n" style="margin-bottom:26px"><div class="cardhead"><div class="title">Design 4 launch social tiles (1200×1200) for the opening</div></div><div class="props"><div class="k">Team · Owner</div><div class="v"><span class="pill cy">Marketing</span> &nbsp;Leslie</div><div class="k">Phase</div><div class="v"><span class="pill bl">3 · Pre-launch</span></div></div><div class="desc"><p>Done: four tiles in the brand kit, approved, in the launch folder. Links: brand kit, tile template, this club's offer copy.</p></div></div>
+      <div class="n"><div class="cardhead"><div class="title">Finalise the opening timetable from the club timetable template</div></div><div class="props"><div class="k">Team · Owner</div><div class="v"><span class="pill cy">Operations</span> &nbsp;Courtney</div><div class="k">Phase</div><div class="v"><span class="pill bl">3 · Pre-launch</span></div></div><div class="desc"><p>Done: every class for every discipline offered at this club, on the standard template, loaded into the membership system. Link: timetable template (wiki).</p></div></div>
+    </div>
+  </div>
+  <div class="foot">Optional tasks say when to remove them: <b>"Slab pour. Remove if the slab is already down at handover."</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Left column is real: these are two rows from Adam's sheet as they arrived. Right column is what Part 2 turns them into.</li>
+      <li>The Staff training example is straight from Monday: Courtney owns it, Operations is the team, the timetable template is the link nobody could find.</li>
+      <li>The slab example: applies at one site, not another. Instead of deleting it, write the removal condition on the card. Future openings decide in five seconds.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 18 RULES -->
+<section class="slide" id="s18">
+  <div class="kicker">The standard <span class="tag" style="margin-left:22px;vertical-align:middle">Keep this open in Part 2</span></div>
+  <h2>Six rules of a good card</h2>
+  <div class="rules">
+    <div class="rule"><div class="n6">1</div><div><h3>One task, one owner</h3><p>If two people own it, split it into two cards.</p></div></div>
+    <div class="rule"><div class="n6">2</div><div><h3>The title says what done looks like</h3><p>Start with a verb. "Book the electrician for base build", not "Electrical".</p></div></div>
+    <div class="rule"><div class="n6">3</div><div><h3>A new starter could act on the description</h3><p>What gets made, to what standard, using what. No assumed knowledge.</p></div></div>
+    <div class="rule"><div class="n6">4</div><div><h3>Links live in the card</h3><p>Template, brand kit, supplier, login page. Never in someone's head or inbox.</p></div></div>
+    <div class="rule"><div class="n6">5</div><div><h3>Team and phase are tagged</h3><p>So the board filters properly and the sprint can see what's coming.</p></div></div>
+    <div class="rule"><div class="n6">6</div><div><h3>Optional cards say when to remove them</h3><p>"Remove if…" on the card. The next board owner decides in seconds.</p></div></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Read all six. Then tell them this slide stays on the TV for the whole of Part 2.</li>
+      <li>Rule 3 is the one people skip. The description is where the value is. It is also the bit only they can write.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 19 STATUSES -->
+<section class="slide" id="s19">
+  <div class="kicker">Moving cards</div>
+  <h2>Four statuses. Move the card, not the meeting.</h2>
+  <div class="pipe">
+    <div class="st"><h3>To do</h3><small>Not started. Has an owner and a phase.</small></div><div class="ar">→</div>
+    <div class="st on"><h3>In progress</h3><small>Someone is on it this week.</small></div><div class="ar">→</div>
+    <div class="st hold"><h3>Blocked</h3><small>Waiting on someone or something. Say who, in a comment.</small></div><div class="ar">→</div>
+    <div class="st done"><h3>Done</h3><small>Meets the description. Not "mostly".</small></div>
+  </div>
+  <div class="cols c2" style="gap:60px">
+    <div class="card"><h3>Stuck?</h3><p>Move it to Blocked and comment who you are waiting on. Don't hold it for the meeting. The person you need sees it the same day.</p></div>
+    <div class="card"><h3>Doesn't apply to this club?</h3><p>Mark it Not needed with a one-line reason. Don't delete it. The template learns from why it was skipped.</p></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Keep statuses to four. Boards fail when someone adds "Waiting on Adam", "Almost done", "Review".</li>
+      <li>Blocked with a comment is the async move. It replaces the phone call and it leaves a record.</li>
+      <li>Not needed, not deleted. Otherwise the template loses the slab example.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 20 DIVIDER -->
+<section class="slide divider" id="s20">
+  <div class="bg soft"><img src="assets/bg-cardio.webp" alt=""></div>
+  <div class="kicker">Part 1 · Section D</div>
+  <h1>How we run it</h1>
+  <p class="lead">The weekly sprint, and everything that happens between sprints.</p>
+  <aside class="notes"><ul><li>Last section before hands-on. The operating rhythm.</li></ul></aside>
+</section>
+
+<!-- 21 WEEKLY SPRINT -->
+<section class="slide" id="s21">
+  <div class="kicker">The weekly sprint</div>
+  <h2>Forward-facing. Not an update round.</h2>
+  <div class="cols c2" style="gap:60px">
+    <div>
+      <div class="board">
+        <div class="col"><h4>To do <span>6</span></h4><div class="tk">Book waste removal<em>Courtney · Fit-out</em></div><div class="tk">Signage quotes<em>Courtney · Pre-launch</em></div><div class="tk">Early-bird landing page<em>Marketing · Pre-launch</em></div></div>
+        <div class="col"><h4>In progress <span>3</span></h4><div class="tk">Launch social tiles<em>Leslie · Pre-launch</em></div><div class="tk">Opening timetable<em>Courtney · Pre-launch</em></div></div>
+        <div class="col"><h4>Blocked <span>1</span></h4><div class="tk">Recruit head coach<em>Brett · waiting on ad approval</em></div></div>
+        <div class="col"><h4>Done <span>14</span></h4><div class="tk">Demolition complete<em>Fit-out</em></div><div class="tk">Council sign-off<em>Pre-handover</em></div></div>
+      </div>
+      <p class="small" style="margin-top:20px">Board open on the screen. Filtered to this week.</p>
+    </div>
+    <div>
+      <h3 class="cy" style="margin-bottom:18px">The format · 20 to 30 minutes</h3>
+      <ul style="font-size:30px">
+        <li>Board owner opens the board. Round the room, by owner.</li>
+        <li>Each owner: <b>what lands this week</b>, <b>what do you need</b>, <b>what's blocked</b>.</li>
+        <li>Nobody reports what they did. The board already says that.</li>
+        <li>Decisions and new tasks go straight onto cards, in the meeting.</li>
+      </ul>
+      <p class="quote" style="font-size:44px;margin-top:40px">"If it's not on the board, it's not in the meeting."</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>The difference from a normal update meeting: nobody narrates last week. You can read last week. The meeting is for what is coming and what is stuck.</li>
+      <li>Monday's example: "You're sending me that on Wednesday? Cool, I'll set my task to start Wednesday." That is the whole meeting.</li>
+      <li>Board owner runs it. Adam does not need to be in every one. He can read the board.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 22 ASYNC -->
+<section class="slide" id="s22">
+  <div class="kicker">Between sprints</div>
+  <h2>Async by default.<br>We keep moving.</h2>
+  <div class="cols c3">
+    <div class="card"><div class="idx">What async means</div><h3>The work moves without waiting for a meeting or a reply</h3><p>You update the card when you do the work. Whoever needs to know reads it when they need to. Nobody is on hold.</p></div>
+    <div class="card"><div class="idx">What it replaces</div><h3>The phone call for an update</h3><p>Status and a comment on the card do the job. Managers check the board, not the phone. Questions go on the card too, so the answer is there next time.</p></div>
+    <div class="card"><div class="idx">What you get back</div><h3>Cover, handovers, and a record</h3><p>Someone away? Their cards are visible. Someone new? Their onboarding is a board. Review time? The work is already written down.</p></div>
+  </div>
+  <div class="foot">Perth, Melbourne, Newcastle, Adelaide. <b>Different time zones, one board.</b> Async is how a national team works without everyone being in the room.</div>
+  <aside class="notes">
+    <ul>
+      <li>Define async plainly. The range of knowledge in the room is wide. Do not assume the word means anything to everyone.</li>
+      <li>The manager habit change is the hard one: check the board before you pick up the phone. Adam and Courtney model this or nobody does.</li>
+      <li>NSW and SA make this non-optional. A three-hour time difference and a phone-call culture do not mix.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 23 NOTION IS THE CENTRE -->
+<section class="slide" id="s23">
+  <div class="kicker">The habit</div>
+  <h2>Notion is the centre of how we work</h2>
+  <div class="cols c2" style="gap:60px">
+    <div>
+      <h3 class="cy" style="margin-bottom:18px">Everyday rules</h3>
+      <ul style="font-size:30px">
+        <li>Meeting agenda? It's a Notion page.</li>
+        <li>Wrote a process down? It's in the wiki, once. Never repeat a process again.</li>
+        <li>"Have you got the link?" The answer is "search Notion".</li>
+        <li>Finished something? Move the card. Stuck? Comment on it.</li>
+        <li>New starter? Their first day is a board.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="cy" style="margin-bottom:18px">Adam's roadmap</h3>
+      <div class="leaves">
+        <div class="leaf" style="grid-template-columns:150px 1fr"><h3>Now</h3><p>New Club Opening template, written to the standard. Today.</p></div>
+        <div class="leaf" style="grid-template-columns:150px 1fr"><h3>Next</h3><p>Every template link inside its task. Where the files live is decided first.</p></div>
+        <div class="leaf" style="grid-template-columns:150px 1fr"><h3>Later</h3><p>SOP library for each department, built from the Friday leadership sessions.</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Everyday rules: the behaviour that makes it stick. The only way is everybody, every day.</li>
+      <li>Roadmap is Adam's from Monday, not mine. Now = today. Next = links, once Adam decides Drive vs Teams. Later = SOPs from the Friday sessions.</li>
+      <li>Do not promise dates on Next and Later. Adam owns them.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- 24 LET'S BUILD IT -->
+<section class="slide" id="s24">
+  <div class="bg"><img src="assets/bg-reception.webp" alt=""></div>
+  <div class="kicker">Part 2 · Hands on</div>
+  <h2>Let's build it</h2>
+  <div class="cols" style="grid-template-columns:1fr 1fr;gap:70px">
+    <div>
+      <ol style="font-size:34px;line-height:1.5;padding-left:0;list-style:none;counter-reset:st">
+        <li style="padding-left:80px;margin-bottom:18px;counter-increment:st"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">1</span>Open the board on your work email login</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">2</span>Filter Team to yours</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">3</span>Bring three of your cards up to the six rules</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">4</span>Move one card through the statuses</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">5</span>Comment on someone else's card</li>
+      </ol>
+    </div>
+    <div class="card" style="min-height:0">
+      <div class="idx">The board</div>
+      <h3 style="margin-bottom:14px">Pursuit · New Club Opening</h3>
+      <p class="small" style="margin-bottom:26px">Link goes here once the board is built from Adam and Courtney's sheet. Matt walks the room with it open.</p>
+      <div class="idx">The six rules, short</div>
+      <p style="font-size:26px;color:var(--muted)">One owner · Title says done · Description a new starter could act on · Links in the card · Team and phase tagged · Optional says when to remove</p>
+    </div>
+  </div>
+  <div class="foot"><span style="font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:44px;color:var(--ink)">Effort upfront. Speed forever.</span></div>
+  <aside class="notes">
+    <ul>
+      <li>Switch to Notion on the TV. This slide is the checklist. The board is the work.</li>
+      <li>Walk the room. Sit with people. Correct cards live. That is why it is in person.</li>
+      <li>Close: first weekly sprint is next week, board owner runs it. Two-week check-in with Matt on whether it is being used.</li>
+      <li>Encourage everyone to put their own day-to-day to-do list in as well. Habit builds faster when it is used every day, beyond openings.</li>
+    </ul>
+  </aside>
+</section>
+
+</div><!-- /stage -->
+
+<img class="mark" src="assets/logo-p-icon.png" alt="">
+<div class="num" id="num">1 / 24</div>
+<div class="rail" id="rail"></div>
+
+<aside id="drawer"><h5>Speaker notes</h5><div class="t" id="dt"></div><div id="dn"></div><div class="next" id="dnext"></div></aside>
+<div id="help"><h5>Keys</h5><table>
+<tr><td><kbd>→</kbd> <kbd>space</kbd></td><td>Next slide</td></tr>
+<tr><td><kbd>←</kbd></td><td>Previous slide</td></tr>
+<tr><td><kbd>S</kbd></td><td>Speaker notes</td></tr>
+<tr><td><kbd>O</kbd></td><td>Overview grid</td></tr>
+<tr><td><kbd>F</kbd></td><td>Fullscreen</td></tr>
+<tr><td><kbd>?</kbd></td><td>This help</td></tr>
+</table><p class="small" style="margin-top:18px">Add #12 to the URL to open a slide directly.</p></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide')),n=slides.length,i=0;
+  var stage=document.getElementById('stage'),rail=document.getElementById('rail'),num=document.getElementById('num');
+  var drawer=document.getElementById('drawer'),dt=document.getElementById('dt'),dn=document.getElementById('dn'),dnext=document.getElementById('dnext'),help=document.getElementById('help');
+  function fit(){var w=innerWidth-(document.body.classList.contains('notes-open')?460:0),s=Math.min(w/1920,innerHeight/1080);stage.style.setProperty('--s',s);}
+  function titleOf(sl){var h=sl.querySelector('h1,h2');return h?h.textContent.replace(/\s+/g,' ').trim():'';}
+  function go(k,push){k=Math.max(0,Math.min(n-1,k));slides.forEach(function(s,j){s.classList.toggle('active',j===k)});i=k;
+    num.textContent=(k+1)+' / '+n;rail.style.width=((k+1)/n*100)+'%';
+    if(push!==false){history.replaceState(null,'','#'+(k+1));}
+    var notes=slides[k].querySelector('.notes');dt.textContent=(k+1)+' · '+titleOf(slides[k]);dn.innerHTML=notes?notes.innerHTML:'<p class="small">No notes.</p>';
+    dnext.textContent=k+1<n?'Next: '+titleOf(slides[k+1]):'Last slide.';}
+  function fromHash(){var m=location.hash.match(/#(\d+)/);go(m?parseInt(m[1],10)-1:0,false);}
+  addEventListener('resize',fit);addEventListener('hashchange',fromHash);
+  addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey||e.altKey)return;
+    var k=e.key;
+    if(k==='ArrowRight'||k===' '||k==='PageDown'||k==='ArrowDown'){e.preventDefault();if(document.body.classList.contains('overview'))return;go(i+1);}
+    else if(k==='ArrowLeft'||k==='PageUp'||k==='ArrowUp'){e.preventDefault();if(document.body.classList.contains('overview'))return;go(i-1);}
+    else if(k==='Home'){go(0)}else if(k==='End'){go(n-1)}
+    else if(k==='s'||k==='S'){drawer.classList.toggle('open');document.body.classList.toggle('notes-open');fit();}
+    else if(k==='o'||k==='O'||(k==='Escape'&&document.body.classList.contains('overview'))){document.body.classList.toggle('overview');if(!document.body.classList.contains('overview'))slides[i].scrollIntoView&&scrollTo(0,0);}
+    else if(k==='f'||k==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}
+    else if(k==='?'){help.classList.toggle('open')}
+    else if(k==='Escape'){help.classList.remove('open')}
+  });
+  slides.forEach(function(s,j){s.addEventListener('click',function(e){
+    if(document.body.classList.contains('overview')){document.body.classList.remove('overview');go(j);scrollTo(0,0);return;}
+    if(e.target.closest('a'))return;
+    var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;
+    if(x>0.66)go(i+1);else if(x<0.2)go(i-1);
+  });});
+  var tx=null;addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+  addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(dx<0?i+1:i-1);tx=null;});
+  fit();fromHash();
+})();
+</script>
+</body>
+</html>
