@@ -216,6 +216,42 @@ td b{font-weight:600}
 .rule h3{font-size:32px;margin-bottom:6px}
 .rule p{color:var(--muted);font-size:26px}
 
+
+/* engagers + training */
+.tap{cursor:pointer;user-select:none;transition:all .15s}
+.tap.on{background:var(--cyan);color:#000;border-color:var(--cyan)}
+.counter{font-family:var(--display);font-style:italic;font-size:300px;line-height:.85;color:var(--cyan)}
+.counter-l{font:700 26px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.rev{cursor:pointer;position:relative}
+.rev .a{display:none;margin-top:22px;padding-top:22px;border-top:2px solid var(--cyan);color:var(--ink);font-size:27px}
+.rev.open .a{display:block}
+.rev .hint{font:700 18px/1 var(--body);letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);margin-top:22px}
+.rev.open .hint{display:none}
+.q{font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:44px;line-height:1.02;color:var(--ink)}
+.gloss{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.gloss .card{padding:30px 34px}
+.gloss h3{color:var(--cyan);font-size:34px;margin-bottom:10px}
+.gloss p{font-size:26px}
+.life{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.life ol{list-style:none;counter-reset:n}
+.life li{counter-increment:n;padding:0 0 0 64px;margin:0 0 18px;position:relative;font-size:26px;color:var(--muted);min-height:44px}
+.life li::before{content:counter(n);position:absolute;left:0;top:-4px;width:44px;height:44px;border-radius:50%;border:3px solid var(--g3);color:var(--muted);text-align:center;line-height:38px;font:400 24px/38px var(--display);font-style:italic;background:none}
+.life .good li{color:var(--ink)}
+.life .good li::before{border-color:var(--cyan);color:var(--cyan)}
+.spof{display:grid;grid-template-columns:1fr 120px 360px 120px 1fr;align-items:center;gap:0}
+.spof .arr{font-size:60px;color:var(--cyan);text-align:center;font-weight:700}
+.spof .person{background:var(--g1);border:3px solid var(--cyan);padding:34px;text-align:center;margin:14px 0}
+.spof .person h3{font-size:36px;color:var(--cyan)}
+.spof .person p{font-size:22px;color:var(--muted);margin-top:6px}
+.roles td{font-size:28px}
+.roles td:nth-child(1){width:300px}.roles td:nth-child(2){width:480px}.roles td:nth-child(3){width:auto}.roles td:nth-child(4){width:200px}
+.roles td:first-child{color:var(--cyan);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:24px}
+.pick{cursor:pointer;transition:transform .15s,outline .15s;outline:4px solid transparent}
+.pick .verdict{display:none;background:var(--black);color:var(--ink);padding:16px 24px;font:700 20px/1.3 var(--body);letter-spacing:.06em;text-transform:uppercase}
+.pick.open .verdict{display:block}
+.pick.open.win{outline-color:var(--cyan)}
+.pick.open.lose{outline-color:#ff7b5c}
+
 /* divider */
 .divider{justify-content:center}
 .divider .kicker{margin-bottom:34px}
@@ -304,18 +340,79 @@ html,body{overflow:auto!important}
   <div class="cols c3">
     <div class="card"><div class="idx">Outcome 01</div><h3>Know what Notion is and how it works</h3><p>Pages, boards, tasks, filters. What each one is for, in words you already use.</p></div>
     <div class="card"><div class="idx">Outcome 02</div><h3>Find your way around it on your own</h3><p>Open the workspace, find your team's work, search for a document, without asking anyone.</p></div>
-    <div class="card"><div class="idx">Outcome 03</div><h3>Leave with your tasks on the board</h3><p>Your part of the New Club Opening template written to the standard, so the next opening runs off it.</p></div>
+    <div class="card"><div class="idx">Outcome 03</div><h3>Leave with your own cards on the board</h3><p>Two of your tasks on the New Club Opening template, written to the standard, so the next opening runs off them.</p></div>
   </div>
-  <div class="agenda">
-    <div><div class="idx">Part 1 · 40 min</div><strong>How it works</strong><span>This deck. What Notion is, how we'll use it, what a good task looks like.</span></div>
-    <div><div class="idx">Part 2 · 60 min</div><strong>Hands on</strong><span>Everyone in the New Club Opening board, writing and moving their own cards.</span></div>
-    <div><div class="idx">Wrap · 10 min</div><strong>What happens next week</strong><span>The first weekly sprint, who owns the board, and the two-week check-in.</span></div>
+  <div class="agenda" style="grid-template-columns:repeat(4,1fr)">
+    <div><div class="idx">Part 1 · 55 min</div><strong>Training</strong><span>What an operational system is, why now, what Notion is, how a good card works.</span></div>
+    <div><div class="idx">Part 2 · 5 min</div><strong>Watch first</strong><span>Matt and Courtney build two real cards on the screen.</span></div>
+    <div><div class="idx">Part 3 · 20 min</div><strong>Hands on</strong><span>Your laptop, your cards. Matt walks the room.</span></div>
+    <div><div class="idx">Wrap · 10 min</div><strong>Next week</strong><span>First sprint, board owner, two-week check-in.</span></div>
   </div>
   <aside class="notes">
     <ul>
-      <li>Three outcomes. Read them out. Outcome 3 is the one that matters: a populated board, not a tour.</li>
+      <li>Three outcomes. Read them out. Outcome 3 is the one that matters: your own cards on the board, not a tour.</li><li>Timings changed after Courtney's call: most of the session is training. Hands-on is 20 minutes, so the cards you build are two, not ten.</li>
       <li>Ask the room: who has used Notion before? Who has used Trello, Asana, Monday? Calibrates how fast to go.</li>
       <li>Say it plainly: this only works if everyone uses it. When I rolled it out elsewhere, people ignored it at first. Half the battle is habit, the other half is accuracy. If the board is wrong, nobody goes there.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- E1 PLATFORM COUNT -->
+<section class="slide" id="e1">
+  <div class="kicker">Hands up</div>
+  <h2>Where did work reach you this week?</h2>
+  <div class="cols" style="grid-template-columns:1fr 520px;gap:80px;align-items:start">
+    <div>
+      <p class="lead" style="margin-bottom:34px;font-size:32px">Call them out. Matt taps each one.</p>
+      <div class="chips" style="gap:16px 14px">
+        <span class="chip tap">Teams</span><span class="chip tap">WhatsApp</span><span class="chip tap">Email</span><span class="chip tap">Phone call</span><span class="chip tap">Text message</span><span class="chip tap">Word doc</span><span class="chip tap">Excel / Google Sheet</span><span class="chip tap">Someone's laptop</span><span class="chip tap">Paper / whiteboard</span><span class="chip tap">Facebook Messenger</span><span class="chip tap">Instagram DM</span><span class="chip tap">Membership system</span><span class="chip tap">Google Drive / OneDrive</span><span class="chip tap">Someone's memory</span><span class="chip tap">Other</span>
+      </div>
+    </div>
+    <div style="text-align:right"><div class="counter">0</div><div class="counter-l">places work lives today</div></div>
+  </div>
+  <div class="foot">Every one of those is somewhere a task can hide. <b>We are going to one.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Two minutes, fast. Ask the room to shout them out. Tap the chip as each one is named. The number climbs on the right.</li>
+      <li>Usually lands at 8 or more. Do not editorialise the number. Say: every one of those is a place a task can hide.</li>
+      <li>Then the foot line. We are going to one. Not one more, one instead.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- T1 YOU ALREADY RUN SYSTEMS -->
+<section class="slide" id="t1">
+  <div class="kicker">Before we talk software</div>
+  <h2>You already run systems</h2>
+  <div class="cols c4">
+    <div class="card"><div class="idx">01</div><h3>The timetable</h3><p>Nobody rings the head coach to ask when Tuesday 6pm is. It is on the wall and in the app. That is an operational system.</p></div>
+    <div class="card"><div class="idx">02</div><h3>The grading syllabus</h3><p>Every coach grades to the same standard because the standard is written down, not remembered.</p></div>
+    <div class="card"><div class="idx">03</div><h3>The membership system</h3><p>Joiners, payments, cancellations. One place. Nobody keeps it in their head.</p></div>
+    <div class="card"><div class="idx">04</div><h3>Class check-in</h3><p>Who is in the room tonight. Nobody counts heads by phone call.</p></div>
+  </div>
+  <div class="foot">Not techy. <b>Organised.</b> The business behind the clubs deserves the same thing the clubs already have.</div>
+  <aside class="notes">
+    <ul>
+      <li>This is the reframe for the room. They already run four operational systems every day. They are not "not techy", they are organised where it has been made easy.</li>
+      <li>The gap is the business behind the clubs: openings, SOPs, marketing, recruitment. That layer still runs on memory and phone calls.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- T2 WHAT AN OPERATIONAL SYSTEM IS -->
+<section class="slide" id="t2">
+  <div class="kicker">Definition</div>
+  <p class="quote" style="margin-bottom:60px">An operational system is where the work lives in a place, not in a person.</p>
+  <div class="cols c3">
+    <div class="card"><div class="idx">Test 01</div><h3>Can a new starter find it without asking?</h3><p>The timetable template, the supplier, the brand kit. If finding it means ringing someone, it lives in a person.</p></div>
+    <div class="card"><div class="idx">Test 02</div><h3>Can someone else pick it up halfway?</h3><p>Sick day, holiday, resignation. The task has to carry enough that the next person keeps going.</p></div>
+    <div class="card"><div class="idx">Test 03</div><h3>Does it keep working when you are on leave?</h3><p>If the opening slows down because one person is away, the system is that person.</p></div>
+  </div>
+  <div class="foot">If the answer to any of the three is no, <b>it lives in a person.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Read the definition twice. It is the sentence you want them repeating by the end.</li>
+      <li>The three tests are how they judge every card they write this afternoon. Come back to them in hands-on.</li>
     </ul>
   </aside>
 </section>
@@ -337,6 +434,26 @@ html,body{overflow:auto!important}
       <li>The point: seven openings with the current method means seven rounds of phone calls to Adam and Courtney. That does not scale and it burns the two people the business relies on most.</li>
       <li>New states means new people who cannot walk down the hall and ask. The list has to live somewhere they can open it.</li>
       <li>Four formats: the template has to flex. Single stream, dual stream, renovation. Same bones, different pruning.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- E2 WHERE IS IT -->
+<section class="slide" id="e2">
+  <div class="kicker">Three questions</div>
+  <h2>Where is it?</h2>
+  <p class="lead" style="margin-bottom:40px;font-size:32px">Ask three people, each outside their own lane. Nobody is expected to know. Tap a card for the answer.</p>
+  <div class="cols c3">
+    <div class="card rev"><div class="idx">Question 01</div><p class="q">What size is the neon logo sign at Morley, and who supplied it?</p><div class="hint">Tap to reveal</div><div class="a">On the board: one card. Size, supplier, quote, lead time, owner, invoice. Search "neon".</div></div>
+    <div class="card rev"><div class="idx">Question 02</div><p class="q">Where is the opening timetable template right now?</p><div class="hint">Tap to reveal</div><div class="a">On the board: linked inside the "Finalise the opening timetable" card. Search "timetable".</div></div>
+    <div class="card rev"><div class="idx">Question 03</div><p class="q">What did the builder quote for the last fit-out, and where is that quote?</p><div class="hint">Tap to reveal</div><div class="a">On the board: attached to the "Builder quotes" card in Pre-handover, with the trades sequence. Search "quote".</div></div>
+  </div>
+  <div class="foot">Not a memory test. <b>Every answer should be one search.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Pick people outside their lane so it is not a gotcha. Do not aim it at Courtney.</li>
+      <li>If someone does know, good: follow with "and where would the next person find it?" That is the real question.</li>
+      <li>Tap each card to reveal. The pattern is the point: card, search, done.</li>
     </ul>
   </aside>
 </section>
@@ -375,6 +492,39 @@ html,body{overflow:auto!important}
       <li>Monday's call: Courtney asked "where does this sit?" about the timetable template. Adam: "I don't know." That is the problem in one exchange.</li>
       <li>Ask the room: when you last needed something for an opening, how did you get it? Nearly every answer will be "I asked someone".</li>
       <li>The cost is invisible: the phone call, the wait, the version that was out of date.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- T3 SINGLE POINT OF FAILURE -->
+<section class="slide" id="t3">
+  <div class="kicker">The risk</div>
+  <h2>Today, every question goes through two people</h2>
+  <div class="spof">
+    <div class="chips" style="gap:14px 12px"><span class="chip">8 clubs</span><span class="chip">7 openings coming</span><span class="chip">3 states</span><span class="chip">Coaches</span><span class="chip">Club managers</span><span class="chip">Builders and trades</span><span class="chip">Suppliers</span><span class="chip">Marketing</span><span class="chip">New hires</span></div>
+    <div class="arr">→</div>
+    <div><div class="person"><h3>Adam</h3><p>One phone. One memory.</p></div><div class="person"><h3>Courtney</h3><p>One inbox. One laptop.</p></div></div>
+    <div class="arr">→</div>
+    <div><p class="quote" style="font-size:48px">The answer, eventually.</p><p class="small" style="margin-top:24px;font-size:26px">Every question waits for one of two people to be free. Every answer lives only as long as they remember it.</p></div>
+  </div>
+  <div class="foot">Fine at 8 clubs. <b>At 15 it breaks.</b> Not the people. The maths.</div>
+  <aside class="notes">
+    <ul>
+      <li>Say it plainly: this is not a criticism of Adam or Courtney. It is what happens to any business that grows faster than its systems.</li>
+      <li>Three new states means people who cannot walk down the hall. The phone-call model gets slower with every kilometre.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- E3 LEAVE TEST -->
+<section class="slide divider" id="e3">
+  <div class="kicker">One question</div>
+  <h1 style="font-size:150px">Courtney is on leave for a month from tomorrow.</h1>
+  <p class="lead" style="font-size:52px;color:var(--cyan);margin-top:40px">Does the next opening go ahead?</p>
+  <aside class="notes">
+    <ul>
+      <li>Ask it and stop talking. Let the silence sit for a full five seconds.</li>
+      <li>Whatever the honest answer is, that is the whole reason for today. Then move to the next slide.</li>
     </ul>
   </aside>
 </section>
@@ -472,6 +622,29 @@ html,body{overflow:auto!important}
   </aside>
 </section>
 
+<!-- T4 GLOSSARY -->
+<section class="slide" id="t4">
+  <div class="kicker">Nine words <span class="tag" style="margin-left:22px;vertical-align:middle">Stays on screen in hands-on</span></div>
+  <h2 style="margin-bottom:30px">The whole vocabulary</h2>
+  <div class="gloss">
+    <div class="card"><h3>Workspace</h3><p>All of Bailey Group in Notion. You log into this.</p></div>
+    <div class="card"><h3>Page</h3><p>A document. Anything can be a page, including a task.</p></div>
+    <div class="card"><h3>Database</h3><p>A list of pages that share properties. Our board is one.</p></div>
+    <div class="card"><h3>Card</h3><p>One task. A row in the database, shown as a card on the board.</p></div>
+    <div class="card"><h3>Property</h3><p>A field on a card: Team, Owner, Phase, Status.</p></div>
+    <div class="card"><h3>View</h3><p>A way of looking at the database: table, board, timeline, calendar.</p></div>
+    <div class="card"><h3>Filter</h3><p>Show only some cards: mine, this phase, this team.</p></div>
+    <div class="card"><h3>Comment</h3><p>A note on a card. Lives with the work, not in a chat.</p></div>
+    <div class="card"><h3>@mention</h3><p>Type @ and a name. They get a notification. That replaces the phone call.</p></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Nine words. That is the entire vocabulary for today. Read them, do not explain them yet. The next slides show each one.</li>
+      <li>This slide comes back on the TV during hands-on.</li>
+    </ul>
+  </aside>
+</section>
+
 <!-- 9 SAME LIST FOUR VIEWS -->
 <section class="slide" id="s9">
   <div class="kicker">Views</div>
@@ -548,6 +721,38 @@ html,body{overflow:auto!important}
   <h1>How we'll use it</h1>
   <p class="lead">One template. Every opening.</p>
   <aside class="notes"><ul><li>From the tool to our use of it. This is the section Adam and Courtney shaped on Monday.</li></ul></aside>
+</section>
+
+<!-- T5 LIFE OF ONE TASK -->
+<section class="slide" id="t5">
+  <div class="kicker">One task, told twice</div>
+  <h2>The life of the neon sign</h2>
+  <div class="life">
+    <div><div class="idx" style="color:var(--muted)">Today</div>
+      <ol>
+        <li>Adam mentions a neon sign for the new club on a call.</li>
+        <li>Someone finds a supplier on their phone. Quote lands in an inbox in March.</li>
+        <li>Size agreed on a call. Written down nowhere.</li>
+        <li>Wall gets measured after the order is placed.</li>
+        <li>Sign arrives 20mm too wide for the wall.</li>
+        <li>Next opening: start again from scratch. Who was the supplier?</li>
+      </ol></div>
+    <div class="good"><div class="idx">On the board</div>
+      <ol>
+        <li>Card: "Order neon logo sign for the opening". Team Marketing, Owner Leslie, Phase Pre-launch.</li>
+        <li>Description: size, colour, supplier and quote linked. Watch out: measure the wall first.</li>
+        <li>Status moves as it happens. Blocked = waiting on the wall measurement, with a comment to Courtney.</li>
+        <li>Done, with the final spec and invoice attached to the card.</li>
+        <li>Anyone can answer "what size, who supplied it" with one search.</li>
+        <li>Next opening: duplicate the card, change the size. Ten minutes.</li>
+      </ol></div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>The left column is illustrative. If a real version of this story exists from the last opening, tell that one instead.</li>
+      <li>Land on step 6 of each column. The board version compounds. The phone version resets every time.</li>
+    </ul>
+  </aside>
 </section>
 
 <!-- 12 FIRST BUILD -->
@@ -719,6 +924,25 @@ html,body{overflow:auto!important}
   </aside>
 </section>
 
+<!-- E4 SPOT THE CARD -->
+<section class="slide" id="e4">
+  <div class="kicker">Vote</div>
+  <h2>Which card could a new starter act on?</h2>
+  <div class="cols c3">
+    <div class="n pick lose"><div class="bar"><i></i><i></i><i></i>&nbsp; Card A</div><div class="cardhead"><div class="title">Signage</div></div><div class="props"><div class="k">Owner</div><div class="v" style="color:#999">(blank)</div><div class="k">Description</div><div class="v" style="color:#999">(blank)</div></div><div class="verdict">No owner, no spec, no done. A word, not a task.</div></div>
+    <div class="n pick lose"><div class="bar"><i></i><i></i><i></i>&nbsp; Card B</div><div class="cardhead"><div class="title">Neon sign</div></div><div class="props"><div class="k">Owner</div><div class="v">Leslie</div><div class="k">Description</div><div class="v">Sort the sign for the new club</div></div><div class="verdict">Has an owner. Still needs a phone call: what size, which supplier, done when?</div></div>
+    <div class="n pick win"><div class="bar"><i></i><i></i><i></i>&nbsp; Card C</div><div class="cardhead"><div class="title">Order neon logo sign (1800×450mm) for the opening</div></div><div class="props"><div class="k">Team · Owner</div><div class="v"><span class="pill cy">Marketing</span> &nbsp;Leslie</div><div class="k">Phase</div><div class="v"><span class="pill bl">3 · Pre-launch</span></div></div><div class="desc"><p>Done: sign installed on the reception wall two weeks before opening. Supplier and quote linked. Watch out: measure the wall before ordering.</p></div><div class="verdict">Verb, spec, owner, phase, done, links, the catch. Nobody rings anyone.</div></div>
+  </div>
+  <div class="foot">Hands up for A, B, C. <b>Then tap each card.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Vote by hands. C wins. Spend the time on why B fails: it has an owner, and it still needs a phone call.</li>
+      <li>Sizes are made up. If the real spec exists, swap it in before Thursday.</li>
+      <li>This is the last thing they see before the six rules. Everything they write in hands-on should look like C.</li>
+    </ul>
+  </aside>
+</section>
+
 <!-- 18 RULES -->
 <section class="slide" id="s18">
   <div class="kicker">The standard <span class="tag" style="margin-left:22px;vertical-align:middle">Keep this open in Part 2</span></div>
@@ -857,20 +1081,92 @@ html,body{overflow:auto!important}
   </aside>
 </section>
 
+<!-- T6 MONDAY -->
+<section class="slide" id="t6">
+  <div class="kicker">The habit</div>
+  <h2>What changes for you on Monday</h2>
+  <table class="roles">
+    <tr><th>Who</th><th>Open</th><th>Do</th><th>Time</th></tr>
+    <tr><td>Everyone with a card</td><td>Your filtered view: cards where Owner is you.</td><td>Move cards as work happens. Stuck? Blocked plus a comment with an @mention.</td><td><b>5 min a day</b></td></tr>
+    <tr><td>Board owner</td><td>The Blocked column, then the week ahead.</td><td>Unblock by comment, not by phone. Prep the sprint from the board. Add new cards as decisions land.</td><td><b>15 min a day</b></td></tr>
+    <tr><td>Leadership</td><td>The board, before asking anyone anything.</td><td>Read status there. Decisions in meetings become cards in the meeting.</td><td><b>10 min a day</b></td></tr>
+  </table>
+  <div class="foot">The habit is five minutes. <b>The payoff is never asking where something is.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Make it small. Five minutes a day is the ask for most people in the room.</li>
+      <li>The leadership row is the one Adam and Courtney have to model. If they ring for updates, nobody else will use the board.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- T7 OBJECTIONS -->
+<section class="slide" id="t7">
+  <div class="kicker">Things people say</div>
+  <h2>Fair concerns, straight answers</h2>
+  <div class="cols c2" style="gap:30px 40px">
+    <div class="card"><div class="idx">"I'm not techy"</div><p style="color:var(--ink)">If you use the timetable app and WhatsApp, you can use this. Nine words on the glossary is the whole vocabulary.</p></div>
+    <div class="card"><div class="idx">"Not another platform"</div><p style="color:var(--ink)">The opposite. This replaces the eight you counted earlier. Chat stays where it is. The work moves here.</p></div>
+    <div class="card"><div class="idx">"I'll forget to update it"</div><p style="color:var(--ink)">The weekly sprint runs off the board. If your card is wrong, it shows in the meeting. That is the reminder.</p></div>
+    <div class="card"><div class="idx">"It's quicker to just call"</div><p style="color:var(--ink)">Quicker for you, today. Slower for the person you called, and for the next person who needs the same answer.</p></div>
+  </div>
+  <div class="foot">Adam and Brett have said it themselves: same boat. <b>Nobody in this room is behind.</b></div>
+  <aside class="notes">
+    <ul>
+      <li>Say the objections out loud before anyone else does. It takes the heat out.</li>
+      <li>The last line matters. Adam said on Monday he is in the same boat as Brian and Brett. Use it.</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- D1 WATCH FIRST -->
+<section class="slide" id="d1">
+  <div class="kicker">Part 2 · Watch first · 5 min</div>
+  <h2>Two real cards, built live</h2>
+  <div class="cols c2" style="gap:70px">
+    <div>
+      <h3 class="cy" style="margin-bottom:18px">Matt drives: five moves</h3>
+      <ul style="font-size:30px">
+        <li>Open Pursuit Home. Find the New Club Opening template.</li>
+        <li>Search "timetable". Open the card.</li>
+        <li>Filter the board to one Owner.</li>
+        <li>Leave a comment with an @mention.</li>
+        <li>Switch the view: board, table, timeline.</li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="cy" style="margin-bottom:18px">Courtney builds: two of his cards</h3>
+      <ul style="font-size:30px">
+        <li>Card 1: an Operations task from the next opening. Title, Team, Owner, Phase, description to the six rules.</li>
+        <li>Card 2: a second task, this time with an Optional tag and a "remove if" condition.</li>
+        <li>Room calls out anything missing against the six rules.</li>
+      </ul>
+      <p class="small" style="margin-top:24px">Which two tasks: Matt and Courtney decide before the session.</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <ul>
+      <li>Switch to Notion on the TV. Slides are off until hands-on.</li>
+      <li>Keep the five moves to two minutes. Courtney's two cards get the other three. Narrate the six rules as he types.</li>
+      <li>Pick the two tasks with Courtney beforehand. Real ones from the next opening, one with an optional condition.</li>
+    </ul>
+  </aside>
+</section>
+
 <!-- 24 LET'S BUILD IT -->
 <section class="slide" id="s24">
   <div class="bg"><img src="assets/bg-reception.webp" alt=""></div>
-  <div class="kicker">Part 2 · Hands on</div>
-  <h2>Let's build it</h2>
+  <div class="kicker">Part 3 · Hands on · 20 min</div>
+  <h2>Your turn</h2>
   <div class="cols" style="grid-template-columns:1fr 1fr;gap:70px">
     <div>
-      <ol style="font-size:34px;line-height:1.5;padding-left:0;list-style:none;counter-reset:st">
-        <li style="padding-left:80px;margin-bottom:18px;counter-increment:st"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">1</span>Open the board on your work email login</li>
-        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">2</span>Filter Team to yours</li>
-        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">3</span>Bring three of your cards up to the six rules</li>
-        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">4</span>Move one card through the statuses</li>
-        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">5</span>Comment on someone else's card</li>
+      <ol style="font-size:34px;line-height:1.5;padding-left:0;list-style:none">
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">1</span>Log in on your work email. Open the board.</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">2</span>Filter Team to yours.</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">3</span>Write two of your own cards to the six rules.</li>
+        <li style="padding-left:80px;margin-bottom:18px"><span style="position:absolute;left:0;top:-4px;font-family:var(--display);font-style:italic;font-size:50px;color:var(--cyan)">4</span>Move one card. Comment on someone else's with an @mention.</li>
       </ol>
+      <p class="small" style="margin-top:10px">Stuck? Put your hand up. Matt is walking the room.</p>
     </div>
     <div class="card" style="min-height:0">
       <div class="idx">The board</div>
@@ -881,21 +1177,39 @@ html,body{overflow:auto!important}
       <p style="font-size:26px;color:var(--muted)">One owner · Title says done · Description a new starter could act on · Links in the card · Team and phase tagged · Optional says when to remove</p>
     </div>
   </div>
-  <div class="foot"><span style="font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:44px;color:var(--ink)">Effort upfront. Speed forever.</span></div>
   <aside class="notes">
     <ul>
-      <li>Switch to Notion on the TV. This slide is the checklist. The board is the work.</li>
-      <li>Walk the room. Sit with people. Correct cards live. That is why it is in person.</li>
-      <li>Close: first weekly sprint is next week, board owner runs it. Two-week check-in with Matt on whether it is being used.</li>
-      <li>Encourage everyone to put their own day-to-day to-do list in as well. Habit builds faster when it is used every day, beyond openings.</li>
+      <li>Slides off, Notion on the TV, glossary and six rules on a second screen if there is one. Otherwise flick back to this slide.</li>
+      <li>Walk the room. Sit with people. Correct cards live. Two good cards each beats ten thin ones.</li>
+      <li>Watch for the three tests: could a new starter find it, pick it up, keep going without you.</li>
     </ul>
   </aside>
 </section>
 
+<!-- W1 WRAP -->
+<section class="slide" id="w1">
+  <div class="kicker">Wrap · 10 min</div>
+  <h2>What happens next week</h2>
+  <div class="cols c3">
+    <div class="card"><div class="idx">01</div><h3>The first weekly sprint</h3><p>Board owner runs it off the board. 20 to 30 minutes. What lands, what do you need, what is blocked.</p></div>
+    <div class="card"><div class="idx">02</div><h3>Your cards</h3><p>Everything you own for the next opening is on the board within two weeks, written to the six rules.</p></div>
+    <div class="card"><div class="idx">03</div><h3>Two-week check-in</h3><p>Matt and Courtney review the board. Is it accurate, is it being used, what needs fixing.</p></div>
+  </div>
+  <div class="foot"><span style="font-family:var(--display);font-style:italic;text-transform:uppercase;font-size:44px;color:var(--ink)">Effort upfront. Speed forever.</span></div>
+  <aside class="notes">
+    <ul>
+      <li>Three commitments, dated. Board owner named in the room.</li>
+      <li>Encourage everyone to put their day-to-day to-do list on a board as well. Daily use builds the habit faster than openings alone.</li>
+      <li>Close on the line. Then stop.</li>
+    </ul>
+  </aside>
+</section>
+
+
 </div><!-- /stage -->
 
 <img class="mark" src="assets/logo-p-icon.png" alt="">
-<div class="num" id="num">1 / 25</div>
+<div class="num" id="num">1 / 38</div>
 <div class="rail" id="rail"></div>
 
 <aside id="drawer"><h5>Speaker notes</h5><div class="t" id="dt"></div><div id="dn"></div><div class="next" id="dnext"></div></aside>
@@ -936,12 +1250,16 @@ html,body{overflow:auto!important}
   });
   slides.forEach(function(s,j){s.addEventListener('click',function(e){
     if(document.body.classList.contains('overview')){document.body.classList.remove('overview');go(j);scrollTo(0,0);return;}
-    if(e.target.closest('a'))return;
+    if(e.target.closest('a,.tap,.rev,.pick'))return;
     var r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width;
     if(x>0.66)go(i+1);else if(x<0.2)go(i-1);
   });});
   var tx=null;addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
   addEventListener('touchend',function(e){if(tx===null)return;var dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>60)go(dx<0?i+1:i-1);tx=null;});
+
+  document.querySelectorAll('.tap').forEach(function(t){t.addEventListener('click',function(){t.classList.toggle('on');var sl=t.closest('.slide'),c=sl.querySelector('.counter');if(c)c.textContent=sl.querySelectorAll('.tap.on').length;});});
+  document.querySelectorAll('.rev').forEach(function(r){r.addEventListener('click',function(){r.classList.toggle('open')});});
+  document.querySelectorAll('.pick').forEach(function(p){p.addEventListener('click',function(){p.classList.toggle('open')});});
   fit();fromHash();
 })();
 </script>
