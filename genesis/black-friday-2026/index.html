@@ -38,6 +38,7 @@ footer{background:var(--dark);color:#bcbcbc;font-size:.8rem;padding:2rem 0}
 @media(max-width:900px){.g3,.g4,.g6{grid-template-columns:repeat(2,minmax(0,1fr))} .g2{grid-template-columns:minmax(0,1fr)} .frames{grid-template-columns:minmax(0,1fr)} .phone{max-width:260px} section{padding:3rem 0}}
 @media(max-width:600px){.g6,.g4{grid-template-columns:repeat(2,minmax(0,1fr))} .stat{font-size:.9rem}}
 @media(prefers-reduced-motion:reduce){.scene video{display:none}}
+.smswrap{max-width:560px} .smsrow{margin:0 0 1.1rem} .smswhen{display:block;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin-bottom:.35rem} .sms{display:inline-block;background:var(--cyan);color:#fff;border-radius:18px 18px 4px 18px;padding:.75rem 1rem;font-size:.95rem;line-height:1.4;max-width:460px}
 </style>
 </head>
 <body data-club="both">
@@ -49,7 +50,7 @@ footer{background:var(--dark);color:#bcbcbc;font-size:.8rem;padding:2rem 0}
   <div class="offer">No join fee. No admin fee. 28 days free. Save $300+ on Premium. Ends 30 November.</div>
 </div></header>
 
-<nav class="jump"><div class="wrap"><a href="#national">National campaign</a><a href="#pages">Landing pages</a><a href="#world">The painted world</a><a href="#statics">Static ads</a><a href="#motion">Motion ads</a><a href="#share">Share cards</a></div></nav>
+<nav class="jump"><div class="wrap"><a href="#national">National campaign</a><a href="#pages">Landing pages</a><a href="#world">The painted world</a><a href="#statics">Static ads</a><a href="#motion">Motion ads</a><a href="#share">Share cards</a><a href="#extras">Email + SMS</a></div></nav>
 
 <section id="national"><div class="wrap">
   <span class="eyebrow">00 The national campaign</span><h2>The assets provided.</h2>
@@ -123,6 +124,14 @@ footer{background:var(--dark);color:#bcbcbc;font-size:.8rem;padding:2rem 0}
   <span class="eyebrow">05 Share cards</span><h2>What a shared link looks like.</h2>
   <p class="lede">The card that appears when either page is sent on WhatsApp, Messenger or Facebook.</p>
   <div class="grid g2 share"><figure><img src="img/og-a.jpg" alt="Share card, page A" loading="lazy"><figcaption>Page A</figcaption></figure><figure><img src="img/og-b.jpg" alt="Share card, page B" loading="lazy"><figcaption>Page B</figcaption></figure></div>
+</div></section>
+
+<section id="extras" class="alt"><div class="wrap">
+  <span class="eyebrow">06 Optional extras</span><h2>Email and SMS to the clubs' own lists.</h2>
+  <p class="lede">Three emails and three texts for the clubs' opted-in contacts: an announcement when the offer goes live, a final-days nudge on Friday 27 November and an ends-today send on Monday 30 November. Same offer, same terms, same page. Styled on the Genesis brand colours like page B.</p>
+  <div class="grid g3"><div class="page"><h3>Launch (on approval)</h3><p><b>Subject:</b> Black Friday came early at Genesis<br><b>Preview:</b> No join fee, no admin fee, 28 days free. Ends 30 Nov.</p><div class="frames" style="grid-template-columns:minmax(0,1fr)"><div class="scroll" style="height:620px;background:#f4f2f0"><img src="img/email/announcement.jpg" alt="Email: Black Friday came early at Genesis" loading="lazy" style="width:100%;display:block"></div></div><div class="links"><a href="email/announcement.html" target="_blank" rel="noopener">Open the email</a></div></div><div class="page"><h3>Friday 27 November</h3><p><b>Subject:</b> Final days: $0 to start at Genesis<br><b>Preview:</b> No join fee, no admin fee, 28 days free until Monday</p><div class="frames" style="grid-template-columns:minmax(0,1fr)"><div class="scroll" style="height:620px;background:#f4f2f0"><img src="img/email/final-days.jpg" alt="Email: Final days: $0 to start at Genesis" loading="lazy" style="width:100%;display:block"></div></div><div class="links"><a href="email/final-days.html" target="_blank" rel="noopener">Open the email</a></div></div><div class="page"><h3>Monday 30 November</h3><p><b>Subject:</b> Ends tonight: no join fee, 28 days free<br><b>Preview:</b> Last day to pay nothing to start. 11:59pm Perth.</p><div class="frames" style="grid-template-columns:minmax(0,1fr)"><div class="scroll" style="height:620px;background:#f4f2f0"><img src="img/email/ends-today.jpg" alt="Email: Ends tonight: no join fee, 28 days free" loading="lazy" style="width:100%;display:block"></div></div><div class="links"><a href="email/ends-today.html" target="_blank" rel="noopener">Open the email</a></div></div></div>
+  <h3 style="margin-top:2.5rem">SMS, one per send</h3><p class="lede">Under 160 characters with the club name and the short link in; sent per club from the club's own number.</p>
+  <div class="smswrap"><div class="smsrow"><span class="smswhen">Launch</span><div class="sms">Genesis {Club}: Black Friday. No join fee, no admin fee, 28 days free. Ends Mon 30 Nov. Claim: {link} Reply STOP to opt out</div></div><div class="smsrow"><span class="smswhen">Friday 27 Nov</span><div class="sms">Genesis {Club}: 4 days left. No join fee, no admin fee, 28 days free. Ends Mon 30 Nov. Claim: {link} Reply STOP to opt out</div></div><div class="smsrow"><span class="smswhen">Monday 30 Nov</span><div class="sms">Genesis {Club}: last day. No join fee, no admin fee, 28 days free ends 11:59pm tonight. Claim: {link} Reply STOP to opt out</div></div></div>
 </div></section>
 
 <footer><div class="wrap">Genesis Health + Fitness Southern River, 7/714 Ranford Rd, Southern River WA 6110. Genesis Health + Fitness Baldivis, 2/600 Baldivis Road, Baldivis WA 6171. Creative review page, November 2026.</div></footer>
