@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Club Launch Engine | Graft Advisory proposal for Pursuit</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<style>
+@font-face{font-family:'Fraunces';src:url('assets/fonts/fraunces-normal-0.woff2') format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Inter';src:url('assets/fonts/inter-normal-1.woff2') format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
+:root{
+  --cream:#FBF3E4;--cream-2:#F6E7D0;--ink:#2B2118;--ink-soft:#55483C;
+  --flamingo:#FF6F91;--flamingo-deep:#D94A6F;
+  --peach:#FFB86B;--peach-tint:#FFE3C2;
+  --sunset:linear-gradient(100deg,var(--flamingo) 0%,var(--peach) 100%);
+  --card:#FFFCF6;--line:#EAD9BF;--hair:#F3E7D3;
+  --r-lg:24px;--r-md:16px;
+  --head:'Fraunces',Georgia,'Times New Roman',serif;
+  --body:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--head);font-variation-settings:'SOFT' 80,'opsz' 120;font-weight:620;line-height:1.1;letter-spacing:-.01em}
+em{font-style:normal}
+ul,ol{list-style:none}
+
+/* top bar */
+.top{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0 18px;border-bottom:1px solid var(--line)}
+.wordmark{line-height:1}
+.wordmark strong{font-family:var(--head);font-variation-settings:'SOFT' 100,'opsz' 144;font-weight:680;font-size:28px;letter-spacing:.01em;display:block}
+.wordmark span{display:block;font-size:10.5px;font-weight:650;letter-spacing:.42em;margin-top:3px;color:var(--flamingo-deep)}
+.top .meta{text-align:right;font-size:13.5px;line-height:1.45;color:var(--ink-soft)}
+.top .meta b{color:var(--ink);font-weight:650}
+
+/* hero */
+.hero{padding:36px 0 6px}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--flamingo-deep);margin-bottom:8px}
+.eyebrow::before{content:'';width:26px;height:3px;border-radius:2px;background:var(--sunset);flex:none}
+h1{font-size:clamp(46px,7vw,84px);font-variation-settings:'SOFT' 90,'opsz' 144;line-height:1.02}
+h1 em{background:linear-gradient(100deg,#D94A6F,#E08A2E);-webkit-background-clip:text;background-clip:text;color:transparent}
+.points{margin-top:18px;display:grid;grid-template-columns:minmax(0,1fr);gap:7px;max-width:760px}
+.points li{position:relative;padding-left:22px;font-size:17px;line-height:1.42;color:var(--ink-soft);min-width:0}
+.points li::before{content:'';position:absolute;left:0;top:.48em;width:10px;height:10px;border-radius:50%;background:var(--sunset)}
+.points li b{color:var(--ink);font-weight:620}
+
+/* one section pattern: eyebrow + heading (+ side note), then cards */
+section{padding:34px 0 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:28px;margin-bottom:16px}
+.sec-head > div{min-width:0}
+h2{font-size:31px}
+.sec-head .side{font-size:14px;color:var(--ink-soft);max-width:400px;text-align:right;line-height:1.42}
+.card{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:var(--r-md);padding:18px 20px}
+.card h3{font-size:20px}
+.card p{font-size:14px;line-height:1.45;color:var(--ink-soft)}
+
+/* 00 scope */
+.scope{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.scope small{display:block;font-size:10.5px;font-weight:650;letter-spacing:.12em;text-transform:uppercase;color:var(--flamingo-deep);margin-bottom:5px}
+.scope h3{font-size:19px;margin-bottom:6px}
+.scope p{font-size:14.5px}
+
+/* 01 funnel */
+.funnel{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.funnel::before{content:'';position:absolute;left:30px;right:30px;top:33px;height:3px;border-radius:2px;background:var(--sunset);opacity:.6}
+.stage{position:relative;padding:15px 15px 16px}
+.stage .num{width:36px;height:36px;border-radius:50%;background:var(--sunset);font-family:var(--head);font-weight:700;font-size:17px;display:grid;place-items:center;border:3px solid var(--card)}
+.stage h3{font-size:17.5px;margin:10px 0 4px}
+.stage p{font-size:13px;line-height:1.4}
+.stage.bau .num{background:var(--ink);color:var(--cream)}
+
+/* 02 what gets built */
+.built{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.built .w3{grid-column:span 3}
+.built .w2{grid-column:span 2}
+.d-head{display:flex;align-items:center;gap:14px;padding-bottom:12px;margin-bottom:8px;border-bottom:1px dashed var(--line)}
+.d-head .big{font-family:var(--head);font-variation-settings:'SOFT' 100,'opsz' 144;font-weight:650;font-size:52px;line-height:.9;background:linear-gradient(100deg,#D94A6F,#E08A2E);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
+.d-head h3{font-size:21px}
+.d-head p{font-size:13px;margin-top:2px}
+.rows li{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:5px 0;font-size:14px;border-bottom:1px solid var(--hair)}
+.rows li:last-child{border-bottom:0}
+.rows li span{color:var(--ink-soft);min-width:0}
+.rows li b.n{font-family:var(--head);font-size:19px;font-weight:640;line-height:1}
+.pages li{padding:6px 0;border-bottom:1px solid var(--hair);font-size:13.5px;line-height:1.38}
+.pages li:last-child{border-bottom:0}
+.pages li small{display:block;font-size:10.5px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;color:var(--flamingo-deep);margin-bottom:1px}
+.pages li b{font-weight:620}
+.pages li i{font-style:normal;color:var(--ink-soft)}
+.steps{counter-reset:m}
+.steps li{position:relative;counter-increment:m;padding:6px 0 6px 30px;font-size:13.5px;line-height:1.4;color:var(--ink-soft);border-bottom:1px solid var(--hair)}
+.steps li:last-child{border-bottom:0}
+.steps li::before{content:counter(m);position:absolute;left:0;top:6px;width:21px;height:21px;border-radius:50%;background:var(--peach-tint);color:var(--ink);font-size:11.5px;font-weight:700;display:grid;place-items:center}
+.steps li b{color:var(--ink);font-weight:620}
+.sub{padding:8px 0}
+.sub + .sub{border-top:1px solid var(--hair)}
+.tag{display:inline-block;font-size:10.5px;font-weight:650;letter-spacing:.1em;text-transform:uppercase;background:var(--peach-tint);border-radius:999px;padding:3px 10px;margin-bottom:5px}
+.sub b{display:block;font-size:14.5px;font-weight:650;margin-bottom:2px}
+.sub p{font-size:13.5px}
+.note{font-size:12.5px;line-height:1.45;color:var(--ink-soft);margin-top:9px;padding-top:9px;border-top:1px dashed var(--line)}
+.note b{color:var(--ink);font-weight:620}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chips span{font-size:12px;font-weight:600;background:var(--cream-2);border-radius:999px;padding:4px 11px;color:var(--ink)}
+.incl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 14px;margin-top:6px}
+.incl li{position:relative;padding-left:15px;font-size:12.5px;line-height:1.4;color:var(--ink-soft);min-width:0}
+.incl li::before{content:'';position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:50%;background:var(--sunset)}
+
+/* 03 how it gets built */
+.build{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.build .card{padding:22px 24px}
+.build h3{font-size:22px;margin-bottom:8px}
+.build .card p{font-size:14.5px}
+.build .card p + p{margin-top:8px}
+.ticks{margin-top:12px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 16px}
+.ticks li{position:relative;padding-left:18px;font-size:14px;line-height:1.35;min-width:0}
+.ticks li::before{content:'';position:absolute;left:0;top:.42em;width:9px;height:9px;border-radius:50%;background:var(--sunset)}
+.card.dark{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.card.dark p{color:#E9DCC8}
+.card.dark p b{color:#fff;font-weight:620}
+
+/* 04 timeline */
+.timeline{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.timeline::before{content:'';position:absolute;left:30px;right:30px;top:27px;height:3px;border-radius:2px;background:var(--sunset);opacity:.6}
+.timeline .card{position:relative}
+.timeline .dot{width:20px;height:20px;border-radius:50%;background:var(--ink);border:4px solid var(--card)}
+.timeline small{display:block;font-size:10.5px;font-weight:650;letter-spacing:.12em;text-transform:uppercase;color:var(--flamingo-deep);margin:10px 0 3px}
+.timeline h3{font-size:18px;margin-bottom:5px}
+.timeline p{font-size:13.5px}
+
+/* 05 investment */
+.invest{background:var(--sunset);border-radius:var(--r-lg);padding:24px 26px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:28px;align-items:center}
+.invest > *{min-width:0}
+.lines li{display:flex;justify-content:space-between;gap:16px;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(43,33,24,.22);font-size:15px}
+.lines li:last-child{border-bottom:0}
+.lines li b{font-weight:650;white-space:nowrap}
+.pricebox{background:var(--ink);color:var(--cream);border-radius:var(--r-md);padding:22px 24px}
+.pricebox small.lbl{display:block;font-size:11px;font-weight:650;letter-spacing:.14em;text-transform:uppercase;color:var(--peach);margin-bottom:6px}
+.price{font-family:var(--head);font-variation-settings:'SOFT' 100,'opsz' 144;font-weight:660;font-size:58px;line-height:1}
+.price small{font-family:var(--body);font-weight:600;font-size:17px;letter-spacing:.02em;margin-left:8px;color:var(--peach)}
+.terms{margin-top:14px}
+.terms li{position:relative;padding-left:18px;font-size:14.5px;margin-bottom:5px;color:#F1E6D4}
+.terms li::before{content:'';position:absolute;left:0;top:.45em;width:8px;height:8px;border-radius:50%;background:var(--peach)}
+.excl{font-size:13.5px;color:var(--ink-soft);padding:14px 2px 0}
+.excl b{color:var(--ink)}
+footer{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 0 34px;margin-top:28px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-soft)}
+
+@media screen and (max-width:900px){
+  .build,.invest,.scope{grid-template-columns:minmax(0,1fr)}
+  .funnel,.timeline{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .funnel::before,.timeline::before{display:none}
+  .built{grid-template-columns:minmax(0,1fr)}
+  .built .w3,.built .w2{grid-column:auto}
+  .sec-head{display:block}
+  .sec-head .side{text-align:left;margin-top:6px;max-width:none}
+  .top .meta{font-size:12px}
+}
+@media screen and (max-width:520px){
+  .funnel,.timeline,.ticks,.incl{grid-template-columns:minmax(0,1fr)}
+}
+@media print{
+  @page{size:A4;margin:8mm}
+  html{zoom:.6}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:none;padding:0 6px}
+  .top{padding:6px 0 12px}
+  .hero{padding:20px 0 2px}
+  h1{font-size:66px}
+  h1 em,.d-head .big{background:none;-webkit-background-clip:border-box;background-clip:border-box;color:var(--flamingo-deep)}
+  section{padding:20px 0 0}
+  .pagebreak{break-before:page;padding-top:0}
+  footer{padding:12px 0 0;margin-top:16px}
+  .card,.invest{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="wordmark" aria-label="Graft Advisory"><strong>GRAFT</strong><span>ADVISORY</span></div>
+    <div class="meta"><b>Proposal for Pursuit Muay Thai</b><br>Prepared for Adam Bailey by Matt Siddle &middot; 13 November 2026</div>
+  </div>
+
+  <div class="hero">
+    <p class="eyebrow">One-off project</p>
+    <h1>The Club <em>Launch Engine</em></h1>
+    <ul class="points">
+      <li><b>One system that launches every new Pursuit club.</b></li>
+      <li>Every page, ad, email and Google Ads build in a launch, <b>built once, from scratch.</b></li>
+      <li>Turned into a repeatable system, <b>built on replicable skills in Claude Code</b> that Pursuit owns.</li>
+      <li>No launch task ever has to be done twice.</li>
+      <li><b>Armstrong Creek</b> is the first club through it.</li>
+    </ul>
+  </div>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">00 The scope</p>
+        <h2>What we are setting out to do</h2>
+      </div>
+    </div>
+    <div class="scope">
+      <div class="card"><small>The aim</small><h3>Launch Armstrong Creek, and every club after it</h3><p>Take Armstrong Creek from first awareness through presale to an open club, and leave Pursuit able to launch the next club without starting again.</p></div>
+      <div class="card"><small>What we are building</small><h3>The full launch, end to end</h3><p>Every landing page, static ad, animated ad, email and Google Ads campaign a club needs across six stages, plus the club's page on the Pursuit website.</p></div>
+      <div class="card"><small>What Pursuit is left with</small><h3>A repeatable system</h3><p>Each asset becomes a replicable skill in Claude Code, owned by Pursuit. A new club is a new name, address and offer going through the same engine.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">01 The funnel</p>
+        <h2>Six stages, from first awareness to an open club</h2>
+      </div>
+      <p class="side">Every club launch runs through the same six stages. Everything in this project is built to fit them.</p>
+    </div>
+    <div class="funnel">
+      <div class="card stage"><div class="num">1</div><h3>Awareness</h3><p>Pursuit is coming. Locals register for early bird before any offer is live.</p></div>
+      <div class="card stage"><div class="num">2</div><h3>Competition</h3><p>The viral comp. Entries and referral sharing build the lead list fast.</p></div>
+      <div class="card stage"><div class="num">3</div><h3>Presale phase 1</h3><p>Early bird rates open to the list and the local area.</p></div>
+      <div class="card stage"><div class="num">4</div><h3>Presale phase 2</h3><p>The second offer, for everyone who missed phase 1.</p></div>
+      <div class="card stage"><div class="num">5</div><h3>Presale phase 3</h3><p>Last chance. Countdown to opening and the final call on presale pricing.</p></div>
+      <div class="card stage bau"><div class="num">6</div><h3>Open, business as usual</h3><p>Early bird is retired. The always-on offer takes over: the free 7-day pass.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">02 What gets built</p>
+        <h2>Every asset a club launch needs</h2>
+      </div>
+      <p class="side">Built for Armstrong Creek, and as the templates every future club is produced from.</p>
+    </div>
+    <div class="built">
+
+      <div class="card w2">
+        <div class="d-head"><div class="big">11</div><div><h3>Pages</h3><p>Designed, written and built for each stage</p></div></div>
+        <ul class="pages">
+          <li><small>1. Awareness</small><b>Register for Early Bird page</b> <i>+ custom thank-you page</i></li>
+          <li><small>2. Competition</small><b>Comp entry page</b></li>
+          <li><small>2. Competition</small><b>Custom share and thank-you page</b></li>
+          <li><small>3. Presale phase 1</small><b>Early Bird Rates Now Open page</b> <i>+ custom thank-you page</i></li>
+          <li><small>4. Presale phase 2</small><b>Phase 2 offer page</b></li>
+          <li><small>5. Presale phase 3</small><b>Last chance countdown page</b></li>
+          <li><small>6. Open</small><b>Free 7-day pass page</b> <i>+ custom thank-you page</i></li>
+          <li><small>Pursuit website</small><b>Club page for the Wix site</b> <i>in two versions: early bird open now, then the open club. Address, early bird message and a button through to the early bird page, delivered as content ready to place in Wix.</i></li>
+        </ul>
+      </div>
+
+      <div class="card w2">
+        <div class="d-head"><div class="big">46</div><div><h3>Static ads</h3><p>46 concepts, 138 finished ad files</p></div></div>
+        <ul class="rows">
+          <li><span>1. Awareness</span><b class="n">10</b></li>
+          <li><span>2. Competition</span><b class="n">6</b></li>
+          <li><span>3. Presale phase 1</span><b class="n">10</b></li>
+          <li><span>4. Presale phase 2</span><b class="n">6</b></li>
+          <li><span>5. Presale phase 3</span><b class="n">6</b></li>
+          <li><span>6. Open: free 7-day pass</span><b class="n">8</b></li>
+        </ul>
+        <p class="note"><b>Ad styles in the set:</b></p>
+        <div class="chips"><span>Offer</span><span>Countdown</span><span>Club and location</span><span>Reviews</span><span>Kids</span><span>BJJ</span><span>Illustrated</span></div>
+        <p class="note">Every concept designed in three sizes: feed (4:5), square (1:1) and story (9:16).<br><b>Includes all ad copywriting:</b> primary text, headlines and descriptions for every ad.</p>
+      </div>
+
+      <div class="card w2">
+        <div class="d-head"><div class="big">15</div><div><h3>Animated ads</h3><p>15 ads, 45 finished video files</p></div></div>
+        <ul class="rows">
+          <li><span>1. Awareness</span><b class="n">3</b></li>
+          <li><span>2. Competition</span><b class="n">2</b></li>
+          <li><span>3. Presale phase 1</span><b class="n">3</b></li>
+          <li><span>4. Presale phase 2</span><b class="n">2</b></li>
+          <li><span>5. Presale phase 3</span><b class="n">2</b></li>
+          <li><span>6. Open: free 7-day pass</span><b class="n">3</b></li>
+        </ul>
+        <p class="note"><b>Ad styles in the set:</b></p>
+        <div class="chips"><span>Offer</span><span>Countdown</span><span>Review beats</span><span>Club footage</span><span>Illustrated loops</span></div>
+        <p class="note">Every ad animated in three sizes: feed (4:5), square (1:1) and story (9:16).<br><b>Includes all ad copywriting:</b> primary text, headlines and descriptions for every ad.</p>
+      </div>
+
+      <div class="card w3">
+        <div class="d-head"><div class="big">5</div><div><h3>Presale welcome emails</h3><p>For every early bird sign-up, built into the club's Gymsales account</p></div></div>
+        <ol class="steps">
+          <li><b>You're on the early bird list.</b> Thanks for signing up, what is locked in and what happens next.</li>
+          <li><b>Who we are.</b> Pursuit Muay Thai Australia: the group behind the new club, not just the local gym.</li>
+          <li><b>What we do.</b> The programs and classes, and what a first session looks like.</li>
+          <li><b>Why Pursuit.</b> What sets Pursuit apart, with proof from the existing clubs.</li>
+          <li><b>Your offer and opening day.</b> The presale offer, the key dates and the last call before doors open.</li>
+        </ol>
+        <p class="note"><b>Written in four versions, one for each type of club:</b></p>
+        <div class="chips"><span>Muay Thai</span><span>BJJ</span><span>Muay Thai + BJJ</span><span>Performance centre</span></div>
+        <p class="note">Gymsales account owner: TBC.</p>
+      </div>
+
+      <div class="card w3">
+        <div class="d-head"><div class="big">2</div><div><h3>Google Ads builds</h3><p>The new club built into Search, two ways</p></div></div>
+        <div class="sub">
+          <span class="tag">Live from presale</span>
+          <b>Added into the Pursuit campaigns already running</b>
+          <p>New club keywords added to the brand campaign and the Muay Thai campaign, with locations updated. People searching want to join something now, so this goes live when early bird rates open, with traffic to the Early Bird Rates Now Open page, then to the free 7-day pass page once the club is open.</p>
+        </div>
+        <div class="sub">
+          <span class="tag">Built and left paused</span>
+          <b>A standalone campaign for the club</b>
+          <p>A full campaign for the club alone, ready to switch on any time you want to push that club specifically, for any offer it runs: Muay Thai, BJJ and the rest.</p>
+        </div>
+        <p class="note"><b>Built for both:</b></p>
+        <ul class="incl">
+          <li>Keywords and negative keywords</li>
+          <li>Custom ad copy: headlines and descriptions</li>
+          <li>Sitelinks, callouts and structured snippets</li>
+          <li>Call and location assets</li>
+          <li>Image assets, logo and business name</li>
+          <li>Location targeting for the club's area</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">03 How it gets built</p>
+        <h2>Built once, so it never gets rebuilt</h2>
+      </div>
+      <p class="side">The assets are the first half of the job. Turning them into an engine is the second.</p>
+    </div>
+    <div class="build">
+      <div class="card">
+        <h3>Every detail locked</h3>
+        <p>Each asset is worked through with a fine-tooth comb until it is right and can be replicated for any club, in any state.</p>
+        <ul class="ticks">
+          <li>Every section on every page</li>
+          <li>The tone of voice, line by line</li>
+          <li>Every pixel of each static</li>
+          <li>Where every headline sits</li>
+          <li>The imagery and how it is treated</li>
+          <li>How each animation runs</li>
+          <li>Club name, suburb and address</li>
+          <li>Offer and opening date</li>
+        </ul>
+      </div>
+      <div class="card dark">
+        <h3>Turned into an engine Pursuit owns</h3>
+        <p>Once every asset is locked, each one becomes a reference and a custom skill inside Claude Code. Those skills are bundled into master skills that produce a whole club launch, pages, statics, animations, emails and Google Ads, <b>in a single run.</b></p>
+        <p>The skills, templates and references are built for Pursuit and owned by Pursuit. The next club is a new name and address going through the same engine, not a new project.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">04 Project timeline</p>
+        <h2>Built in two weeks, handed over in person</h2>
+      </div>
+      <p class="side">Armstrong Creek is built in full as the first club through the engine.</p>
+    </div>
+    <div class="timeline">
+      <div class="card"><div class="dot"></div><small>Day 1</small><h3>Kick-off</h3><p>Project confirmed. Club details, offer, key dates, imagery and account access collected for Armstrong Creek.</p></div>
+      <div class="card"><div class="dot"></div><small>Week 1</small><h3>Build the master assets</h3><p>Every page, static, animation and email built and refined until each one is locked. Google Ads structure mapped.</p></div>
+      <div class="card"><div class="dot"></div><small>Week 2</small><h3>Build the engine, run Armstrong Creek</h3><p>Locked assets become references and skills. Armstrong Creek goes through the engine and comes out ready to launch.</p></div>
+      <div class="card"><div class="dot"></div><small>9 and 10 December</small><h3>Handover in Victoria</h3><p>Two days in person with Adam: a walkthrough of the engine, Claude Code set up on your laptop and training to run it safely. Flights and accommodation covered by Graft.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head">
+      <div>
+        <p class="eyebrow">05 Investment</p>
+        <h2>One fee, everything included</h2>
+      </div>
+    </div>
+    <div class="invest">
+      <ul class="lines">
+        <li>Club Launch Engine: templates, references and Pursuit-owned skills <b>Included</b></li>
+        <li>Armstrong Creek launch: 11 pages, 46 static concepts, 15 animated ads <b>Included</b></li>
+        <li>Presale welcome series: 5 emails, four club-type versions <b>Included</b></li>
+        <li>Google Ads: live campaign additions and the paused standalone campaign <b>Included</b></li>
+        <li>Two handover days in Victoria, 9 and 10 December, travel covered <b>Included</b></li>
+      </ul>
+      <div class="pricebox">
+        <small class="lbl">One-off project fee</small>
+        <div class="price">$20,000<small>+ GST</small></div>
+        <ul class="terms">
+          <li>Once agreed, payment is split in four: November, December, January and February</li>
+          <li>Work delivered in November and December</li>
+        </ul>
+      </div>
+    </div>
+    <p class="excl"><b>Not included:</b> ad spend, ongoing campaign management for each club, Claude subscription costs, and any rebuild of the Pursuit website.</p>
+  </section>
+
+  <footer>
+    <span>Graft Advisory &middot; graftadvisory.com</span>
+    <span>Club Launch Engine proposal for Pursuit Muay Thai &middot; 13 November 2026</span>
+  </footer>
+
+</div>
+</body>
+</html>
