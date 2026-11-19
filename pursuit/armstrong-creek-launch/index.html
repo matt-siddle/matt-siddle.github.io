@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Armstrong Creek Launch | Pursuit Muay Thai</title>
+<link rel="icon" href="assets/favicon-32.png">
+<style>
+@font-face { font-family: "Anton"; font-weight: 400; font-display: swap; src: url("assets/fonts/anton-normal-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 400; font-display: swap; src: url("assets/fonts/barlow-condensed-normal-400-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 600; font-display: swap; src: url("assets/fonts/barlow-condensed-normal-600-latin.woff2") format("woff2"); }
+@font-face { font-family: "Barlow Condensed"; font-weight: 700; font-display: swap; src: url("assets/fonts/barlow-condensed-normal-700-latin.woff2") format("woff2"); }
+:root { --black:#000; --ink:#1A1A1A; --off:#FAF9F9; --cyan:#1CC8F6; --blue:#3A52F6; --red:#F65252; --grey:#a8a8a8;
+  --head:"Anton", Impact, "Arial Narrow", sans-serif; --body:"Barlow Condensed", system-ui, sans-serif; }
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+body { margin: 0; background: var(--black); color: var(--off); font: 400 clamp(1.15rem, 1.5vw, 1.6rem)/1.4 var(--body); -webkit-font-smoothing: antialiased; }
+h1, h2, h3, p, ul, figure { margin: 0; }
+h1, h2, h3 { font-family: var(--head); font-weight: 400; text-transform: uppercase; line-height: 1.02; letter-spacing: .01em; text-wrap: balance; }
+h1 { font-size: clamp(3rem, 8.5vw, 8.5rem); }
+h2 { font-size: clamp(2.1rem, 4.6vw, 4.4rem); }
+h3 { font-size: clamp(1.3rem, 1.9vw, 1.9rem); }
+img { display: block; max-width: 100%; height: auto; }
+.slide { min-height: 100vh; scroll-snap-align: start; padding: clamp(1.5rem, 4vw, 4rem) clamp(1.25rem, 5vw, 5.5rem); display: flex; flex-direction: column; justify-content: center; gap: clamp(1.25rem, 2.6vw, 2.6rem); position: relative; }
+.slide--ink { background: var(--ink); }
+.slide--light { background: var(--off); color: var(--ink); }
+.slide--blue { background: var(--blue); }
+.tag { display: inline-block; align-self: flex-start; background: var(--cyan); color: #000; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; font-size: .8em; padding: .3em .7em; }
+.tag--line { background: none; color: inherit; border: 2px solid currentColor; }
+.cyan { color: var(--cyan); }
+.sub { max-width: 46ch; font-size: 1.15em; }
+.logo { width: clamp(150px, 15vw, 240px); }
+.num { position: absolute; right: clamp(1.25rem, 5vw, 5.5rem); bottom: clamp(1rem, 2.5vw, 2rem); font-weight: 600; letter-spacing: .1em; font-size: .75em; opacity: .55; }
+.draft { font-size: .78em; opacity: .65; }
+
+/* title */
+.title { background: linear-gradient(90deg, #000 38%, rgba(0,0,0,.72)), url("assets/page-voucher-desktop.jpg") center/cover; }
+.ticker { position: absolute; left: 0; right: 0; top: 0; background: var(--cyan); color: #000; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: .72em; padding: .45em 1em; white-space: nowrap; overflow: hidden; }
+
+/* strategy */
+.be { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); align-items: center; gap: clamp(1rem, 3vw, 3rem); max-width: 1100px; }
+.be > * { min-width: 0; }
+.be b { display: block; font: 400 clamp(2.8rem, 8vw, 7.5rem)/1 var(--head); }
+.be span { display: block; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; font-size: .85em; margin-top: .4em; }
+.be .from b { color: var(--grey); text-decoration: line-through; text-decoration-thickness: .06em; }
+.be .to b { color: var(--cyan); }
+.be .arrow { font: 400 clamp(2rem, 5vw, 5rem)/1 var(--head); color: var(--cyan); }
+.cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(.9rem, 1.8vw, 1.8rem); }
+.cols > * { min-width: 0; }
+.card { border-top: 4px solid var(--cyan); background: var(--ink); padding: clamp(1rem, 1.6vw, 1.6rem); }
+.slide--ink .card { background: #000; }
+.card h3 { margin-bottom: .45em; }
+.card .n { font: 400 1em var(--head); color: var(--cyan); display: block; margin-bottom: .5em; }
+
+/* timeline */
+.stages { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: clamp(.6rem, 1.1vw, 1.1rem); }
+.stages > * { min-width: 0; }
+.stage { background: #fff; border-top: 6px solid var(--ink); padding: clamp(.8rem, 1.3vw, 1.3rem); display: flex; flex-direction: column; gap: .45em; }
+.stage .when { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .8em; color: var(--blue); }
+.stage p { font-size: .92em; line-height: 1.3; }
+.stage .save { margin-top: auto; font: 400 1.25em var(--head); text-transform: uppercase; }
+.stage--now { border-top-color: var(--cyan); }
+.stage--open { background: var(--ink); color: var(--off); border-top-color: var(--blue); }
+.stage--open .when { color: var(--cyan); }
+
+/* pages */
+.pages { max-width: calc((100vh - 23rem) * 2.7); display: grid; grid-template-columns: minmax(0,3.4fr) minmax(0,1fr) minmax(0,1fr); gap: clamp(.8rem, 1.6vw, 1.6rem); align-items: start; }
+.pages > * { min-width: 0; }
+.shot { border: 1px solid rgba(250,249,249,.18); }
+.shot img { width: 100%; }
+figcaption { font-size: .78em; text-transform: uppercase; letter-spacing: .08em; font-weight: 600; padding: .55em 0 0; opacity: .8; }
+
+/* ads */
+.ads { max-width: calc((100vh - 23.5rem) * 2.8); display: grid; grid-template-columns: repeat(7, minmax(0,1fr)); gap: clamp(.4rem, .8vw, .8rem); }
+.ads > * { min-width: 0; }
+.ads img { width: 100%; }
+
+/* follow-up */
+.follow { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: clamp(1.2rem, 3vw, 3rem); align-items: center; }
+.follow > * { min-width: 0; }
+.mails { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: clamp(.6rem, 1.2vw, 1.2rem); }
+.mails > * { min-width: 0; }
+.mails img { width: 100%; border: 1px solid rgba(26,26,26,.15); }
+.steps { list-style: none; padding: 0; display: grid; gap: .7em; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2em minmax(0,1fr); align-items: baseline; }
+.steps li::before { content: counter(s); font: 400 1.4em var(--head); color: var(--blue); }
+.dates { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: clamp(.6rem, 1.2vw, 1.2rem); }
+.dates > * { min-width: 0; }
+.dates div { background: var(--ink); color: var(--off); padding: .8em 1em; border-top: 4px solid var(--cyan); }
+.dates b { display: block; font: 400 1.25em var(--head); text-transform: uppercase; color: var(--cyan); }
+.dates span { font-size: .88em; line-height: 1.25; display: block; }
+
+@media (max-width: 900px) {
+  html { scroll-snap-type: none; }
+  .slide { min-height: 0; padding-top: 3rem; padding-bottom: 3.5rem; }
+  .title { min-height: 100vh; }
+  .cols, .follow, .dates { grid-template-columns: minmax(0,1fr); }
+  .pages, .ads { max-width: none; }
+  .stages { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .pages { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .pages .wide { grid-column: 1 / -1; }
+  .ads { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .be { grid-template-columns: minmax(0,1fr); }
+  .be .arrow { display: none; }
+}
+@media print { html { scroll-snap-type: none; } .slide { page-break-after: always; min-height: 100vh; } }
+</style>
+</head>
+<body>
+
+<section class="slide title">
+  <div class="ticker">Coming to Armstrong Creek · Pursuit Muay Thai · Opening Saturday 30 January 2027 · Coming to Armstrong Creek · Pursuit Muay Thai · Opening Saturday 30 January 2027 · Coming to Armstrong Creek · Pursuit Muay Thai</div>
+  <img class="logo" src="assets/pursuit-logo.webp" alt="Pursuit Muay Thai">
+  <h1>Armstrong Creek<br><span class="cyan">Club Launch</span></h1>
+  <p class="sub">How we take a new club to market, and how the same system launches every club after it.</p>
+  <span class="num">1 / 6</span>
+</section>
+
+<section class="slide slide--ink">
+  <span class="tag">The strategy</span>
+  <h2>Speed to break even</h2>
+  <div class="be">
+    <div class="from"><b>$95,000</b><span>Operating cost from opening to break even today</span></div>
+    <div class="arrow">&rarr;</div>
+    <div class="to"><b>$35,000</b><span>The goal for every new club</span></div>
+  </div>
+  <div class="cols">
+    <div class="card"><span class="n">01</span><h3>Open with members already paying</h3><p>Marketing starts two months before the doors open. The target is 100 founding members on opening day and 145 by 28 February.</p></div>
+    <div class="card"><span class="n">02</span><h3>Every lead gets a call</h3><p>A lead claims a founding member voucher, our team phones them and they join on the call. Emails and texts follow up until they do.</p></div>
+    <div class="card"><span class="n">03</span><h3>Build it once, reuse it everywhere</h3><p>Every page, ad and email built for Armstrong Creek becomes a template, so the next club gets to market in days.</p></div>
+  </div>
+  <span class="num">2 / 6</span>
+</section>
+
+<section class="slide slide--light">
+  <span class="tag">The plan</span>
+  <h2>Five stages, one offer at a time</h2>
+  <div class="stages">
+    <div class="stage stage--now"><span class="when">1 to 13 Dec</span><h3>Awareness</h3><p>Muay Thai is coming to Armstrong Creek. Claim your founding member voucher. We build the list.</p><span class="save">Build the list</span></div>
+    <div class="stage"><span class="when">14 Dec to 3 Jan</span><h3>Founding member offer</h3><p>$0 join fee, free uniform and 8 weeks free. Calls start and the first members join.</p><span class="save">Save up to $680</span></div>
+    <div class="stage"><span class="when">4 to 31 Jan</span><h3>Stage 2</h3><p>$0 join fee and 8 weeks free, with a last chance push in the final week.</p><span class="save">Save up to $540</span></div>
+    <div class="stage stage--open"><span class="when">Sat 30 Jan</span><h3>Open day</h3><p>Doors open. Classes run from Monday 1 February with an opening offer through February.</p><span class="save">Save up to $320</span></div>
+    <div class="stage"><span class="when">From 1 Mar</span><h3>Business as usual</h3><p>The free 7-day pass, the same offer every other Pursuit club runs.</p><span class="save">Free 7-day pass</span></div>
+  </div>
+  <span class="num">3 / 6</span>
+</section>
+
+<section class="slide">
+  <span class="tag">Landing pages</span>
+  <h2>One page a stage, built to capture the lead</h2>
+  <div class="pages">
+    <figure class="wide"><div class="shot"><img src="assets/page-voucher-desktop.jpg" alt="Armstrong Creek voucher page on desktop"></div><figcaption>Voucher page, with a countdown to the founding member offer</figcaption></figure>
+    <figure><div class="shot"><img src="assets/voucher-390-fold.jpg" alt="Voucher page on a phone"></div><figcaption>On a phone</figcaption></figure>
+    <figure><div class="shot"><img src="assets/voucher-thanks-390-fold.jpg" alt="Thank-you page on a phone"></div><figcaption>Thank-you page</figcaption></figure>
+  </div>
+  <p class="draft">First drafts. Every lead goes straight to the sales team's CRM, tagged with the club and the stage.</p>
+  <span class="num">4 / 6</span>
+</section>
+
+<section class="slide slide--ink">
+  <span class="tag">Ads</span>
+  <h2>A new set of ads for every stage</h2>
+  <div class="ads">
+    <img src="assets/aw-aw1-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw3-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw4-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw2-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw9-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw8-4x5.jpg" alt="Awareness ad">
+    <img src="assets/aw-aw10-4x5.jpg" alt="Awareness ad">
+    <img src="assets/s1-s1-01-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-02-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-03-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-04-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-p1-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-06-4x5.jpg" alt="Founding member offer ad">
+    <img src="assets/s1-s1-p2-4x5.jpg" alt="Founding member offer ad">
+  </div>
+  <p class="draft">First drafts. Top row: awareness. Bottom row: the founding member offer. Each one is made in feed, square and story sizes, with animated versions to follow.</p>
+  <span class="num">5 / 6</span>
+</section>
+
+<section class="slide slide--light">
+  <span class="tag">Follow-up and next steps</span>
+  <h2>No lead goes cold</h2>
+  <div class="follow">
+    <div class="mails">
+      <img src="assets/email-welcome-1.jpg" alt="Welcome email">
+      <img src="assets/email-offers-open.jpg" alt="Founding member offers open email">
+      <p class="draft" style="grid-column:1/-1">First drafts of the welcome email and the offers-open email.</p>
+    </div>
+    <div style="display:grid; gap: clamp(1rem, 2vw, 2rem)">
+      <ul class="steps">
+        <li><span>A lead claims a voucher and gets a welcome email and text straight away.</span></li>
+        <li><span>The sales team calls and the lead joins on the call.</span></li>
+        <li><span>Emails and texts remind them before each offer ends, and stop once they join.</span></li>
+        <li><span>New members get a welcome sequence through to opening day.</span></li>
+      </ul>
+      <div class="dates">
+        <div><b>Tue 1 Dec</b><span>Awareness ads and the voucher page go live</span></div>
+        <div><b>Mon 14 Dec</b><span>Founding member offers open, calls begin</span></div>
+        <div><b>Sat 30 Jan</b><span>Open day at Armstrong Creek</span></div>
+      </div>
+    </div>
+  </div>
+  <span class="num">6 / 6</span>
+</section>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".slide"));
+  function current() {
+    var y = window.scrollY + window.innerHeight / 2, i = 0;
+    slides.forEach(function (s, n) { if (s.offsetTop <= y) i = n; });
+    return i;
+  }
+  document.addEventListener("keydown", function (e) {
+    var d = (e.key === "ArrowRight" || e.key === "ArrowDown" || e.key === "PageDown" || e.key === " ") ? 1
+          : (e.key === "ArrowLeft" || e.key === "ArrowUp" || e.key === "PageUp") ? -1 : 0;
+    if (!d) return;
+    e.preventDefault();
+    var t = slides[Math.max(0, Math.min(slides.length - 1, current() + d))];
+    t.scrollIntoView({ behavior: "smooth" });
+  });
+})();
+</script>
+</body>
+</html>
