@@ -411,3 +411,14 @@ html.is-after .before-only { display: none; }
   .countdown .before-only { display: block; }
   .countdown strong { display: block; margin: .25rem 0 0; }
 }
+
+/* 27 Nov 2026: bonus entry rows on the extra entries page (follow, like, visit) */
+.share-card__title--sub { margin-top: 1.8rem; }
+.bonus { display: grid; gap: .6rem; }
+.bonus__row { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: 1rem; min-width: 0; padding: .9rem 1.1rem; background: #fff; color: var(--black); border: 2px solid var(--black); font-weight: 700; font-size: 1.15rem; text-decoration: none; }
+.bonus__row:hover { border-color: var(--cyan); }
+.bonus__pts { font: 400 1.5rem/1 var(--head); color: var(--blue); }
+.bonus__done { display: none; font-size: .9rem; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); }
+.bonus__row.is-done { opacity: .7; }
+.bonus__row.is-done .bonus__pts { display: none; }
+.bonus__row.is-done .bonus__done { display: inline; }

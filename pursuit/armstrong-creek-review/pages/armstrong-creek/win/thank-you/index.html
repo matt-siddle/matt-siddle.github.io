@@ -42,13 +42,13 @@
     <div class="container--narrow">
       <span class="label">Entry confirmed</span>
       <h1>You&#x27;re in. Now stack your entries.</h1>
-      <p class="ty__lead">Every friend who enters through your link adds 1 entry to your name.</p>
+      <p class="ty__lead">Every friend who enters through your link adds 3 entries to your name. Following us adds more.</p>
 
-      <div class="share-card js-only" id="shareCard" data-comp-api="" data-entry-url="../" data-campaign="armstrong-creek/win" data-utm-campaign="armstrong-creek-competition" data-message="I just entered to win at Pursuit Muay Thai Armstrong Creek. Enter through my link: {link}" data-copied="Link copied." data-per-friend="1">
+      <div class="share-card js-only" id="shareCard" data-comp-api="https://ydlpigxqxzwzpqnofkjg.functions.supabase.co/comp-entry" data-entry-url="../" data-campaign="armstrong-creek/win" data-utm-campaign="armstrong-creek-competition" data-message="I just entered to win at Pursuit Muay Thai Armstrong Creek. Enter through my link: {link}" data-copied="Link copied." data-per-friend="3">
         <div class="share-card__found">
-          <h2 class="share-card__title">Your personal link</h2>
+          <h2 class="share-card__title">Share your link: 3 entries a friend</h2>
           <div class="share-link">
-            <input type="text" id="shareLink" readonly aria-label="Your personal link">
+            <input type="text" id="shareLink" readonly aria-label="Share your link: 3 entries a friend">
             <button class="btn btn--accent" id="shareCopy" type="button">Copy link</button>
           </div>
           <p class="share-card__done" id="shareDone" aria-live="polite"></p>
@@ -56,6 +56,12 @@
             <a class="btn btn--ghost" id="shareSms" href="#">Send by text</a>
             <a class="btn btn--ghost" id="shareWa" href="#" target="_blank" rel="noopener">Share on WhatsApp</a>
             <a class="btn btn--ghost" id="shareFb" href="#" target="_blank" rel="noopener">Share on Facebook</a>
+          </div>
+          <h2 class="share-card__title share-card__title--sub">More ways to stack entries</h2>
+          <div class="bonus">
+            <a class="bonus__row" href="https://www.instagram.com/pursuit_muaythai/" target="_blank" rel="noopener" data-action="instagram" data-points="2"><span class="bonus__label">Follow us on Instagram</span><span class="bonus__pts">+2</span><span class="bonus__done">Done</span></a>
+            <a class="bonus__row" href="https://www.facebook.com/pursuitmuaythai" target="_blank" rel="noopener" data-action="facebook" data-points="2"><span class="bonus__label">Like us on Facebook</span><span class="bonus__pts">+2</span><span class="bonus__done">Done</span></a>
+            <a class="bonus__row" href="https://www.pursuitmuaythai.com/" target="_blank" rel="noopener" data-action="website" data-points="1"><span class="bonus__label">Visit our website</span><span class="bonus__pts">+1</span><span class="bonus__done">Done</span></a>
           </div>
           <dl class="entry-count">
             <div><dt>Your entries</dt><dd id="countEntries">1</dd></div>
@@ -72,8 +78,8 @@
 
       <span class="label label--gap">What happens next</span>
       <ol class="ty-steps">
-        <li><strong>Share your link</strong>Text it, post it or copy it. Use the buttons above.</li>
-        <li><strong>Friends enter</strong>Your entry count goes up as they do.</li>
+        <li><strong>Share your link</strong>Text it, post it or copy it. Each friend who enters is 3 more entries.</li>
+        <li><strong>Follow us</strong>Instagram and Facebook are 2 entries each. Our website is 1.</li>
         <li><strong>The draw</strong>The closing date and the draw date are still to be confirmed.</li>
       </ol>
 

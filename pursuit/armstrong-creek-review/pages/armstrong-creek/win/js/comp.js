@@ -16,6 +16,10 @@
                  200:  { "ref_code": "k3x9q2a", "entries": 3, "referrals": 2 }      404 when the code is unknown
                  No personal details in this response: the code is in a shareable URL.
 
+   2b. Bonus     POST {comp_api}/entries/{ref_code}/actions   body: { "action": "instagram" }
+                 One-off bonus entries (follow, like, visit): credited once each. The GET and this POST both return
+                 "actions": the keys already credited. The rows on the page carry data-action and data-points.
+
    3. Share link Formed in the browser, not returned by the API:
                  {entry page URL}?ref={ref_code}&utm_source=share&utm_medium=referral&utm_campaign={campaign}
                  The entry page URL is the folder above the extra-entries page. ref_code: letters, digits, "-" or "_", 40 max.
@@ -31,7 +35,7 @@
   function load(formKey) { try { return JSON.parse(window.localStorage.getItem(storeKey(formKey))) || {}; } catch (e) { return {}; } }
   function save(formKey, data) { try { window.localStorage.setItem(storeKey(formKey), JSON.stringify(data)); } catch (e) {} }
   function newCode() { var s = '', a = 'abcdefghjkmnpqrstuvwxyz23456789'; for (var i = 0; i < 7; i++) s += a.charAt(Math.floor(Math.random() * a.length)); return s; }
-  function count(entry, perFriend) { return { ref_code: entry.ref_code, entries: 1 + entry.referrals * perFriend, referrals: entry.referrals }; }
+  function count(entry, perFriend) { var a = entry.actions || {}, extra = 0; Object.keys(a).forEach(function (k) { extra += a[k]; }); return { ref_code: entry.ref_code, entries: 1 + entry.referrals * perFriend + extra, referrals: entry.referrals, actions: Object.keys(a) }; }
 
   var mock = {
     enter: function (row, perFriend) {
@@ -48,6 +52,13 @@
     get: function (formKey, code, perFriend) {
       var entry = load(formKey)[code];
       return entry ? Promise.resolve(count(entry, perFriend)) : Promise.reject(new Error('unknown code'));
+    },
+    action: function (formKey, code, action, points, perFriend) {
+      var data = load(formKey), entry = data[code];
+      if (!entry) return Promise.reject(new Error('unknown code'));
+      entry.actions = entry.actions || {};
+      if (!(action in entry.actions)) { entry.actions[action] = points; save(formKey, data); }
+      return Promise.resolve(count(entry, perFriend));
     }
   };
 
@@ -65,6 +76,10 @@
     get: function (api, formKey, code, preview, perFriend) {
       return (!api || preview) ? mock.get(formKey, code, perFriend)
         : fetch(api.replace(/\/$/, '') + '/entries/' + encodeURIComponent(code), { mode: 'cors' }).then(json);
+    },
+    action: function (api, formKey, code, action, points, preview, perFriend) {
+      return (!api || preview) ? mock.action(formKey, code, action, points, perFriend)
+        : fetch(api.replace(/\/$/, '') + '/entries/' + encodeURIComponent(code) + '/actions', { method: 'POST', mode: 'cors', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action: action }) }).then(json);
     }
   };
 
@@ -110,12 +125,24 @@
     try { navigator.clipboard.writeText(link).then(ok, fallback); } catch (e) { fallback(); }
   });
 
-  function refresh() {
-    window.PursuitComp.get(api, formKey, code, preview, perFriend).then(function (res) {
-      document.getElementById('countEntries').textContent = res.entries;
-      document.getElementById('countFriends').textContent = res.referrals;
-    }, function () {});
+  var rows = card.querySelectorAll('.bonus__row');
+  function paint(res) {
+    document.getElementById('countEntries').textContent = res.entries;
+    document.getElementById('countFriends').textContent = res.referrals;
+    var done = res.actions || [];
+    rows.forEach(function (r) { if (done.indexOf(r.getAttribute('data-action')) > -1) r.classList.add('is-done'); });
   }
+  function refresh() {
+    window.PursuitComp.get(api, formKey, code, preview, perFriend).then(paint, function () {});
+  }
+  /* A bonus row is a real link that opens in a new tab; the entry is credited as it is opened, once. */
+  rows.forEach(function (r) {
+    r.addEventListener('click', function () {
+      if (r.classList.contains('is-done')) return;
+      window.PursuitComp.action(api, formKey, code, r.getAttribute('data-action'), parseInt(r.getAttribute('data-points'), 10) || 0, preview, perFriend)
+        .then(function (res) { r.classList.add('is-done'); paint(res); }, function () {});
+    });
+  });
   document.getElementById('countRefresh').addEventListener('click', refresh);
   document.addEventListener('visibilitychange', function () { if (!document.hidden) refresh(); });
   refresh();
